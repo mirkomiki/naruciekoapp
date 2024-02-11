@@ -1,9 +1,15 @@
 import 'package:flutter/material.dart';
+import 'package:naruciekoapp/LandingPages/pages.dart';
 import 'package:naruciekoapp/globalData.dart';
 
-class Home extends StatelessWidget {
+class Home extends StatefulWidget {
   const Home({super.key});
 
+  @override
+  State<Home> createState() => _HomeState();
+}
+
+class _HomeState extends State<Home> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -13,6 +19,17 @@ class Home extends StatelessWidget {
       ),
       body: const Padding(
         padding: EdgeInsets.all(doubleGapBetweenContainers),
+      ),
+      floatingActionButton: ElevatedButton(
+        onPressed: () {
+          Navigator.pushReplacement(
+            context,
+            MaterialPageRoute(
+              builder: (context) => const Pages(),
+            ),
+          );
+        },
+        child: const Text("Želim jesti"),
       ),
     );
   }
