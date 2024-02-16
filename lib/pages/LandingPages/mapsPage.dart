@@ -10,6 +10,6 @@ class MapsView extends StatefulWidget {
 class _MapsViewState extends State<MapsView> {
   @override
   Widget build(BuildContext context) {
-    return Container();
+    return Scaffold();
   }
 }
