@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:naruciekoapp/LandingPages/pages.dart';
+import 'package:naruciekoapp/pages/LandingPages/pages.dart';
 import 'package:naruciekoapp/globalData.dart';
 
 class Home extends StatefulWidget {
@@ -29,7 +29,7 @@ class _HomeState extends State<Home> {
             ),
           );
         },
-        child: const Text("Želim jesti"),
+        child: const Text("Home"),
       ),
     );
   }

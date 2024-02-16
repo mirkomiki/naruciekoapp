@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "92670486512",
+    "project_id": "narucinase",
+    "storage_bucket": "narucinase.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:92670486512:android:6f4dff989f4a299828df35",
+        "android_client_info": {
+          "package_name": "com.example.naruciekoapp"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDhkP8vef6HpVYg6TRKybQksP0NI-UYD8g"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
