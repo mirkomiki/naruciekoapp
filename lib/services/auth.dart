@@ -20,6 +20,19 @@ class AuthService {
     }
   }
 
+  //siginwith email and password method code to firebase
+  Future signInWithEmailAndPassword(String email, String password) async {
+    try {
+      UserCredential userCredential = await _auth.signInWithEmailAndPassword(
+          email: email, password: password);
+      User? user = userCredential.user;
+      return _userFromFirebaseUser(user);
+    } catch (e) {
+      print("Error caught in registerWithEmailAndPassword");
+      return null;
+    }
+  }
+
   //method to sign in anonymous
   Future signInAnon() async {
     try {
@@ -32,6 +45,18 @@ class AuthService {
     }
   }
 
+  Future registerWithEmailAndPassword(String email, String password) async {
+    try {
+      UserCredential userCredential = await _auth
+          .createUserWithEmailAndPassword(email: email, password: password);
+      User? user = userCredential.user;
+      return _userFromFirebaseUser(user);
+    } catch (e) {
+      print("Error caught in registerWithEmailAndPassword");
+      return null;
+    }
+  }
+
   Future signout() async {
     try {
       return await _auth.signOut();
@@ -39,4 +64,21 @@ class AuthService {
       return Wrapper();
     }
   }
+
+  signInWithGoogle() {}
+  /*
+  static final GoogleSignIn _googleSignIn = GoogleSignIn(); // <----
+  final FacebookAuth _facebookAuth = FacebookAuth.instance;
+  Map<String, dynamic>? userData;
+  signInWithGoogle() async{
+    
+    final GoogleSignInAccount? gUser = await GoogleSignIn().signIn();
+
+    final GoogleSignInAuthentication gAuth = await gUser!.authentication;
+
+    final credential = GoogleAuthProvider.credential(accessToken: gAuth.accessToken, idToken: gAuth.idToken);
+    
+    return await FirebaseAuth.instance.signInWithCredential(credential);
+  }
+  */
 }
