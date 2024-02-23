@@ -30,6 +30,7 @@ class _RegisterPageState extends State<RegisterPage> {
       if (passwordController.text == cpasswordController.text) {
         _auth.registerWithEmailAndPassword(
             emailController.text, passwordController.text);
+        Navigator.pop(context);
       } else {
         showDialog(
             context: context,

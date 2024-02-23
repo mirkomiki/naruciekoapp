@@ -1,6 +1,6 @@
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
-import 'package:naruciekoapp/models/userModel.dart';
+import 'package:naruciekoapp/models/user_model.dart';
 import 'package:naruciekoapp/pages/LandingPages/home.dart';
 import 'package:naruciekoapp/pages/LandingPages/pages.dart';
 import 'package:naruciekoapp/pages/wrapper.dart';

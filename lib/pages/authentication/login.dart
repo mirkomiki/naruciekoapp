@@ -33,6 +33,7 @@ class _LoginPageState extends State<LoginPage> {
       wrongEmailPasswordMessage();
     }
     // ignore: use_build_context_synchronously
+    Navigator.pop(context);
   }
 
   void wrongEmailPasswordMessage() {
