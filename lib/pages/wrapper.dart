@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:naruciekoapp/models/userModel.dart';
+import 'package:naruciekoapp/models/user_model.dart';
 import 'package:naruciekoapp/pages/LandingPages/pages.dart';
 import 'package:naruciekoapp/pages/authentication/login_or_register.dart';
 import 'package:provider/provider.dart';

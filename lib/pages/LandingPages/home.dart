@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:naruciekoapp/pages/LandingPages/pages.dart';
 import 'package:naruciekoapp/globalData.dart';
+import 'package:naruciekoapp/services/database.dart';
 
 class Home extends StatefulWidget {
   const Home({super.key});

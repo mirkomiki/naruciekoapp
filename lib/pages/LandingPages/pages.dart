@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:naruciekoapp/pages/LandingPages/itemsPage.dart';
 import 'package:naruciekoapp/pages/LandingPages/mapsPage.dart';
-import 'package:naruciekoapp/pages/LandingPages/producersPage.dart';
+import 'package:naruciekoapp/pages/LandingPages/producers_page.dart';
 import 'package:naruciekoapp/globalData.dart';
 import 'package:naruciekoapp/pages/LandingPages/home.dart';
 
