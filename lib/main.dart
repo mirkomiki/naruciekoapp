@@ -29,7 +29,6 @@ class MyApp extends StatelessWidget {
 
       initialData: UserModel(uid: 'X'), // DULJINA 11 VELIKO X
       child: const MaterialApp(
-        // proba123
         home: Wrapper(),
       ),
     );
