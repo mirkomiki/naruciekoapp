@@ -28,7 +28,7 @@ class _RegisterPageState extends State<RegisterPage> {
         });
     try {
       if (passwordController.text == cpasswordController.text) {
-        _auth.registerProducerWithEmailAndPassword(
+        _auth.registerWithEmailAndPassword(
             emailController.text, passwordController.text);
         Navigator.pop(context);
       } else {
