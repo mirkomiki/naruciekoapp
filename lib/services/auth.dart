@@ -29,7 +29,7 @@ class AuthService {
       User? user = userCredential.user;
       return _userFromFirebaseUser(user);
     } catch (e) {
-      print("Error caught in registerWithEmailAndPassword");
+      print("Error caught in signInWithEmailAndPassword");
       return null;
     }
   }
@@ -54,6 +54,21 @@ class AuthService {
       User? user = userCredential.user;
       await DatabaseService(uid: user!.uid)
           .updateUserData('new user', email, 'customer');
+      return _userFromFirebaseUser(user);
+    } catch (e) {
+      print("Error caught in registerWithEmailAndPassword");
+      return null;
+    }
+  }
+
+  Future registerProducerWithEmailAndPassword(
+      String email, String password) async {
+    try {
+      UserCredential userCredential = await _auth
+          .createUserWithEmailAndPassword(email: email, password: password);
+      User? user = userCredential.user;
+      await DatabaseService(uid: user!.uid)
+          .updateUserData('new user', email, 'producer');
       return _userFromFirebaseUser(user);
     } catch (e) {
       print("Error caught in registerWithEmailAndPassword");

@@ -7,14 +7,18 @@ class DatabaseService {
 
   //collection reference
   final CollectionReference naruciNaseCollection =
-      FirebaseFirestore.instance.collection('narucinasedata');
+      FirebaseFirestore.instance.collection('users');
 
   Future updateUserData(String name, String email, String role) async {
-    return await naruciNaseCollection.doc(uid).set({
-      'email': email,
-      'name': name,
-      'role': role,
-    });
+    try {
+      return await naruciNaseCollection.doc(uid).set({
+        'email': email,
+        'name': name,
+        'role': role,
+      });
+    } catch (e) {
+      print(e);
+    }
   }
 
   Stream<QuerySnapshot> get narucinasedata {
