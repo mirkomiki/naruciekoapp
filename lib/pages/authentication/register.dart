@@ -18,11 +18,38 @@ class _RegisterPageState extends State<RegisterPage> {
   final cpasswordController = TextEditingController();
   final AuthService _auth = AuthService();
 
-  void signUserUp() async {
+  void becomeProducer() async {
     showDialog(
         context: context,
         builder: (context) {
           return const Center(
+            child: CircularProgressIndicator(),
+          );
+        });
+    try {
+      if (passwordController.text == cpasswordController.text) {
+        _auth.registerProducerWithEmailAndPassword(
+            emailController.text, passwordController.text);
+        Navigator.pop(context);
+      } else {
+        showDialog(
+            context: context,
+            useSafeArea: false,
+            builder: (context) {
+              return const AlertDialog(title: Text("Passwords don't mach"));
+            });
+      }
+    } on FirebaseAuthException catch (e) {
+      Navigator.pop(context);
+      wrongEmailPasswordMessage();
+    }
+  }
+
+  void signUserUp() async {
+    showDialog(
+        context: context,
+        builder: (context) {
+          return Center(
             child: CircularProgressIndicator(),
           );
         });
@@ -73,7 +100,7 @@ class _RegisterPageState extends State<RegisterPage> {
           ),
           //welcome
           Text(
-            'Welcome, you have been missed',
+            'Dobrodošli na vašu e-tržnicu',
             style: TextStyle(color: Colors.grey[700], fontSize: 16),
           ),
           const SizedBox(
@@ -106,6 +133,7 @@ class _RegisterPageState extends State<RegisterPage> {
           ),
           //sign in button
           CustomButton(
+            text: 'Register',
             onTap: signUserUp,
           ),
           //or continue with
@@ -176,6 +204,31 @@ class _RegisterPageState extends State<RegisterPage> {
             ],
           ),
           //not a member register now
+          Row(
+            children: [
+              Expanded(
+                child: Divider(
+                  thickness: 0.5,
+                  color: Colors.grey[400],
+                ),
+              ),
+              Padding(
+                padding: const EdgeInsets.all(8),
+                child: Text(
+                  'AKO NISTE KUPAC PRIJAVITE SE OVDJE',
+                  style: TextStyle(color: Colors.grey[700]),
+                ),
+              ),
+              Expanded(
+                child: Divider(
+                  thickness: 0.5,
+                  color: Colors.grey[400],
+                ),
+              ),
+            ],
+          ),
+          CustomButton(
+              onTap: becomeProducer, text: 'Prijavi se kao proizvođač'),
         ]),
       ),
     );

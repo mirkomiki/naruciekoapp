@@ -16,6 +16,25 @@ class _LoginPageState extends State<LoginPage> {
   final emailController = TextEditingController();
   final passwordController = TextEditingController();
   final AuthService _auth = AuthService();
+  void becomeProducer() async {
+    showDialog(
+        context: context,
+        builder: (context) {
+          return const Center(
+            child: CircularProgressIndicator(),
+          );
+        });
+    try {
+      await FirebaseAuth.instance.signInWithEmailAndPassword(
+          email: emailController.text, password: passwordController.text);
+      Navigator.pop(context);
+    } on FirebaseAuthException catch (e) {
+      Navigator.pop(context);
+      wrongEmailPasswordMessage();
+    }
+    // ignore: use_build_context_synchronously
+  }
+
   void signUserIn() async {
     showDialog(
         context: context,
@@ -33,7 +52,6 @@ class _LoginPageState extends State<LoginPage> {
       wrongEmailPasswordMessage();
     }
     // ignore: use_build_context_synchronously
-    Navigator.pop(context);
   }
 
   void wrongEmailPasswordMessage() {
@@ -100,7 +118,7 @@ class _LoginPageState extends State<LoginPage> {
             height: 25,
           ),
           //sign in button
-          CustomButton(onTap: signUserIn),
+          CustomButton(text: 'Sign in', onTap: signUserIn),
           //or continue with
           Row(
             children: [
@@ -161,6 +179,30 @@ class _LoginPageState extends State<LoginPage> {
             ],
           ),
           //not a member register now
+          Row(
+            children: [
+              Expanded(
+                child: Divider(
+                  thickness: 0.5,
+                  color: Colors.grey[400],
+                ),
+              ),
+              Padding(
+                padding: const EdgeInsets.all(8),
+                child: Text(
+                  'Ako niste još postali proizvođač',
+                  style: TextStyle(color: Colors.grey[700]),
+                ),
+              ),
+              Expanded(
+                child: Divider(
+                  thickness: 0.5,
+                  color: Colors.grey[400],
+                ),
+              ),
+            ],
+          ),
+          CustomButton(onTap: becomeProducer, text: 'Postani proizvođač'),
         ]),
       ),
     );
