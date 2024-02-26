@@ -9,12 +9,26 @@ class DatabaseService {
   final CollectionReference naruciNaseCollection =
       FirebaseFirestore.instance.collection('users');
 
+  final CollectionReference ProizvodiCollection =
+      FirebaseFirestore.instance.collection('proizvodi');
+
   Future updateUserData(String name, String email, String role) async {
     try {
       return await naruciNaseCollection.doc(uid).set({
         'email': email,
         'name': name,
         'role': role,
+      });
+    } catch (e) {
+      print(e);
+    }
+  }
+
+  Future updateProizvodData(String name, String description) async {
+    try {
+      return await ProizvodiCollection.doc(uid).set({
+        'name': name,
+        'description': description,
       });
     } catch (e) {
       print(e);
