@@ -1,4 +1,5 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:naruciekoapp/models/user_model.dart';
 
 class DatabaseService {
   final String? uid;
@@ -21,8 +22,15 @@ class DatabaseService {
     }
   }
 
-  Stream<QuerySnapshot> get narucinasedata {
-    return naruciNaseCollection.snapshots();
+  List<UserModel> _userListFromSnapshot(QuerySnapshot snapshot) {
+    return snapshot.docs.map((doc) {
+      return UserModel(doc.id, doc['name'] ?? 'no-name',
+          doc['email'] ?? 'testnimail@mail.com', doc['role'] ?? 'customer');
+    }).toList();
+  }
+
+  Stream<List<UserModel>> get users {
+    return naruciNaseCollection.snapshots().map(_userListFromSnapshot);
   }
 }
 //ok expected time 15.3. zavrsena baza

@@ -46,4 +46,5 @@ class ProducerModel {
   void addProduct(ProductModel product) => products.add(product);
 
   void removeProduct(ProductModel product) => products.remove(product);
+
 }
