@@ -4,23 +4,25 @@ enum Unit { kilogram, piece }
 
 class ProductModel {
   final String id;
-  String? name;
-  String photo = "";
-  String description = "";
-  double? price;
-  Unit? unit;
-  double? quantity;
+  final String providerId;
+  late String name;
+  String? photo;
+  late String description;
+  late double price;
+  late Unit? unit;
+  late double? quantity;
   double rating = 0;
   int _ratingSum = 0;
   int _numberOfRatings = 0;
-  Categories? category;
+  late Categories? category;
 
-  ProductModel({required this.id});
-
-  ProductModel.full(
+  ProductModel(
       {required this.id,
-      this.name,
-      this.price,
+      required this.providerId,
+      required this.name,
+      required this.description,
+      required this.price,
+      this.photo,
       this.unit,
       this.quantity,
       this.category});
