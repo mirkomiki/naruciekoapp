@@ -1,10 +1,8 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/widgets.dart';
 import 'package:naruciekoapp/datatype/customButton.dart';
 import 'package:naruciekoapp/datatype/customTextField.dart';
 import 'package:naruciekoapp/datatype/squareTile.dart';
-import 'package:naruciekoapp/pages/authentication/forgot_password.dart';
 import 'package:naruciekoapp/services/auth.dart';
 
 class LoginPage extends StatefulWidget {
@@ -109,21 +107,9 @@ class _LoginPageState extends State<LoginPage> {
             child: Row(
               mainAxisAlignment: MainAxisAlignment.end,
               children: [
-                GestureDetector(
-                  onTap: () {
-                    Navigator.push(
-                      context,
-                      MaterialPageRoute(
-                        builder: (context) {
-                          return ForgotPasswordPage();
-                        },
-                      ),
-                    );
-                  },
-                  child: Text(
-                    'Forgot password?',
-                    style: TextStyle(color: Colors.grey[600]),
-                  ),
+                Text(
+                  'Forgot password?',
+                  style: TextStyle(color: Colors.grey[600]),
                 ),
               ],
             ),
