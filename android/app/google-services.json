@@ -12,7 +12,28 @@
           "package_name": "com.example.naruciekoapp"
         }
       },
-      "oauth_client": [],
+      "oauth_client": [
+        {
+          "client_id": "92670486512-4d5uag9red1mr9i6ref13chklsb3vdp6.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.naruciekoapp",
+            "certificate_hash": "698b2df95ff2399cccebf19d3a04d5c89df8e2d6"
+          }
+        },
+        {
+          "client_id": "92670486512-pb01c2kecbb6ogvi135ed1lnuqdjtatt.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.naruciekoapp",
+            "certificate_hash": "7214c203b29bb5df03811905e8514cd0c693a613"
+          }
+        },
+        {
+          "client_id": "92670486512-q25dh22t10n6n58ui1qc13vvm158oao1.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
       "api_key": [
         {
           "current_key": "AIzaSyDhkP8vef6HpVYg6TRKybQksP0NI-UYD8g"
@@ -20,7 +41,19 @@
       ],
       "services": {
         "appinvite_service": {
-          "other_platform_oauth_client": []
+          "other_platform_oauth_client": [
+            {
+              "client_id": "92670486512-ct8bl1pv6u0kilkdjn832u2cd68m8du8.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "92670486512-mvngmd6430adrpqflkmkquati7a8e92d.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "com.example.naruciekoapp"
+              }
+            }
+          ]
         }
       }
     }
