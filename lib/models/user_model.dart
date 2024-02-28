@@ -1,24 +1,12 @@
+import 'package:flutter/material.dart';
+
 class UserModel {
   final String uid;
-  String? email;
-  String? contactNumber;
-  String? name;
-  String? address;
+  late String role;
+  late String name;
+  late String email;
+  late String contactNumber;
+  Image profileImage = Image.asset("assets/blank-profile-image.jpg");
 
-  UserModel({required this.uid});
-
-  UserModel.full({
-    required this.uid,
-    this.email,
-    this.contactNumber,
-    this.name,
-    this.address,
-  });
-
-  void setName(String name) => this.name = name;
-
-  void setAddress(String address) => this.address = address;
-
-  void setContactNumber(String contactNumber) =>
-      this.contactNumber = contactNumber;
+  UserModel(this.uid, this.name, this.email, this.role);
 }
