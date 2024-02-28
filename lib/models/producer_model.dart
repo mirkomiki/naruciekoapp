@@ -6,6 +6,7 @@ class ProducerModel {
   final List<ProductModel> products;
   final String email;
   final String adress;
+  Image profileImage = Image.asset("assets/blank-profile-image.jpg");
 
   ProducerModel(
       {required this.name,
