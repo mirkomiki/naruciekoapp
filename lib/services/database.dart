@@ -33,6 +33,7 @@ class DatabaseService {
     return naruciNaseCollection.snapshots().map(_userListFromSnapshot);
   }
 }
+
 //ok expected time 15.3. zavrsena baza
 //apliakcija gotova mjesec kasnije
 //realno?
