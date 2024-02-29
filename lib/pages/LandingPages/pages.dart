@@ -31,6 +31,7 @@ class _PagesState extends State<Pages> {
       body: _pages.elementAt(selectedPageIndex),
       backgroundColor: Colors.grey[900],
       bottomNavigationBar: Container(
+        height: 60,
         decoration: const BoxDecoration(
             color: Color.fromARGB(30, 255, 255, 255),
             border: Border(

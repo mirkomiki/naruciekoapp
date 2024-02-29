@@ -15,7 +15,6 @@ class LoginPage extends StatefulWidget {
 class _LoginPageState extends State<LoginPage> {
   final emailController = TextEditingController();
   final passwordController = TextEditingController();
-  final AuthService _auth = AuthService();
   void becomeProducer() async {
     showDialog(
         context: context,
@@ -61,6 +60,10 @@ class _LoginPageState extends State<LoginPage> {
         builder: (context) {
           return const AlertDialog(title: Text('Wrong Credentials'));
         });
+  }
+
+  _googleSignIn() {
+    return AuthService().signInWithGoogle();
   }
 
   @override
@@ -152,7 +155,7 @@ class _LoginPageState extends State<LoginPage> {
             children: [
               SquareTile(
                   imagePath: 'assets/google-logo.png',
-                  onTap: () => _auth.signInWithGoogle),
+                  onTap: () => {_googleSignIn()}),
             ],
           ),
           const SizedBox(
