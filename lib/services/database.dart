@@ -10,9 +10,6 @@ class DatabaseService {
   final CollectionReference naruciNaseCollection =
       FirebaseFirestore.instance.collection('users');
 
-  final CollectionReference ProizvodiCollection =
-      FirebaseFirestore.instance.collection('proizvodi');
-
   Future updateUserData(String name, String email, String role) async {
     try {
       return await naruciNaseCollection.doc(uid).set({
@@ -25,21 +22,6 @@ class DatabaseService {
     }
   }
 
-<<<<<<< HEAD
-  Future updateProizvodData(String name, String description) async {
-    try {
-      return await ProizvodiCollection.doc(uid).set({
-        'name': name,
-        'description': description,
-      });
-    } catch (e) {
-      print(e);
-    }
-  }
-
-  Stream<QuerySnapshot> get narucinasedata {
-    return naruciNaseCollection.snapshots();
-=======
   List<UserModel> _userListFromSnapshot(QuerySnapshot snapshot) {
     return snapshot.docs.map((doc) {
       return UserModel(doc.id, doc['name'] ?? 'no-name',
@@ -49,7 +31,6 @@ class DatabaseService {
 
   Stream<List<UserModel>> get users {
     return naruciNaseCollection.snapshots().map(_userListFromSnapshot);
->>>>>>> 298576901699f0ecc5ebb7c7b8d7906c09875d6b
   }
 }
 
