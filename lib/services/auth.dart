@@ -1,5 +1,6 @@
 import "package:firebase_auth/firebase_auth.dart";
-import 'package:naruciekoapp/models/user_model.dart';
+import "package:google_sign_in/google_sign_in.dart";
+import "package:naruciekoapp/models/user_model.dart";
 import "package:naruciekoapp/pages/wrapper.dart";
 import "package:naruciekoapp/services/database.dart";
 
@@ -8,7 +9,7 @@ class AuthService {
 
   //create user obj based on FirebaseUser
   UserModel? _userFromFirebaseUser(User? user) {
-    return user != null ? UserModel(uid: user.uid) : null;
+    return user != null ? UserModel(user.uid, '', '', '') : null;
   }
 
   //auth change user stream
@@ -27,33 +28,6 @@ class AuthService {
       UserCredential userCredential = await _auth.signInWithEmailAndPassword(
           email: email, password: password);
       User? user = userCredential.user;
-      return _userFromFirebaseUser(user);
-    } catch (e) {
-      print("Error caught in signInWithEmailAndPassword");
-      return null;
-    }
-  }
-
-  //method to sign in anonymous
-  Future signInAnon() async {
-    try {
-      UserCredential userCredential = await _auth.signInAnonymously();
-      User? user = userCredential.user;
-      return _userFromFirebaseUser(user);
-    } catch (e) {
-      print("Caught an error in signInAnon: $e");
-      return null; // Return null or handle the error as needed
-    }
-  }
-
-  //nadopuniti
-  Future registerWithEmailAndPassword(String email, String password) async {
-    try {
-      UserCredential userCredential = await _auth
-          .createUserWithEmailAndPassword(email: email, password: password);
-      User? user = userCredential.user;
-      await DatabaseService(uid: user!.uid)
-          .updateUserData('new user', email, 'customer');
       return _userFromFirebaseUser(user);
     } catch (e) {
       print("Error caught in registerWithEmailAndPassword");
@@ -76,6 +50,34 @@ class AuthService {
     }
   }
 
+  //method to sign in anonymous
+  /*
+  Future signInAnon() async {
+    try {
+      UserCredential userCredential = await _auth.signInAnonymously();
+      User? user = userCredential.user;
+      return _userFromFirebaseUser(user);
+    } catch (e) {
+      print("Caught an error in signInAnon: $e");
+      return null; // Return null or handle the error as needed
+    }
+  }
+  */
+
+  Future registerWithEmailAndPassword(String email, String password) async {
+    try {
+      UserCredential userCredential = await _auth
+          .createUserWithEmailAndPassword(email: email, password: password);
+      User? user = userCredential.user;
+      await DatabaseService(uid: user!.uid)
+          .updateUserData('new user', email, 'customer');
+      return _userFromFirebaseUser(user);
+    } catch (e) {
+      print("Error caught in registerWithEmailAndPassword");
+      return null;
+    }
+  }
+
   Future signout() async {
     try {
       return await _auth.signOut();
@@ -84,20 +86,22 @@ class AuthService {
     }
   }
 
-  signInWithGoogle() {}
-  /*
-  static final GoogleSignIn _googleSignIn = GoogleSignIn(); // <----
-  final FacebookAuth _facebookAuth = FacebookAuth.instance;
-  Map<String, dynamic>? userData;
-  signInWithGoogle() async{
-    
+  signInWithGoogle() async {
     final GoogleSignInAccount? gUser = await GoogleSignIn().signIn();
 
     final GoogleSignInAuthentication gAuth = await gUser!.authentication;
 
-    final credential = GoogleAuthProvider.credential(accessToken: gAuth.accessToken, idToken: gAuth.idToken);
-    
-    return await FirebaseAuth.instance.signInWithCredential(credential);
+    final credential = GoogleAuthProvider.credential(
+        accessToken: gAuth.accessToken, idToken: gAuth.idToken);
+    UserCredential userCredential =
+        await FirebaseAuth.instance.signInWithCredential(credential);
+    if (userCredential.additionalUserInfo!.isNewUser) {
+      if (userCredential.user != null) {
+        await DatabaseService(uid: userCredential.user!.uid).updateUserData(
+            'new user', userCredential.user!.email.toString(), 'customer');
+      }
+    }
+
+    return userCredential;
   }
-  */
 }

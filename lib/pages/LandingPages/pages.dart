@@ -20,8 +20,8 @@ class _PagesState extends State<Pages> {
   }
 
   final List<Widget> _pages = [
-    const Home(),
     const ItemsView(),
+    const Home(),
     const ProducersPage(),
     const MapsView(),
   ];
@@ -41,6 +41,10 @@ class _PagesState extends State<Pages> {
             BottomNavigationBarItem(
               icon: Icon(Icons.shopping_basket_outlined),
               label: 'Košarica',
+            ),
+            BottomNavigationBarItem(
+              icon: Icon(Icons.groups_outlined),
+              label: 'Home',
             ),
             BottomNavigationBarItem(
               icon: Icon(Icons.groups_outlined),
