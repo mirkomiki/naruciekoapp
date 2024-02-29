@@ -228,7 +228,9 @@ class _RegisterPageState extends State<RegisterPage> {
             ],
           ),
           CustomButton(
-              onTap: becomeProducer, text: 'Prijavi se kao proizvođač'),
+            onTap: becomeProducer,
+            text: 'Prijavi se kao proizvođač',
+          ),
         ]),
       ),
     );

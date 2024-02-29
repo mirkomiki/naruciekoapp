@@ -20,22 +20,7 @@ void main() async {
         messagingSenderId: "92670486512",
         projectId: "narucinase"),
   );
-  FirebaseFirestore db = FirebaseFirestore.instance;
-  ProductModel item = ProductModel("mlijko", "descripcija", 12);
-
-  db.collection("proizvodi").add(createItem(item)); //proba
   runApp(const MyApp());
-}
-
-Map<String, String> createItem(ProductModel item) {
-  Map<String, String> itemmap = <String, String>{};
-  itemmap.addAll({
-    'name': item.name,
-    'description': item.description,
-    "cost": item.cost.toString(),
-  });
-
-  return itemmap;
 }
 
 class MyApp extends StatelessWidget {
