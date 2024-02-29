@@ -88,9 +88,17 @@ class AuthService {
 
   signInWithGoogle() async {
     final GoogleSignInAccount? gUser = await GoogleSignIn().signIn();
-
     final GoogleSignInAuthentication gAuth = await gUser!.authentication;
+    final credential = GoogleAuthProvider.credential(
+        accessToken: gAuth.accessToken, idToken: gAuth.idToken);
+    UserCredential userCredential =
+        await FirebaseAuth.instance.signInWithCredential(credential);
+    return _userFromFirebaseUser(userCredential.user);
+  }
 
+  signUpWithGoogle() async {
+    final GoogleSignInAccount? gUser = await GoogleSignIn().signIn();
+    final GoogleSignInAuthentication gAuth = await gUser!.authentication;
     final credential = GoogleAuthProvider.credential(
         accessToken: gAuth.accessToken, idToken: gAuth.idToken);
     UserCredential userCredential =
@@ -101,7 +109,6 @@ class AuthService {
             'new user', userCredential.user!.email.toString(), 'customer');
       }
     }
-
-    return userCredential;
+    return _userFromFirebaseUser(userCredential.user);
   }
 }

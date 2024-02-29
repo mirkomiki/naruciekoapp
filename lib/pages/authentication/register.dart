@@ -49,7 +49,7 @@ class _RegisterPageState extends State<RegisterPage> {
     showDialog(
         context: context,
         builder: (context) {
-          return Center(
+          return const Center(
             child: CircularProgressIndicator(),
           );
         });
@@ -169,7 +169,7 @@ class _RegisterPageState extends State<RegisterPage> {
             children: [
               SquareTile(
                 imagePath: 'assets/google-logo.png',
-                onTap: () => AuthService().signInWithGoogle(),
+                onTap: () => AuthService().signUpWithGoogle(),
               ),
               /* const SizedBox(
                 width: 25,
