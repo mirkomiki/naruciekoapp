@@ -7,12 +7,12 @@ class DatabaseService {
   DatabaseService({this.uid});
 
   //collection reference
-  final CollectionReference naruciNaseCollection =
+  final CollectionReference usersCollection =
       FirebaseFirestore.instance.collection('users');
 
   Future updateUserData(String name, String email, String role) async {
     try {
-      return await naruciNaseCollection.doc(uid).set({
+      return await usersCollection.doc(uid).set({
         'email': email,
         'name': name,
         'role': role,
@@ -30,7 +30,7 @@ class DatabaseService {
   }
 
   Stream<List<UserModel>> get users {
-    return naruciNaseCollection.snapshots().map(_userListFromSnapshot);
+    return usersCollection.snapshots().map(_userListFromSnapshot);
   }
 }
 

@@ -1,3 +1,4 @@
+import "package:cloud_firestore/cloud_firestore.dart";
 import "package:firebase_auth/firebase_auth.dart";
 import "package:google_sign_in/google_sign_in.dart";
 import "package:naruciekoapp/models/user_model.dart";
@@ -35,7 +36,7 @@ class AuthService {
     }
   }
 
-  Future registerProducerWithEmailAndPassword(
+  Future registerProducerWithEmailAndPasswordinUsers(
       String email, String password) async {
     try {
       UserCredential userCredential = await _auth
@@ -45,7 +46,22 @@ class AuthService {
           .updateUserData('new user', email, 'producer');
       return _userFromFirebaseUser(user);
     } catch (e) {
-      print("Error caught in registerWithEmailAndPassword");
+      print("Error caught in registerWithEmailAndPasswordinUsers");
+      return null;
+    }
+  }
+
+  Future registerProducerWithEmailAndPasswordinProducers(
+      String email, String password) async {
+    try {
+      var currentProducer = {
+        "email": email,
+        "name": "new user",
+        "role": "producer",
+      };
+      FirebaseFirestore.instance.collection("producers").add(currentProducer);
+    } catch (e) {
+      print("Error caught in registerWithEmailAndPasswordinProducers");
       return null;
     }
   }
