@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:naruciekoapp/datatype/customButton.dart';
 import 'package:naruciekoapp/datatype/customTextField.dart';
 import 'package:naruciekoapp/datatype/squareTile.dart';
+import 'package:naruciekoapp/pages/authentication/register_producer.dart';
 import 'package:naruciekoapp/services/auth.dart';
 
 class RegisterPage extends StatefulWidget {
@@ -230,7 +231,13 @@ class _RegisterPageState extends State<RegisterPage> {
             ],
           ),
           CustomButton(
-            onTap: becomeProducer,
+            onTap: () {
+              Navigator.pushAndRemoveUntil(
+                context,
+                MaterialPageRoute(builder: (context) => RegisterProducerPage()),
+                (Route<dynamic> route) => false,
+              );
+            },
             text: 'Prijavi se kao proizvođač',
           ),
         ]),
