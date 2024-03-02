@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:naruciekoapp/datatype/customButton.dart';
 import 'package:naruciekoapp/datatype/customTextField.dart';
 import 'package:naruciekoapp/datatype/squareTile.dart';
+import 'package:naruciekoapp/pages/authentication/register_producer.dart';
 import 'package:naruciekoapp/services/auth.dart';
 
 class LoginPage extends StatefulWidget {
@@ -16,22 +17,11 @@ class _LoginPageState extends State<LoginPage> {
   final emailController = TextEditingController();
   final passwordController = TextEditingController();
   void becomeProducer() async {
-    showDialog(
-        context: context,
-        builder: (context) {
-          return const Center(
-            child: CircularProgressIndicator(),
-          );
-        });
-    try {
-      await FirebaseAuth.instance.signInWithEmailAndPassword(
-          email: emailController.text, password: passwordController.text);
-      Navigator.pop(context);
-    } on FirebaseAuthException catch (e) {
-      Navigator.pop(context);
-      wrongEmailPasswordMessage();
-    }
-    // ignore: use_build_context_synchronously
+    Navigator.pushAndRemoveUntil(
+      context,
+      MaterialPageRoute(builder: (context) => RegisterProducerPage()),
+      (Route<dynamic> route) => false,
+    );
   }
 
   void signUserIn() async {
