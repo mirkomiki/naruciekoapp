@@ -50,7 +50,7 @@ class _ForgotPasswordPageState extends State<ForgotPasswordPage> {
           backgroundColor: const Color.fromARGB(255, 21, 86, 55),
         ),
         body: Column(children: [
-          Text(
+          const Text(
             "Unesite e-mail adresu na koju ćemo Vam poslati link za ponovno postavljanje lozinke:",
             textAlign: TextAlign.center,
             style: TextStyle(fontSize: 20),
