@@ -1,5 +1,6 @@
 import "package:cloud_firestore/cloud_firestore.dart";
 import "package:firebase_auth/firebase_auth.dart";
+import "package:flutter/material.dart";
 import "package:google_sign_in/google_sign_in.dart";
 import "package:naruciekoapp/models/producer_model.dart";
 import "package:naruciekoapp/models/user_model.dart";
@@ -47,6 +48,7 @@ class AuthService {
           .updateUserData('new user', email, 'producer');
       return _userFromFirebaseUser(user);
     } catch (e) {
+      print("user exists");
       print("Error caught in registerWithEmailAndPasswordinUsers");
       return null;
     }
@@ -60,7 +62,19 @@ class AuthService {
         "name": "new user",
         "role": "producer",
       };
-      FirebaseFirestore.instance.collection("producers").add(currentProducer);
+      CollectionReference producers =
+          FirebaseFirestore.instance.collection("producers");
+      QuerySnapshot querySnapshot =
+          await producers.where('email', isEqualTo: email).get();
+      if (querySnapshot.docs.isNotEmpty) {
+        print(email);
+        print("email exists");
+        return null;
+      } else {
+        print("radi instancu");
+
+        FirebaseFirestore.instance.collection("producers").add(currentProducer);
+      }
     } catch (e) {
       print("Error caught in registerWithEmailAndPasswordinProducers");
       return null;
@@ -86,8 +100,12 @@ class AuthService {
       UserCredential userCredential = await _auth
           .createUserWithEmailAndPassword(email: email, password: password);
       User? user = userCredential.user;
-      await DatabaseService(uid: user!.uid)
-          .updateUserData('new user', email, 'customer');
+      if (userCredential.additionalUserInfo!.isNewUser) {
+        if (userCredential.user != null) {
+          await DatabaseService(uid: userCredential.user!.uid)
+              .updateUserData('new user', email, 'customer');
+        }
+      }
       return _userFromFirebaseUser(user);
     } catch (e) {
       print("Error caught in registerWithEmailAndPassword");

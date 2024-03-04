@@ -1,12 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:naruciekoapp/pages/LandingPages/avaliable%20products.dart';
 import 'package:naruciekoapp/pages/LandingPages/create_new_product.dart';
-import 'package:naruciekoapp/pages/LandingPages/itemsPage.dart';
-import 'package:naruciekoapp/pages/LandingPages/mapsPage.dart';
 import 'package:naruciekoapp/pages/LandingPages/orders_dashboard.dart';
-import 'package:naruciekoapp/pages/LandingPages/producers_page.dart';
 import 'package:naruciekoapp/globalData.dart';
-import 'package:naruciekoapp/pages/LandingPages/home.dart';
 
 class ProducerPages extends StatefulWidget {
   const ProducerPages({super.key});
@@ -18,11 +14,11 @@ class ProducerPages extends StatefulWidget {
 class _ProducerPagesState extends State<ProducerPages> {
   void onTapped(int index) {
     setState(() {
-      selectedPageIndex = index;
+      selectedProducerPageIndex = index;
     });
   }
 
-  final List<Widget> _pages = [
+  final List<Widget> _producerPages = [
     const OrdersDashboard(),
     const AvaliableProductsPage(),
     const CreateProductPage(),
@@ -30,7 +26,7 @@ class _ProducerPagesState extends State<ProducerPages> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: _pages.elementAt(selectedPageIndex),
+      body: _producerPages.elementAt(selectedProducerPageIndex),
       backgroundColor: Colors.grey[900],
       bottomNavigationBar: Container(
         height: 60,
@@ -54,7 +50,7 @@ class _ProducerPagesState extends State<ProducerPages> {
               label: 'Dodaj proizvod',
             ),
           ],
-          currentIndex: selectedPageIndex,
+          currentIndex: selectedProducerPageIndex,
           type: BottomNavigationBarType.fixed,
           backgroundColor: const Color.fromARGB(255, 26, 26, 26),
           unselectedItemColor: const Color.fromARGB(129, 255, 255, 255),
