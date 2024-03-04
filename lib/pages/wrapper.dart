@@ -41,6 +41,7 @@ class _WrapperState extends State<Wrapper> {
 
   @override
   Widget build(BuildContext context) {
+    fetchUserRole();
     final user = Provider.of<UserModel?>(context);
     if (user != null && !_producerPages) {
       // If user is authenticated but not a producer, return the Home page
