@@ -8,37 +8,46 @@ import 'package:naruciekoapp/pages/LandingPages/producers_page.dart';
 import 'package:naruciekoapp/pages/authentication/login_or_register.dart';
 import 'package:provider/provider.dart';
 
-class Wrapper extends StatelessWidget {
-  const Wrapper({Key? key});
+class Wrapper extends StatefulWidget {
+  const Wrapper({Key? key}) : super(key: key);
+
+  @override
+  _WrapperState createState() => _WrapperState();
+}
+
+class _WrapperState extends State<Wrapper> {
+  bool _producerPages = false;
+
+  @override
+  void initState() {
+    super.initState();
+    fetchUserRole();
+  }
+
+  Future<void> fetchUserRole() async {
+    final user = FirebaseAuth.instance.currentUser;
+    if (user != null) {
+      final doc = await FirebaseFirestore.instance
+          .collection("users")
+          .doc(user.uid)
+          .get();
+      if (doc.exists && doc.data()?['role'] == 'producer') {
+        setState(() {
+          _producerPages = true;
+        });
+      }
+    }
+  }
 
   @override
   Widget build(BuildContext context) {
     final user = Provider.of<UserModel?>(context);
-    // Check if the user is authenticated
-
-    StreamBuilder(
-        stream: FirebaseFirestore.instance
-            .collection('users')
-            .doc(FirebaseAuth.instance.currentUser?.uid)
-            .snapshots(),
-        builder: (context, snapshot) {
-          if (!snapshot.hasData) {
-            return LoginRegisterPage();
-          }
-          final userData = snapshot.data?.data();
-
-          if (userData?['role'] == 'producer') {
-            return ProducerPages();
-          }
-
-          return Pages();
-        });
-
-    if (user != null /*&& user.role == "customer"*/) {
-      // If user is authenticated, return the Home page
+    if (user != null && !_producerPages) {
+      // If user is authenticated but not a producer, return the Home page
       return Pages();
-      //} else if (user != null && user.role == "producer") {
-      //  return ProducerPages();
+    } else if (user != null && _producerPages) {
+      // If user is authenticated and a producer, return the Producer pages
+      return ProducerPages();
     } else {
       // If user is not authenticated, return the authentication page
       return LoginRegisterPage(); // Make sure to replace this with your actual authentication page
