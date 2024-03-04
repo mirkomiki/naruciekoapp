@@ -6,6 +6,7 @@ import 'package:naruciekoapp/models/product_model.dart';
 import 'package:naruciekoapp/models/user_model.dart';
 import 'package:naruciekoapp/pages/LandingPages/home.dart';
 import 'package:naruciekoapp/pages/LandingPages/pages.dart';
+import 'package:naruciekoapp/pages/splash_screen.dart';
 import 'package:naruciekoapp/pages/wrapper.dart';
 import 'package:naruciekoapp/services/auth.dart';
 import 'package:naruciekoapp/services/database.dart';
@@ -32,7 +33,7 @@ class MyApp extends StatelessWidget {
       value: AuthService().user,
       initialData: UserModel('', '', '', ''), // DULJINA 11 VELIKO X
       child: MaterialApp(
-        home: Wrapper(),
+        home: SplashScreen(),
       ),
     );
   }

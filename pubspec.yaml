@@ -70,6 +70,9 @@ flutter:
   assets:
       - assets/google-logo.png 
       - assets/blank-profile-image.jpg
+      - assets/rabbit-cute.gif
+      - assets/logotext.png
+      - assets/zecov_logo.png
   #   - images/a_dot_burr.jpeg
   #   - images/a_dot_ham.jpeg
 
