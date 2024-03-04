@@ -19,35 +19,6 @@ class _RegisterPageState extends State<RegisterPage> {
   final cpasswordController = TextEditingController();
   final AuthService _auth = AuthService();
 
-  void becomeProducer() async {
-    showDialog(
-        context: context,
-        builder: (context) {
-          return const Center(
-            child: CircularProgressIndicator(),
-          );
-        });
-    try {
-      if (passwordController.text == cpasswordController.text) {
-        _auth.registerProducerWithEmailAndPasswordinUsers(
-            emailController.text, passwordController.text);
-        _auth.registerProducerWithEmailAndPasswordinProducers(
-            emailController.text, passwordController.text);
-        Navigator.pop(context);
-      } else {
-        showDialog(
-            context: context,
-            useSafeArea: false,
-            builder: (context) {
-              return const AlertDialog(title: Text("Passwords don't mach"));
-            });
-      }
-    } on FirebaseAuthException catch (e) {
-      Navigator.pop(context);
-      wrongEmailPasswordMessage();
-    }
-  }
-
   void signUserUp() async {
     showDialog(
         context: context,
