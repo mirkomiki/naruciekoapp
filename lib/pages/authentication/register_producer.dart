@@ -25,32 +25,53 @@ class _RegisterProducerPageState extends State<RegisterProducerPage> {
   final cpasswordController = TextEditingController();
   final AuthService _auth = AuthService();
 
+  bool validator() {
+    if (emailController.text == "") return false;
+    if (passwordController.text == "") return false;
+    if (cpasswordController.text == "") return false;
+    if (passwordController.text.length < 6 ||
+        cpasswordController.text.length < 6) return false;
+    if (passwordController.text != cpasswordController.text) return false;
+    return true;
+  }
+  //DONNA!!! DONA
+  //napravi funkciju sa drugacijim porukama sa alert dialogima
+
   void becomeProducer() async {
     showDialog(
         context: context,
         builder: (context) {
+          Future.delayed(Duration(seconds: 2), () {
+            Navigator.of(context).pop(true);
+          });
           return const Center(
             child: CircularProgressIndicator(),
           );
         });
     try {
-      if (passwordController.text == cpasswordController.text) {
-        _auth.registerProducerWithEmailAndPasswordinUsers(
-            emailController.text, passwordController.text);
+      if (validator()) {
         _auth.registerProducerWithEmailAndPasswordinProducers(
+            emailController.text, passwordController.text);
+        _auth.registerProducerWithEmailAndPasswordinUsers(
             emailController.text, passwordController.text);
         Navigator.pop(context);
       } else {
         showDialog(
             context: context,
             useSafeArea: false,
+            barrierDismissible: false,
             builder: (context) {
-              return const AlertDialog(title: Text("Passwords don't mach"));
+              Future.delayed(Duration(seconds: 2), () {
+                Navigator.of(context).pop(true);
+              });
+              return AlertDialog(title: Text("Wrong credentials"));
             });
       }
     } on FirebaseAuthException catch (e) {
       Navigator.pop(context);
+      const Duration(seconds: 1);
       wrongEmailPasswordMessage();
+      const Duration(seconds: 1);
     }
   }
 
@@ -59,7 +80,7 @@ class _RegisterProducerPageState extends State<RegisterProducerPage> {
         context: context,
         useSafeArea: false,
         builder: (context) {
-          return const AlertDialog(title: Text('Wrong Credentials'));
+          return const AlertDialog(title: Text('Wrong Credentials2'));
         });
   }
 
