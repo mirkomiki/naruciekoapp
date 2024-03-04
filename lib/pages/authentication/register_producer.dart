@@ -69,9 +69,7 @@ class _RegisterProducerPageState extends State<RegisterProducerPage> {
       }
     } on FirebaseAuthException catch (e) {
       Navigator.pop(context);
-      const Duration(seconds: 1);
       wrongEmailPasswordMessage();
-      const Duration(seconds: 1);
     }
   }
 
