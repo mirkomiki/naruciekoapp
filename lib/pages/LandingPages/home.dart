@@ -14,21 +14,23 @@ class Home extends StatefulWidget {
   State<Home> createState() => _HomeState();
 }
 
+AppBar appBar = AppBar();
+
 class _HomeState extends State<Home> {
-  AppBar appBar = AppBar(
-      title: const Text('Naruči naše'),
-      backgroundColor: Color.fromARGB(255, 26, 102, 65),
-      actions: [
-        IconButton(
-            onPressed: () async {
-              await AuthService().signout();
-            },
-            icon: const Icon(Icons.exit_to_app)),
-      ]);
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: appBar,
+      appBar: AppBar(
+          title: const Text('Naruči naše'),
+          backgroundColor: Color.fromARGB(255, 26, 102, 65),
+          actions: [
+            IconButton(
+                onPressed: () {
+                  FirebaseAuth.instance.signOut();
+                  setState(() {});
+                },
+                icon: const Icon(Icons.exit_to_app)),
+          ]),
       body: Column(
         children: <Widget>[
           SingleChildScrollView(
@@ -86,7 +88,7 @@ class _HomeState extends State<Home> {
             ),
           );
         },
-        child: const Text("Continue"),
+        child: const Text("Continue to Pages"),
       ),
     );
   }

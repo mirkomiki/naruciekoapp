@@ -1,3 +1,5 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:naruciekoapp/pages/LandingPages/itemsPage.dart';
 import 'package:naruciekoapp/pages/LandingPages/mapsPage.dart';
@@ -19,15 +21,24 @@ class _PagesState extends State<Pages> {
     });
   }
 
+  @override
+  void initState() {
+    super.initState();
+  }
+
   final List<Widget> _pages = [
     const ItemsView(),
-    const Home(),
     const ProducersPage(),
     const MapsView(),
   ];
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      floatingActionButton: FloatingActionButton(onPressed: () {
+        FirebaseAuth.instance.signOut();
+        FirebaseFirestore.instance.clearPersistence();
+        FirebaseFirestore.instance.terminate();
+      }),
       body: _pages.elementAt(selectedPageIndex),
       backgroundColor: Colors.grey[900],
       bottomNavigationBar: Container(
@@ -42,10 +53,6 @@ class _PagesState extends State<Pages> {
             BottomNavigationBarItem(
               icon: Icon(Icons.shopping_basket_outlined),
               label: 'Košarica',
-            ),
-            BottomNavigationBarItem(
-              icon: Icon(Icons.groups_outlined),
-              label: 'Home',
             ),
             BottomNavigationBarItem(
               icon: Icon(Icons.groups_outlined),

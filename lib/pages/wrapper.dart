@@ -6,25 +6,23 @@ import 'package:naruciekoapp/pages/LandingPages/pages.dart';
 import 'package:naruciekoapp/pages/LandingPages/producer_pages.dart';
 import 'package:naruciekoapp/pages/LandingPages/producers_page.dart';
 import 'package:naruciekoapp/pages/authentication/login_or_register.dart';
+import 'package:naruciekoapp/pages/splash_screen.dart';
 import 'package:provider/provider.dart';
 
 class Wrapper extends StatefulWidget {
   const Wrapper({Key? key}) : super(key: key);
-
   @override
   _WrapperState createState() => _WrapperState();
 }
 
 class _WrapperState extends State<Wrapper> {
-  bool _producerPages = false;
-
   @override
   void initState() {
     super.initState();
     fetchUserRole();
   }
 
-  Future<void> fetchUserRole() async {
+  Future<bool> fetchUserRole() async {
     final user = FirebaseAuth.instance.currentUser;
     if (user != null) {
       final doc = await FirebaseFirestore.instance
@@ -32,25 +30,32 @@ class _WrapperState extends State<Wrapper> {
           .doc(user.uid)
           .get();
       if (doc.exists && doc.data()?['role'] == 'producer') {
-        setState(() {
-          _producerPages = true;
-        });
+        return true;
       }
+      return false;
+    } else {
+      return false;
     }
   }
 
   @override
   Widget build(BuildContext context) {
-    final user = Provider.of<UserModel?>(context);
-    if (user != null && !_producerPages) {
-      // If user is authenticated but not a producer, return the Home page
-      return Pages();
-    } else if (user != null && _producerPages) {
-      // If user is authenticated and a producer, return the Producer pages
-      return ProducerPages();
-    } else {
-      // If user is not authenticated, return the authentication page
-      return LoginRegisterPage(); // Make sure to replace this with your actual authentication page
-    }
+    print('Entry in wrapper build');
+    return StreamBuilder(
+        stream: FirebaseFirestore.instance
+            .collection('users')
+            .doc(FirebaseAuth.instance.currentUser?.uid)
+            .snapshots(),
+        builder: (conext, snapshot) {
+          if (!snapshot.hasData) {
+            return LoginRegisterPage();
+          }
+          final userData = snapshot.data?.data();
+          if (userData?['role'] == 'customer') {
+            return Pages();
+          } else {
+            return ProducerPages();
+          }
+        });
   }
 }

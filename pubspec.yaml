@@ -43,6 +43,7 @@ dependencies:
   google_sign_in: ^6.2.1
   google_places_flutter: ^2.0.8
   open_street_map_search_and_pick: ^0.1.1
+  rxdart: ^0.27.7
 
 dev_dependencies:
   flutter_test:

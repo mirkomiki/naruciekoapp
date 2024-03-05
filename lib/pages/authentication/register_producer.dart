@@ -50,10 +50,12 @@ class _RegisterProducerPageState extends State<RegisterProducerPage> {
         });
     try {
       if (validator()) {
-        _auth.registerProducerWithEmailAndPasswordinProducers(
-            emailController.text, passwordController.text);
+        FirebaseAuth.instance.signOut();
         _auth.registerProducerWithEmailAndPasswordinUsers(
             emailController.text, passwordController.text);
+        _auth.registerProducerWithEmailAndPasswordinProducers(
+            emailController.text, passwordController.text);
+        print('clicked on registerProducer');
         Navigator.pop(context);
       } else {
         showDialog(
@@ -71,6 +73,7 @@ class _RegisterProducerPageState extends State<RegisterProducerPage> {
       Navigator.pop(context);
       wrongEmailPasswordMessage();
     }
+    setState(() {});
   }
 
   void wrongEmailPasswordMessage() {
@@ -80,6 +83,12 @@ class _RegisterProducerPageState extends State<RegisterProducerPage> {
         builder: (context) {
           return const AlertDialog(title: Text('Wrong Credentials2'));
         });
+  }
+
+  @override
+  void initState() {
+    // TODO: implement initState
+    super.initState();
   }
 
   Future navigateAndImportSelectedLocation(BuildContext context) async {
@@ -182,25 +191,6 @@ class _RegisterProducerPageState extends State<RegisterProducerPage> {
             ],
           ),
           //google+apple+facebook sign in button
-          const SizedBox(
-            height: 25,
-          ),
-          Row(
-            mainAxisAlignment: MainAxisAlignment.center,
-            children: [
-              SquareTile(
-                imagePath: 'assets/google-logo.png',
-                onTap: () => AuthService().signUpWithGoogle(),
-              ),
-              /* const SizedBox(
-                width: 25,
-              ),
-              SquareTile(
-                imagePath: 'assets/facebook-logo.png',
-                onTap: () => AuthService().signInWithFacebook(),
-              ), */
-            ],
-          ),
           const SizedBox(
             height: 25,
           ),

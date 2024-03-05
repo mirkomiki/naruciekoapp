@@ -12,6 +12,7 @@ import 'package:naruciekoapp/services/auth.dart';
 import 'package:naruciekoapp/services/database.dart';
 import 'package:provider/provider.dart';
 
+final GlobalKey<NavigatorState> navigatorKey = new GlobalKey<NavigatorState>();
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
   await Firebase.initializeApp(
@@ -29,12 +30,9 @@ class MyApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return StreamProvider<UserModel?>.value(
-      value: AuthService().user,
-      initialData: UserModel('', '', '', ''), // DULJINA 11 VELIKO X
-      child: MaterialApp(
-        home: SplashScreen(),
-      ),
+    return MaterialApp(
+      navigatorKey: navigatorKey,
+      home: SplashScreen(),
     );
   }
 }
