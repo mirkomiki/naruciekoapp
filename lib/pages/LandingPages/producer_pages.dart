@@ -18,6 +18,12 @@ class _ProducerPagesState extends State<ProducerPages> {
     });
   }
 
+  @override
+  void initState() {
+    // TODO: implement initState
+    super.initState();
+  }
+
   final List<Widget> _producerPages = [
     const OrdersDashboard(),
     const AvaliableProductsPage(),
