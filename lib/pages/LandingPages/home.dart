@@ -2,6 +2,8 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
+import 'package:naruciekoapp/datatype/customItemCard.dart';
+import 'package:naruciekoapp/datatype/customTextField.dart';
 import 'package:naruciekoapp/pages/LandingPages/pages.dart';
 import 'package:naruciekoapp/globalData.dart';
 import 'package:naruciekoapp/services/auth.dart';
@@ -205,17 +207,16 @@ class AppleSellersPage extends StatelessWidget {
       body: Column(
         crossAxisAlignment: CrossAxisAlignment.stretch,
         children: [
-          _buildAppleSellerCard('OPG Weiner', 'Spickovina', '5 € / kg',
+          CustomItemCard('OPG Weiner', 'Spickovina', '5 € / kg',
               'assets/blank-profile-image.jpg', 5),
-          _buildAppleSellerCard('OPG Mikro Bušilica', 'Babina Guzica',
+          CustomItemCard('OPG Mikro Bušilica', 'Babina Guzica',
               '6 € / kg', 'assets/blank-profile-image.jpg', 2),
         ],
       ),
     );
   }
-
-  Widget _buildAppleSellerCard(String opgName, String village, String price,
-      String imagePath, int rating) {
+ /* 
+Widget _buildSellerCard(String opgName, String village, String price, String imagePath, int rating) {
     return Card(
       margin: EdgeInsets.all(16),
       child: ListTile(
@@ -263,7 +264,7 @@ class AppleSellersPage extends StatelessWidget {
         ),
       ),
     );
-  }
+  } */
 }
 
 class VegetablesPage extends StatelessWidget {
