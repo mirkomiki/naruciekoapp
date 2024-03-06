@@ -130,7 +130,6 @@ class _HomeState extends State<Home> {
     );
   }
 }
-
 class FruitPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
@@ -308,7 +307,6 @@ class MeatPage extends StatelessWidget {
     );
   }
 }
-
 class JuicePage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {

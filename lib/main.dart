@@ -1,9 +1,9 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
-import 'package:naruciekoapp/models/producer_model.dart';
-import 'package:naruciekoapp/models/product_model.dart';
-import 'package:naruciekoapp/models/user_model.dart';
+import 'package:naruciekoapp/models/producer_models/producer_model.dart';
+import 'package:naruciekoapp/models/item_models/item_model.dart';
+import 'package:naruciekoapp/models/user_models/user_model.dart';
 import 'package:naruciekoapp/pages/LandingPages/home.dart';
 import 'package:naruciekoapp/pages/LandingPages/pages.dart';
 import 'package:naruciekoapp/pages/splash_screen.dart';

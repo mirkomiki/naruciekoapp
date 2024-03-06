@@ -54,7 +54,9 @@ class _RegisterProducerPageState extends State<RegisterProducerPage> {
         _auth.registerProducerWithEmailAndPasswordinUsers(
             emailController.text, passwordController.text);
         _auth.registerProducerWithEmailAndPasswordinProducers(
-            emailController.text, passwordController.text);
+            emailController.text,
+            passwordController.text,
+            selectedLocationValue);
         print('clicked on registerProducer');
         Navigator.pop(context);
       } else {

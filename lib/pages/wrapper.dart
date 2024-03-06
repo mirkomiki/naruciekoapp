@@ -1,7 +1,7 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
-import 'package:naruciekoapp/models/user_model.dart';
+import 'package:naruciekoapp/models/user_models/user_model.dart';
 import 'package:naruciekoapp/pages/LandingPages/pages.dart';
 import 'package:naruciekoapp/pages/LandingPages/producer_pages.dart';
 import 'package:naruciekoapp/pages/LandingPages/producers_page.dart';

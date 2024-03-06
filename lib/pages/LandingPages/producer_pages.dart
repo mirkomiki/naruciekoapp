@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:naruciekoapp/pages/LandingPages/avaliable%20products.dart';
-import 'package:naruciekoapp/pages/LandingPages/create_new_product.dart';
+import 'package:naruciekoapp/pages/LandingPages/avaliable_items.dart';
+import 'package:naruciekoapp/pages/LandingPages/create_new_item.dart';
 import 'package:naruciekoapp/pages/LandingPages/orders_dashboard.dart';
 import 'package:naruciekoapp/globalData.dart';
 
