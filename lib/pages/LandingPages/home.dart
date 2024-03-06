@@ -15,69 +15,88 @@ class Home extends StatefulWidget {
 }
 
 AppBar appBar = AppBar();
-
 class _HomeState extends State<Home> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-          title: const Text('Naruči naše'),
-          backgroundColor: Color.fromARGB(255, 26, 102, 65),
-          actions: [
-            IconButton(
-                onPressed: () {
-                  FirebaseAuth.instance.signOut();
-                  setState(() {});
-                },
-                icon: const Icon(Icons.exit_to_app)),
-          ]),
-      body: Column(
-        children: <Widget>[
-          SingleChildScrollView(
-            child: SizedBox(
-              height: MediaQuery.of(context).size.height -
-                  appBar.preferredSize.height -
-                  60,
-              child: GridView.count(
-                crossAxisCount: 2, // 2 columns
-                mainAxisSpacing: 8.0,
-                crossAxisSpacing: 8.0,
-                children: [
-                  _buildCategoryButton(context, "Voće", Icons.local_florist,
-                      () {
-                    Navigator.push(
-                      context,
-                      MaterialPageRoute(builder: (context) => FruitPage()),
-                    );
-                  }),
-                  _buildCategoryButton(context, "Povrće", Icons.local_florist,
-                      () {
-                    Navigator.push(
-                      context,
-                      MaterialPageRoute(builder: (context) => VegetablesPage()),
-                    );
-                  }),
-                  _buildCategoryButton(
-                      context, "Meso i mliječni proizvodi", Icons.local_florist,
-                      () {
-                    Navigator.push(
-                      context,
-                      MaterialPageRoute(
-                          builder: (context) => MeatAndDairyPage()),
-                    );
-                  }),
-                  _buildCategoryButton(context, "Ostalo", Icons.local_florist,
-                      () {
-                    Navigator.push(
-                      context,
-                      MaterialPageRoute(builder: (context) => OtherPage()),
-                    );
-                  }),
-                ],
-              ),
-            ),
-          ),
+        title: const Text('Naruči naše'),
+        backgroundColor: Color.fromARGB(255, 26, 102, 65),
+        actions: [
+          IconButton(
+            onPressed: () async {
+              await FirebaseAuth.instance.signOut();
+            },
+            icon: const Icon(Icons.exit_to_app),
+          )
         ],
+      ),
+      body: Padding(
+        padding: const EdgeInsets.all(8.0),
+        child: GridView.count(
+          crossAxisCount: 3, // 3 columns
+          mainAxisSpacing: 8.0,
+          crossAxisSpacing: 8.0,
+          children: [
+            _buildCategoryButton(context, "Voće", Icons.local_florist, () {
+              Navigator.push(
+                context,
+                MaterialPageRoute(builder: (context) => FruitPage()),
+              );
+            }),
+            _buildCategoryButton(context, "Povrće", Icons.local_florist, () {
+              Navigator.push(
+                context,
+                MaterialPageRoute(builder: (context) => VegetablesPage()),
+              );
+            }),
+            _buildCategoryButton(
+                context, "Meso", Icons.local_florist, () {
+              Navigator.push(
+                context,
+                MaterialPageRoute(builder: (context) => MeatPage()),
+              );
+            }),
+            _buildCategoryButton(
+                context, "Mliječni proizvodi", Icons.local_florist, () {
+              Navigator.push(
+                context,
+                MaterialPageRoute(builder: (context) => DairyPage()),
+              );
+            }),
+            _buildCategoryButton(context, "Sokovi", Icons.local_florist, () {
+              Navigator.push(
+                context,
+                MaterialPageRoute(builder: (context) => JuicePage()),
+              );
+            }),
+            _buildCategoryButton(
+                context, "Ulje i ocat", Icons.local_florist, () {
+              Navigator.push(
+                context,
+                MaterialPageRoute(builder: (context) => OilAndVinegarPage()),
+              );
+            }),
+            _buildCategoryButton(context, "Med i džem", Icons.local_florist, () {
+              Navigator.push(
+                context,
+                MaterialPageRoute(builder: (context) => HoneyPage()),
+              );
+            }),
+            _buildCategoryButton(context, "Sadnice", Icons.local_florist, () {
+              Navigator.push(
+                context,
+                MaterialPageRoute(builder: (context) => JamPage()),
+              );
+            }),
+            _buildCategoryButton(context, "Ostalo", Icons.local_florist, () {
+              Navigator.push(
+                context,
+                MaterialPageRoute(builder: (context) => OtherPage()),
+              );
+            }),
+          ],
+        ),
       ),
       floatingActionButton: ElevatedButton(
         onPressed: () {
@@ -88,22 +107,18 @@ class _HomeState extends State<Home> {
             ),
           );
         },
-        child: const Text("Continue to Pages"),
+        child: const Text("Home"),
       ),
     );
   }
 
-  Widget _buildCategoryButton(BuildContext context, String title, IconData icon,
-      VoidCallback onPressed) {
+  Widget _buildCategoryButton(BuildContext context, String title, IconData icon, VoidCallback onPressed) {
     return ElevatedButton.icon(
       onPressed: onPressed,
       style: ButtonStyle(
-        backgroundColor: MaterialStateProperty.all<Color>(
-            Colors.lightGreen), // Change button color to light green
-        foregroundColor: MaterialStateProperty.all<Color>(
-            Colors.black), // Change text color to black
-        padding: MaterialStateProperty.all<EdgeInsetsGeometry>(
-            EdgeInsets.all(8)), // Adjust padding
+        backgroundColor: MaterialStateProperty.all<Color>(Colors.lightGreen), // Change button color to light green
+        foregroundColor: MaterialStateProperty.all<Color>(Colors.black), // Change text color to black
+        padding: MaterialStateProperty.all<EdgeInsetsGeometry>(EdgeInsets.all(8)), // Adjust padding
       ),
       icon: Icon(icon), // Add icon
       label: Text(
@@ -113,7 +128,6 @@ class _HomeState extends State<Home> {
     );
   }
 }
-
 class FruitPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
@@ -264,7 +278,7 @@ class VegetablesPage extends StatelessWidget {
   }
 }
 
-class MeatAndDairyPage extends StatelessWidget {
+class DairyPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -278,7 +292,7 @@ class MeatAndDairyPage extends StatelessWidget {
   }
 }
 
-class OtherPage extends StatelessWidget {
+class MeatPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -287,6 +301,75 @@ class OtherPage extends StatelessWidget {
       ),
       body: Center(
         child: Text('Stranica s ostalim proizvodima'),
+      ),
+    );
+  }
+}
+class JuicePage extends StatelessWidget {
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      appBar: AppBar(
+        title: Text('Sokovi'),
+      ),
+      body: Center(
+        child: Text('Stranica s sokovima'),
+      ),
+    );
+  }
+}
+
+class OilAndVinegarPage extends StatelessWidget {
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      appBar: AppBar(
+        title: Text('Sokovi'),
+      ),
+      body: Center(
+        child: Text('Stranica s sokovima'),
+      ),
+    );
+  }
+}
+
+class OtherPage extends StatelessWidget {
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      appBar: AppBar(
+        title: Text('Ostalo'),
+      ),
+      body: Center(
+        child: Text('Stranica s sokovima'),
+      ),
+    );
+  }
+}
+
+class HoneyPage extends StatelessWidget {
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      appBar: AppBar(
+        title: Text('Med'),
+      ),
+      body: Center(
+        child: Text('Stranica s medom'),
+      ),
+    );
+  }
+}
+
+class JamPage extends StatelessWidget {
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      appBar: AppBar(
+        title: Text('Med'),
+      ),
+      body: Center(
+        child: Text('Stranica s medom'),
       ),
     );
   }
