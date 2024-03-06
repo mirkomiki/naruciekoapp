@@ -12,7 +12,6 @@ import "package:naruciekoapp/pages/splash_screen.dart";
 import "package:naruciekoapp/pages/wrapper.dart";
 import "package:naruciekoapp/services/database.dart";
 import "package:naruciekoapp/services/user_managment.dart";
-import "package:rxdart/rxdart.dart";
 
 class AuthService {
   final FirebaseAuth _auth = FirebaseAuth.instance;

@@ -27,9 +27,10 @@ class _PagesState extends State<Pages> {
   }
 
   final List<Widget> _pages = [
+    const Home(),
     const ItemsView(),
     const ProducersPage(),
-    const MapsView(),
+    //const MapsView(),
   ];
   @override
   Widget build(BuildContext context) {
@@ -51,16 +52,16 @@ class _PagesState extends State<Pages> {
         child: BottomNavigationBar(
           items: const <BottomNavigationBarItem>[
             BottomNavigationBarItem(
+              icon: Icon(Icons.home),
+              label: 'Home',
+            ),
+            BottomNavigationBarItem(
               icon: Icon(Icons.shopping_basket_outlined),
               label: 'Košarica',
             ),
             BottomNavigationBarItem(
               icon: Icon(Icons.groups_outlined),
               label: 'Proizvođači',
-            ),
-            BottomNavigationBarItem(
-              icon: Icon(Icons.map),
-              label: 'Map',
             ),
           ],
           currentIndex: selectedPageIndex,
