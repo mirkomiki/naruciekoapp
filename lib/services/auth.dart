@@ -50,8 +50,8 @@ class AuthService {
     }
   }
 
-  Future registerProducerWithEmailAndPasswordinUsers(
-      String email, String password) async {
+  Future registerProducerWithEmailAndPassword(
+      String email, String password, String adressName) async {
     try {
       UserCredential userCredential = await _auth
           .createUserWithEmailAndPassword(email: email, password: password);
@@ -61,16 +61,6 @@ class AuthService {
       await DatabaseService(uid: user!.uid)
           .updateUserData('Ime', email, 'producer');
       //return _producerFromFirebaseUser(user);
-    } catch (e) {
-      print("user exists");
-      print("Error caught in registerWithEmailAndPasswordinUsers");
-      return null;
-    }
-  }
-
-  Future registerProducerWithEmailAndPasswordinProducers(
-      String email, String password, String adressName) async {
-    try {
       CollectionReference producers =
           FirebaseFirestore.instance.collection("producers");
       QuerySnapshot querySnapshot =
@@ -80,12 +70,21 @@ class AuthService {
       } else {
         await DatabaseService(uid: globalUserUid)
             .updateProducerData('Ime OPG-a', email, adressName);
-        navigatorKey.currentState!.pushAndRemoveUntil(
-          MaterialPageRoute(builder: (context) => UserManagment().handleAuth()),
-          (Route<dynamic> route) => false,
-        );
       }
+      navigatorKey.currentState!.pushAndRemoveUntil(
+        MaterialPageRoute(builder: (context) => UserManagment().handleAuth()),
+        (Route<dynamic> route) => false,
+      );
     } catch (e) {
+      print("user exists");
+      print("Error caught in registerWithEmailAndPassword");
+      return null;
+    }
+  }
+
+  Future registerProducerWithEmailAndPasswordinProducers(
+      String email, String password, String adressName) async {
+    try {} catch (e) {
       print("Error caught in registerWithEmailAndPasswordinProducers");
       return null;
     }
@@ -118,10 +117,6 @@ class AuthService {
         }
       }
       //_userFromFirebaseUser(user);
-      navigatorKey.currentState!.pushAndRemoveUntil(
-        MaterialPageRoute(builder: (context) => UserManagment().handleAuth()),
-        (Route<dynamic> route) => false,
-      );
     } catch (e) {
       print("Error caught in registerWithEmailAndPassword");
       return null;

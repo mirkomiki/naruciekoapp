@@ -51,12 +51,8 @@ class _RegisterProducerPageState extends State<RegisterProducerPage> {
     try {
       if (validator()) {
         FirebaseAuth.instance.signOut();
-        _auth.registerProducerWithEmailAndPasswordinUsers(
-            emailController.text, passwordController.text);
-        _auth.registerProducerWithEmailAndPasswordinProducers(
-            emailController.text,
-            passwordController.text,
-            selectedLocationValue);
+        _auth.registerProducerWithEmailAndPassword(emailController.text,
+            passwordController.text, selectedLocationValue);
         print('clicked on registerProducer');
         Navigator.pop(context);
       } else {
