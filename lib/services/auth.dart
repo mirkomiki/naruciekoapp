@@ -6,7 +6,7 @@ import "package:naruciekoapp/globalData.dart";
 import "package:naruciekoapp/main.dart";
 import 'package:naruciekoapp/models/producer_models/producer_model.dart';
 import 'package:naruciekoapp/models/user_models/user_model.dart';
-import "package:naruciekoapp/pages/LandingPages/producer_pages.dart";
+import 'package:naruciekoapp/pages/producer_pages/producer_pages.dart';
 import "package:naruciekoapp/pages/authentication/login_or_register.dart";
 import "package:naruciekoapp/pages/splash_screen.dart";
 import "package:naruciekoapp/pages/wrapper.dart";

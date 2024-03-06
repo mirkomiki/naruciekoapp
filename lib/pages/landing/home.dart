@@ -2,7 +2,7 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
-import 'package:naruciekoapp/pages/LandingPages/pages.dart';
+import 'package:naruciekoapp/pages/user_pages/pages.dart';
 import 'package:naruciekoapp/globalData.dart';
 import 'package:naruciekoapp/services/auth.dart';
 import 'package:naruciekoapp/services/database.dart';

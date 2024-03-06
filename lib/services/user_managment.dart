@@ -1,12 +1,12 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
-import 'package:naruciekoapp/pages/LandingPages/producer_pages.dart';
-import 'package:naruciekoapp/pages/LandingPages/producers_page.dart';
+import 'package:naruciekoapp/pages/producer_pages/producer_pages.dart';
+import 'package:naruciekoapp/pages/user_pages/producers_page.dart';
 import 'package:naruciekoapp/pages/authentication/login_or_register.dart';
 import 'package:naruciekoapp/pages/wrapper.dart';
 
-import '../pages/LandingPages/pages.dart';
+import '../pages/user_pages/pages.dart';
 
 class UserManagment {
   Widget handleAuth() {

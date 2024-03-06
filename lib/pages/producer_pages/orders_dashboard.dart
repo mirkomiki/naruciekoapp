@@ -26,6 +26,7 @@ class _OrdersDashboardState extends State<OrdersDashboard> {
         onPressed: () {
           try {
             FirebaseAuth.instance.signOut();
+            setState(() {});
           } catch (e) {
             print('Error in signOut');
             //navigatorKey.currentState.pushReplacement(

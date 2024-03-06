@@ -1,45 +1,38 @@
-import 'package:cloud_firestore/cloud_firestore.dart';
-import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
-import 'package:naruciekoapp/pages/LandingPages/itemsPage.dart';
-import 'package:naruciekoapp/pages/LandingPages/mapsPage.dart';
-import 'package:naruciekoapp/pages/LandingPages/producers_page.dart';
+import 'package:naruciekoapp/pages/producer_pages/avaliable_items.dart';
+import 'package:naruciekoapp/pages/producer_pages/create_new_item.dart';
+import 'package:naruciekoapp/pages/producer_pages/orders_dashboard.dart';
 import 'package:naruciekoapp/globalData.dart';
-import 'package:naruciekoapp/pages/LandingPages/home.dart';
 
-class Pages extends StatefulWidget {
-  const Pages({super.key});
+class ProducerPages extends StatefulWidget {
+  const ProducerPages({super.key});
 
   @override
-  State<Pages> createState() => _PagesState();
+  State<ProducerPages> createState() => _ProducerPagesState();
 }
 
-class _PagesState extends State<Pages> {
+class _ProducerPagesState extends State<ProducerPages> {
   void onTapped(int index) {
     setState(() {
-      selectedPageIndex = index;
+      selectedProducerPageIndex = index;
     });
   }
 
   @override
   void initState() {
+    // TODO: implement initState
     super.initState();
   }
 
-  final List<Widget> _pages = [
-    const ItemsView(),
-    const ProducersPage(),
-    const MapsView(),
+  final List<Widget> _producerPages = [
+    const OrdersDashboard(),
+    const AvaliableProductsPage(),
+    const CreateProductPage(),
   ];
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      floatingActionButton: FloatingActionButton(onPressed: () {
-        FirebaseAuth.instance.signOut();
-        FirebaseFirestore.instance.clearPersistence();
-        FirebaseFirestore.instance.terminate();
-      }),
-      body: _pages.elementAt(selectedPageIndex),
+      body: _producerPages.elementAt(selectedProducerPageIndex),
       backgroundColor: Colors.grey[900],
       bottomNavigationBar: Container(
         height: 60,
@@ -51,19 +44,19 @@ class _PagesState extends State<Pages> {
         child: BottomNavigationBar(
           items: const <BottomNavigationBarItem>[
             BottomNavigationBarItem(
-              icon: Icon(Icons.shopping_basket_outlined),
-              label: 'Košarica',
+              icon: Icon(Icons.dashboard),
+              label: 'Narudžbe',
             ),
             BottomNavigationBarItem(
-              icon: Icon(Icons.groups_outlined),
-              label: 'Proizvođači',
+              icon: Icon(Icons.satellite),
+              label: 'Postavi proizvod',
             ),
             BottomNavigationBarItem(
               icon: Icon(Icons.map),
-              label: 'Map',
+              label: 'Dodaj proizvod',
             ),
           ],
-          currentIndex: selectedPageIndex,
+          currentIndex: selectedProducerPageIndex,
           type: BottomNavigationBarType.fixed,
           backgroundColor: const Color.fromARGB(255, 26, 26, 26),
           unselectedItemColor: const Color.fromARGB(129, 255, 255, 255),
