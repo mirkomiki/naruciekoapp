@@ -1,3 +1,4 @@
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:naruciekoapp/pages/authentication/login.dart';
 import 'package:naruciekoapp/pages/authentication/register.dart';
