@@ -14,7 +14,6 @@ class Home extends StatefulWidget {
   State<Home> createState() => _HomeState();
 }
 
-AppBar appBar = AppBar();
 class _HomeState extends State<Home> {
   @override
   Widget build(BuildContext context) {
@@ -26,6 +25,9 @@ class _HomeState extends State<Home> {
           IconButton(
             onPressed: () async {
               await FirebaseAuth.instance.signOut();
+              setState(() {
+                
+              });
             },
             icon: const Icon(Icons.exit_to_app),
           )
