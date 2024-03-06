@@ -1,11 +1,11 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
-import 'package:naruciekoapp/pages/LandingPages/itemsPage.dart';
-import 'package:naruciekoapp/pages/LandingPages/mapsPage.dart';
-import 'package:naruciekoapp/pages/LandingPages/producers_page.dart';
+import 'package:naruciekoapp/pages/producer_pages/itemsPage.dart';
+import 'package:naruciekoapp/pages/user_pages/mapsPage.dart';
+import 'package:naruciekoapp/pages/user_pages/producers_page.dart';
 import 'package:naruciekoapp/globalData.dart';
-import 'package:naruciekoapp/pages/LandingPages/home.dart';
+import 'package:naruciekoapp/pages/landing/home.dart';
 
 class Pages extends StatefulWidget {
   const Pages({super.key});

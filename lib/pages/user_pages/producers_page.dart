@@ -5,7 +5,7 @@ import 'package:flutter/material.dart';
 import 'package:naruciekoapp/datatype/customProducersCard.dart';
 import 'package:naruciekoapp/models/producer_models/producer_model.dart';
 import 'package:naruciekoapp/models/user_models/user_model.dart';
-import 'package:naruciekoapp/pages/LandingPages/producers_list_view.dart';
+import 'package:naruciekoapp/pages/user_pages/producers_list_view.dart';
 import 'package:naruciekoapp/services/database.dart';
 import 'package:provider/provider.dart';
 
