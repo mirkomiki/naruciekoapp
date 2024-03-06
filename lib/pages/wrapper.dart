@@ -19,23 +19,6 @@ class _WrapperState extends State<Wrapper> {
   @override
   void initState() {
     super.initState();
-    fetchUserRole();
-  }
-
-  Future<bool> fetchUserRole() async {
-    final user = FirebaseAuth.instance.currentUser;
-    if (user != null) {
-      final doc = await FirebaseFirestore.instance
-          .collection("users")
-          .doc(user.uid)
-          .get();
-      if (doc.exists && doc.data()?['role'] == 'producer') {
-        return true;
-      }
-      return false;
-    } else {
-      return false;
-    }
   }
 
   @override

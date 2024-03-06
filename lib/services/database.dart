@@ -2,6 +2,7 @@ import 'dart:html';
 
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:naruciekoapp/globalData.dart';
+import 'package:naruciekoapp/models/producer_models/producer_model.dart';
 import 'package:naruciekoapp/models/user_models/user_model.dart';
 
 class DatabaseService {
@@ -49,6 +50,22 @@ class DatabaseService {
 
   Stream<List<UserModel>> get users {
     return usersCollection.snapshots().map(_userListFromSnapshot);
+  }
+
+  List<ProducerModel> _producerListFromSnapshot(QuerySnapshot snapshot) {
+    return snapshot.docs.map((doc) {
+      print(doc.id);
+      return ProducerModel(
+          uid: doc.id,
+          name: doc['name'] ?? 'no-name',
+          email: doc['email'] ?? 'No Email Adress',
+          address: doc['adress']);
+    }).toList();
+  }
+
+  Stream<List<ProducerModel>> get producers {
+    print('geta producer iz databaze');
+    return producersCollection.snapshots().map(_producerListFromSnapshot);
   }
 }
 
