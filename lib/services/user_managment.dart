@@ -25,7 +25,6 @@ class UserManagment {
 
   authorizeAccess(BuildContext context) {
     User? user = FirebaseAuth.instance.currentUser;
-    print(user);
     if (user != null) {
       FirebaseFirestore.instance
           .collection("users")

@@ -12,6 +12,8 @@ class ItemsView extends StatefulWidget {
 class _ItemViewState extends State<ItemsView> {
   @override
   Widget build(BuildContext context) {
-    return Container();
+    return Scaffold(
+      backgroundColor: Colors.grey[300],
+    );
   }
 }

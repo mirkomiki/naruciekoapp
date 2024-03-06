@@ -1,7 +1,7 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
-import 'package:naruciekoapp/models/producer_model.dart';
-import 'package:naruciekoapp/models/user_model.dart';
+import 'package:naruciekoapp/models/producer_models/producer_model.dart';
+import 'package:naruciekoapp/models/user_models/user_model.dart';
 
 class CustomProducerCard extends StatelessWidget {
   final UserModel producer;
