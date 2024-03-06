@@ -1,4 +1,4 @@
-import "package:naruciekoapp/models/product_model.dart";
+import 'package:naruciekoapp/models/item_models/item_model.dart';
 
 class ProducerModel {
   final String id;
@@ -8,7 +8,7 @@ class ProducerModel {
   String? iban;
   String? address;
   String? contactNumber;
-  List<ProductModel> products = [];
+  List<ItemModel> products = [];
   double rating = 0;
   int _ratingSum = 0;
   int _numberOfRatings = 0;
@@ -43,8 +43,7 @@ class ProducerModel {
     this.rating = _ratingSum / _numberOfRatings;
   }
 
-  void addProduct(ProductModel product) => products.add(product);
+  void addProduct(ItemModel product) => products.add(product);
 
-  void removeProduct(ProductModel product) => products.remove(product);
-
+  void removeProduct(ItemModel product) => products.remove(product);
 }

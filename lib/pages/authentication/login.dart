@@ -1,8 +1,11 @@
+import 'dart:async';
+
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:naruciekoapp/datatype/customButton.dart';
 import 'package:naruciekoapp/datatype/customTextField.dart';
 import 'package:naruciekoapp/datatype/squareTile.dart';
+import 'package:naruciekoapp/pages/authentication/register_producer.dart';
 import 'package:naruciekoapp/services/auth.dart';
 
 class LoginPage extends StatefulWidget {
@@ -17,22 +20,11 @@ class _LoginPageState extends State<LoginPage> {
   final passwordController = TextEditingController();
   final AuthService _auth = AuthService();
   void becomeProducer() async {
-    showDialog(
-        context: context,
-        builder: (context) {
-          return const Center(
-            child: CircularProgressIndicator(),
-          );
-        });
-    try {
-      await FirebaseAuth.instance.signInWithEmailAndPassword(
-          email: emailController.text, password: passwordController.text);
-      Navigator.pop(context);
-    } on FirebaseAuthException catch (e) {
-      Navigator.pop(context);
-      wrongEmailPasswordMessage();
-    }
-    // ignore: use_build_context_synchronously
+    Navigator.pushAndRemoveUntil(
+      context,
+      MaterialPageRoute(builder: (context) => RegisterProducerPage()),
+      (Route<dynamic> route) => false,
+    );
   }
 
   void signUserIn() async {
@@ -44,8 +36,8 @@ class _LoginPageState extends State<LoginPage> {
           );
         });
     try {
-      await FirebaseAuth.instance.signInWithEmailAndPassword(
-          email: emailController.text, password: passwordController.text);
+      _auth.signInWithEmailAndPassword(
+          emailController.text, passwordController.text);
       Navigator.pop(context);
     } on FirebaseAuthException catch (e) {
       Navigator.pop(context);
@@ -61,6 +53,10 @@ class _LoginPageState extends State<LoginPage> {
         builder: (context) {
           return const AlertDialog(title: Text('Wrong Credentials'));
         });
+  }
+
+  _googleSignIn() {
+    return AuthService().signInWithGoogle();
   }
 
   @override
@@ -152,7 +148,7 @@ class _LoginPageState extends State<LoginPage> {
             children: [
               SquareTile(
                   imagePath: 'assets/google-logo.png',
-                  onTap: () => _auth.signInWithGoogle),
+                  onTap: () => {_googleSignIn()}),
             ],
           ),
           const SizedBox(

@@ -1,21 +1,39 @@
+import 'dart:html';
+
 import 'package:cloud_firestore/cloud_firestore.dart';
-import 'package:naruciekoapp/models/user_model.dart';
+import 'package:naruciekoapp/globalData.dart';
+import 'package:naruciekoapp/models/user_models/user_model.dart';
 
 class DatabaseService {
   final String? uid;
-
   DatabaseService({this.uid});
-
-  //collection reference
-  final CollectionReference naruciNaseCollection =
+  //collections reference
+  final CollectionReference usersCollection =
       FirebaseFirestore.instance.collection('users');
-
+  final CollectionReference producersCollection =
+      FirebaseFirestore.instance.collection('producers');
+  //update data
   Future updateUserData(String name, String email, String role) async {
     try {
-      return await naruciNaseCollection.doc(uid).set({
+      return await usersCollection.doc(uid).set({
+        'id': uid,
         'email': email,
         'name': name,
         'role': role,
+      });
+    } catch (e) {
+      print(e);
+    }
+  }
+
+  Future updateProducerData(
+      String name, String email, String adressName) async {
+    try {
+      return await producersCollection.doc(uid).set({
+        'id': uid,
+        'email': email,
+        'name': name,
+        'adress': adressName,
       });
     } catch (e) {
       print(e);
@@ -30,7 +48,7 @@ class DatabaseService {
   }
 
   Stream<List<UserModel>> get users {
-    return naruciNaseCollection.snapshots().map(_userListFromSnapshot);
+    return usersCollection.snapshots().map(_userListFromSnapshot);
   }
 }
 

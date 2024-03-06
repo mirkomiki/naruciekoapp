@@ -1,6 +1,6 @@
 import "package:flutter/material.dart";
 import "package:naruciekoapp/datatype/customProducersCard.dart";
-import "package:naruciekoapp/models/user_model.dart";
+import 'package:naruciekoapp/models/user_models/user_model.dart';
 import "package:provider/provider.dart";
 
 class ProducersListView extends StatefulWidget {

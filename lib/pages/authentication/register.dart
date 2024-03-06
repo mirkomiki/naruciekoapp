@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:naruciekoapp/datatype/customButton.dart';
 import 'package:naruciekoapp/datatype/customTextField.dart';
 import 'package:naruciekoapp/datatype/squareTile.dart';
+import 'package:naruciekoapp/pages/authentication/register_producer.dart';
 import 'package:naruciekoapp/services/auth.dart';
 
 class RegisterPage extends StatefulWidget {
@@ -18,38 +19,11 @@ class _RegisterPageState extends State<RegisterPage> {
   final cpasswordController = TextEditingController();
   final AuthService _auth = AuthService();
 
-  void becomeProducer() async {
-    showDialog(
-        context: context,
-        builder: (context) {
-          return const Center(
-            child: CircularProgressIndicator(),
-          );
-        });
-    try {
-      if (passwordController.text == cpasswordController.text) {
-        _auth.registerProducerWithEmailAndPassword(
-            emailController.text, passwordController.text);
-        Navigator.pop(context);
-      } else {
-        showDialog(
-            context: context,
-            useSafeArea: false,
-            builder: (context) {
-              return const AlertDialog(title: Text("Passwords don't mach"));
-            });
-      }
-    } on FirebaseAuthException catch (e) {
-      Navigator.pop(context);
-      wrongEmailPasswordMessage();
-    }
-  }
-
   void signUserUp() async {
     showDialog(
         context: context,
         builder: (context) {
-          return Center(
+          return const Center(
             child: CircularProgressIndicator(),
           );
         });
@@ -169,7 +143,7 @@ class _RegisterPageState extends State<RegisterPage> {
             children: [
               SquareTile(
                 imagePath: 'assets/google-logo.png',
-                onTap: () => AuthService().signInWithGoogle(),
+                onTap: () => AuthService().signUpWithGoogle(),
               ),
               /* const SizedBox(
                 width: 25,
@@ -228,7 +202,15 @@ class _RegisterPageState extends State<RegisterPage> {
             ],
           ),
           CustomButton(
-              onTap: becomeProducer, text: 'Prijavi se kao proizvođač'),
+            onTap: () {
+              Navigator.pushAndRemoveUntil(
+                context,
+                MaterialPageRoute(builder: (context) => RegisterProducerPage()),
+                (Route<dynamic> route) => false,
+              );
+            },
+            text: 'Prijavi se kao proizvođač',
+          ),
         ]),
       ),
     );
