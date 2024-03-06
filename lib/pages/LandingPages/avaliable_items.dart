@@ -10,6 +10,8 @@ class AvaliableProductsPage extends StatefulWidget {
 class _AvaliableProductsPageState extends State<AvaliableProductsPage> {
   @override
   Widget build(BuildContext context) {
-    return Scaffold();
+    return Scaffold(
+      backgroundColor: Colors.grey[300],
+    );
   }
 }

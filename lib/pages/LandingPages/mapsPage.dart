@@ -10,6 +10,8 @@ class MapsView extends StatefulWidget {
 class _MapsViewState extends State<MapsView> {
   @override
   Widget build(BuildContext context) {
-    return Scaffold();
+    return Scaffold(
+      backgroundColor: Colors.grey[300],
+    );
   }
 }

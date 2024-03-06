@@ -21,6 +21,7 @@ class _OrdersDashboardState extends State<OrdersDashboard> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      backgroundColor: Colors.grey[300],
       floatingActionButton: FloatingActionButton(
         onPressed: () {
           try {
