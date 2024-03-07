@@ -13,7 +13,7 @@ class ItemModel {
   int _numberOfRatings = 0;
   Categories? category;
 
-  ItemModel({required this.uid});
+  ItemModel(int i, {required this.uid});
 
   ItemModel.full(
       {required this.uid,

@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:naruciekoapp/pages/LandingPages/avaliable_items.dart';
-import 'package:naruciekoapp/pages/LandingPages/create_new_item.dart';
-import 'package:naruciekoapp/pages/LandingPages/orders_dashboard.dart';
+import 'package:naruciekoapp/pages/producer_pages/avaliable_items.dart';
+import 'package:naruciekoapp/pages/producer_pages/create_new_item.dart';
+import 'package:naruciekoapp/pages/producer_pages/orders_dashboard.dart';
 import 'package:naruciekoapp/globalData.dart';
 
 class ProducerPages extends StatefulWidget {

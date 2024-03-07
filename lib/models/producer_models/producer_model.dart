@@ -1,28 +1,26 @@
+import 'package:flutter/material.dart';
 import 'package:naruciekoapp/models/item_models/item_model.dart';
 
 class ProducerModel {
-  final String id;
-  String? name;
-  String? owner;
-  String? email;
-  String? iban;
-  String? address;
-  String? contactNumber;
-  List<ItemModel> products = [];
-  double rating = 0;
-  int _ratingSum = 0;
-  int _numberOfRatings = 0;
+  final String uid;
+  late String name;
+  late String owner;
+  late String email;
+  late String iban;
+  late String address;
+  late String contactNumber;
+  late List<ItemModel> products = [];
+  late double rating = 0;
+  late int _ratingSum = 0;
+  late int _numberOfRatings = 0;
+  Image profileImage = Image.asset("assets/blank-profile-image.jpg");
 
-  ProducerModel({required this.id});
-
-  ProducerModel.full(
-      {required this.id,
-      this.name,
-      this.owner,
-      this.email,
-      this.iban,
-      this.address,
-      this.contactNumber});
+  ProducerModel({
+    required this.uid,
+    required this.name,
+    required this.email,
+    required this.address,
+  });
 
   void setName(String name) => this.name = name;
 

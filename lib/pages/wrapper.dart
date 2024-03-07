@@ -2,9 +2,9 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:naruciekoapp/models/user_models/user_model.dart';
-import 'package:naruciekoapp/pages/LandingPages/pages.dart';
-import 'package:naruciekoapp/pages/LandingPages/producer_pages.dart';
-import 'package:naruciekoapp/pages/LandingPages/producers_page.dart';
+import 'package:naruciekoapp/pages/user_pages/pages.dart';
+import 'package:naruciekoapp/pages/producer_pages/producer_pages.dart';
+import 'package:naruciekoapp/pages/user_pages/producers_page.dart';
 import 'package:naruciekoapp/pages/authentication/login_or_register.dart';
 import 'package:naruciekoapp/pages/splash_screen.dart';
 import 'package:provider/provider.dart';
@@ -19,23 +19,6 @@ class _WrapperState extends State<Wrapper> {
   @override
   void initState() {
     super.initState();
-    fetchUserRole();
-  }
-
-  Future<bool> fetchUserRole() async {
-    final user = FirebaseAuth.instance.currentUser;
-    if (user != null) {
-      final doc = await FirebaseFirestore.instance
-          .collection("users")
-          .doc(user.uid)
-          .get();
-      if (doc.exists && doc.data()?['role'] == 'producer') {
-        return true;
-      }
-      return false;
-    } else {
-      return false;
-    }
   }
 
   @override

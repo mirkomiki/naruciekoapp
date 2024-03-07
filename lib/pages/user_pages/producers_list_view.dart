@@ -1,4 +1,4 @@
-import "package:flutter/material.dart";
+/*import "package:flutter/material.dart";
 import "package:naruciekoapp/datatype/customProducersCard.dart";
 import 'package:naruciekoapp/models/user_models/user_model.dart';
 import "package:provider/provider.dart";
@@ -22,4 +22,4 @@ class _ProducersListViewState extends State<ProducersListView> {
           return CustomProducerCard(producer: producers[index]);
         });
   }
-}
+}*/
