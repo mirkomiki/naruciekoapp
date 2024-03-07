@@ -4,7 +4,6 @@ import 'package:flutter/material.dart';
 import 'package:naruciekoapp/models/producer_models/producer_model.dart';
 import 'package:naruciekoapp/models/item_models/item_model.dart';
 import 'package:naruciekoapp/models/user_models/user_model.dart';
-import 'package:naruciekoapp/pages/landing/home.dart';
 import 'package:naruciekoapp/pages/user_pages/pages.dart';
 import 'package:naruciekoapp/pages/splash_screen.dart';
 import 'package:naruciekoapp/pages/wrapper.dart';
