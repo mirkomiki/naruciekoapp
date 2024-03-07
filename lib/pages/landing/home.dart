@@ -2,10 +2,10 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
+import 'package:naruciekoapp/datatype/customItemCard.dart';
+import 'package:naruciekoapp/datatype/custom_appbar.dart';
 import 'package:naruciekoapp/pages/user_pages/pages.dart';
-import 'package:naruciekoapp/globalData.dart';
-import 'package:naruciekoapp/services/auth.dart';
-import 'package:naruciekoapp/services/database.dart';
+import 'package:naruciekoapp/pages/user_pages/past_recipets.dart';
 
 class Home extends StatefulWidget {
   const Home({Key? key}) : super(key: key);
@@ -14,70 +14,107 @@ class Home extends StatefulWidget {
   State<Home> createState() => _HomeState();
 }
 
-AppBar appBar = AppBar();
-
 class _HomeState extends State<Home> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-          title: const Text('Naruči naše'),
-          backgroundColor: Color.fromARGB(255, 26, 102, 65),
-          actions: [
-            IconButton(
-                onPressed: () {
-                  FirebaseAuth.instance.signOut();
+      appBar: CustomAppBar(title: 'Naruči naše'),
+      endDrawer: Drawer(
+        child: Container(
+          padding: EdgeInsets.only(top: 30),
+          color: Color(0XFFFEEAE6),
+          child: Column(children: [
+            ListTile(
+                leading: const Icon(Icons.history),
+                title: const Text(
+                  'Reciepts',
+                  style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
+                ),
+                onTap: () {
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(builder: (context) => PastRecipets()),
+                  );
+                }),
+            ListTile(
+                leading: const Icon(Icons.logout),
+                title: const Text(
+                  'Reciepts',
+                  style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
+                ),
+                onTap: () async {
+                  await FirebaseAuth.instance.signOut();
                   setState(() {});
-                },
-                icon: const Icon(Icons.exit_to_app)),
+                }),
           ]),
-      body: Column(
-        children: <Widget>[
-          SingleChildScrollView(
-            child: SizedBox(
-              height: MediaQuery.of(context).size.height -
-                  appBar.preferredSize.height -
-                  60,
-              child: GridView.count(
-                crossAxisCount: 2, // 2 columns
-                mainAxisSpacing: 8.0,
-                crossAxisSpacing: 8.0,
-                children: [
-                  _buildCategoryButton(context, "Voće", Icons.local_florist,
-                      () {
-                    Navigator.push(
-                      context,
-                      MaterialPageRoute(builder: (context) => FruitPage()),
-                    );
-                  }),
-                  _buildCategoryButton(context, "Povrće", Icons.local_florist,
-                      () {
-                    Navigator.push(
-                      context,
-                      MaterialPageRoute(builder: (context) => VegetablesPage()),
-                    );
-                  }),
-                  _buildCategoryButton(
-                      context, "Meso i mliječni proizvodi", Icons.local_florist,
-                      () {
-                    Navigator.push(
-                      context,
-                      MaterialPageRoute(
-                          builder: (context) => MeatAndDairyPage()),
-                    );
-                  }),
-                  _buildCategoryButton(context, "Ostalo", Icons.local_florist,
-                      () {
-                    Navigator.push(
-                      context,
-                      MaterialPageRoute(builder: (context) => OtherPage()),
-                    );
-                  }),
-                ],
-              ),
-            ),
-          ),
-        ],
+        ),
+      ),
+      body: Padding(
+        padding: const EdgeInsets.all(8.0),
+        child: GridView.count(
+          crossAxisCount: 3, // 3 columns
+          mainAxisSpacing: 8.0,
+          crossAxisSpacing: 8.0,
+          children: [
+            _buildCategoryButton(context, "Voće", Icons.local_florist, () {
+              Navigator.push(
+                context,
+                MaterialPageRoute(builder: (context) => FruitPage()),
+              );
+            }),
+            _buildCategoryButton(context, "Povrće", Icons.local_florist, () {
+              Navigator.push(
+                context,
+                MaterialPageRoute(builder: (context) => VegetablesPage()),
+              );
+            }),
+            _buildCategoryButton(context, "Meso", Icons.local_florist, () {
+              Navigator.push(
+                context,
+                MaterialPageRoute(builder: (context) => MeatPage()),
+              );
+            }),
+            _buildCategoryButton(
+                context, "Mliječni proizvodi", Icons.local_florist, () {
+              Navigator.push(
+                context,
+                MaterialPageRoute(builder: (context) => DairyPage()),
+              );
+            }),
+            _buildCategoryButton(context, "Sokovi", Icons.local_florist, () {
+              Navigator.push(
+                context,
+                MaterialPageRoute(builder: (context) => JuicePage()),
+              );
+            }),
+            _buildCategoryButton(context, "Ulje i ocat", Icons.local_florist,
+                () {
+              Navigator.push(
+                context,
+                MaterialPageRoute(builder: (context) => OilAndVinegarPage()),
+              );
+            }),
+            _buildCategoryButton(context, "Med i džem", Icons.local_florist,
+                () {
+              Navigator.push(
+                context,
+                MaterialPageRoute(builder: (context) => HoneyPage()),
+              );
+            }),
+            _buildCategoryButton(context, "Sadnice", Icons.local_florist, () {
+              Navigator.push(
+                context,
+                MaterialPageRoute(builder: (context) => JamPage()),
+              );
+            }),
+            _buildCategoryButton(context, "Ostalo", Icons.local_florist, () {
+              Navigator.push(
+                context,
+                MaterialPageRoute(builder: (context) => OtherPage()),
+              );
+            }),
+          ],
+        ),
       ),
       floatingActionButton: ElevatedButton(
         onPressed: () {
@@ -88,7 +125,7 @@ class _HomeState extends State<Home> {
             ),
           );
         },
-        child: const Text("Continue to Pages"),
+        child: const Text("Home"),
       ),
     );
   }
@@ -189,17 +226,16 @@ class AppleSellersPage extends StatelessWidget {
       body: Column(
         crossAxisAlignment: CrossAxisAlignment.stretch,
         children: [
-          _buildAppleSellerCard('OPG Weiner', 'Spickovina', '5 € / kg',
+          CustomItemCard('OPG Weiner', 'Spickovina', '5 € / kg',
               'assets/blank-profile-image.jpg', 5),
-          _buildAppleSellerCard('OPG Mikro Bušilica', 'Babina Guzica',
-              '6 € / kg', 'assets/blank-profile-image.jpg', 2),
+          CustomItemCard('OPG Mikro Bušilica', 'Babina Guzica', '6 € / kg',
+              'assets/blank-profile-image.jpg', 2),
         ],
       ),
     );
   }
-
-  Widget _buildAppleSellerCard(String opgName, String village, String price,
-      String imagePath, int rating) {
+  /* 
+Widget _buildSellerCard(String opgName, String village, String price, String imagePath, int rating) {
     return Card(
       margin: EdgeInsets.all(16),
       child: ListTile(
@@ -247,7 +283,7 @@ class AppleSellersPage extends StatelessWidget {
         ),
       ),
     );
-  }
+  } */
 }
 
 class VegetablesPage extends StatelessWidget {
@@ -264,7 +300,7 @@ class VegetablesPage extends StatelessWidget {
   }
 }
 
-class MeatAndDairyPage extends StatelessWidget {
+class DairyPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -278,7 +314,7 @@ class MeatAndDairyPage extends StatelessWidget {
   }
 }
 
-class OtherPage extends StatelessWidget {
+class MeatPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -287,6 +323,76 @@ class OtherPage extends StatelessWidget {
       ),
       body: Center(
         child: Text('Stranica s ostalim proizvodima'),
+      ),
+    );
+  }
+}
+
+class JuicePage extends StatelessWidget {
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      appBar: AppBar(
+        title: Text('Sokovi'),
+      ),
+      body: Center(
+        child: Text('Stranica s sokovima'),
+      ),
+    );
+  }
+}
+
+class OilAndVinegarPage extends StatelessWidget {
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      appBar: AppBar(
+        title: Text('Sokovi'),
+      ),
+      body: Center(
+        child: Text('Stranica s sokovima'),
+      ),
+    );
+  }
+}
+
+class OtherPage extends StatelessWidget {
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      appBar: AppBar(
+        title: Text('Ostalo'),
+      ),
+      body: Center(
+        child: Text('Stranica s sokovima'),
+      ),
+    );
+  }
+}
+
+class HoneyPage extends StatelessWidget {
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      appBar: AppBar(
+        title: Text('Med'),
+      ),
+      body: Center(
+        child: Text('Stranica s medom'),
+      ),
+    );
+  }
+}
+
+class JamPage extends StatelessWidget {
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      appBar: AppBar(
+        title: Text('Med'),
+      ),
+      body: Center(
+        child: Text('Stranica s medom'),
       ),
     );
   }
