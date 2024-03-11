@@ -10,6 +10,7 @@ const int intGapBetweenContainers = 10;
 late ProducerModel globalProducer;
 late String? globalUserUid;
 late bool globalIsProducer;
+late UserModel globalUser;
 
 // ignore: constant_identifier_names
 enum Categories {

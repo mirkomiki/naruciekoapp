@@ -44,6 +44,10 @@ dependencies:
   google_places_flutter: ^2.0.8
   open_street_map_search_and_pick: ^0.1.1
   rxdart: ^0.27.7
+  firebase_storage: ^11.6.9
+  image_picker: ^1.0.7
+  animated_snack_bar: ^0.4.0
+  google_maps_flutter: ^2.5.3
 
 dev_dependencies:
   flutter_test:
