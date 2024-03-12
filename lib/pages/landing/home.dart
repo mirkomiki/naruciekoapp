@@ -1,17 +1,11 @@
 import 'package:firebase_auth/firebase_auth.dart';
-import 'package:firebase_core/firebase_core.dart';
-import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/rendering.dart';
-import 'package:naruciekoapp/datatype/customItemCard.dart';
-import 'package:naruciekoapp/datatype/customTextField.dart';
 import 'package:naruciekoapp/datatype/custom_appbar.dart';
 import 'package:naruciekoapp/pages/user_pages/category_page.dart';
+import 'package:naruciekoapp/pages/user_pages/editProfile.dart';
 import 'package:naruciekoapp/pages/user_pages/pages.dart';
 import 'package:naruciekoapp/globalData.dart';
 import 'package:naruciekoapp/pages/user_pages/past_recipets.dart';
-import 'package:naruciekoapp/services/auth.dart';
-import 'package:naruciekoapp/services/database.dart';
 
 class Home extends StatefulWidget {
   const Home({Key? key}) : super(key: key);
@@ -21,12 +15,13 @@ class Home extends StatefulWidget {
 }
 
 class _HomeState extends State<Home> {
-  
   @override
   Widget build(BuildContext context) {
     double width = MediaQuery.of(context).size.width;
     return Scaffold(
-      appBar: CustomAppBar(title: 'Home',),
+      appBar: CustomAppBar(
+        title: 'Home',
+      ),
       endDrawer: Drawer(
         child: Container(
           width: width * 0.3,
@@ -39,8 +34,20 @@ class _HomeState extends State<Home> {
               child: CircleAvatar(
                 radius: 36,
                 backgroundImage: globalUser.profileImage.image,
-              ),),
-            
+              ),
+            ),
+            ListTile(
+                leading: const Icon(Icons.settings),
+                title: const Text(
+                  'Settings',
+                  style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
+                ),
+                onTap: () {
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(builder: (context) => UserEdit()),
+                  );
+                }),
             ListTile(
                 leading: const Icon(Icons.history),
                 title: const Text(
@@ -56,7 +63,7 @@ class _HomeState extends State<Home> {
             ListTile(
                 leading: const Icon(Icons.logout),
                 title: const Text(
-                  'Reciepts',
+                  'Sign Out',
                   style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
                 ),
                 onTap: () async {
@@ -83,17 +90,6 @@ class _HomeState extends State<Home> {
             // Add more category buttons here
           ],
         ),
-      ),
-      floatingActionButton: ElevatedButton(
-        onPressed: () {
-          Navigator.pushReplacement(
-            context,
-            MaterialPageRoute(
-              builder: (context) => const Pages(),
-            ),
-          );
-        },
-        child: const Text("Home"),
       ),
     );
   }
