@@ -2,28 +2,35 @@ import "package:cloud_firestore/cloud_firestore.dart";
 import "package:firebase_auth/firebase_auth.dart";
 import "package:flutter/material.dart";
 import "package:google_sign_in/google_sign_in.dart";
-import "package:naruciekoapp/models/producer_model.dart";
-import "package:naruciekoapp/models/user_model.dart";
+import "package:naruciekoapp/globalData.dart";
+import "package:naruciekoapp/main.dart";
+import 'package:naruciekoapp/models/producer_models/producer_model.dart';
+import 'package:naruciekoapp/models/user_models/user_model.dart';
+import 'package:naruciekoapp/pages/producer_pages/producer_pages.dart';
+import "package:naruciekoapp/pages/authentication/login_or_register.dart";
+import "package:naruciekoapp/pages/splash_screen.dart";
 import "package:naruciekoapp/pages/wrapper.dart";
 import "package:naruciekoapp/services/database.dart";
+import "package:naruciekoapp/services/user_managment.dart";
 
 class AuthService {
   final FirebaseAuth _auth = FirebaseAuth.instance;
-
+  /*
   //create user obj based on FirebaseUser
   UserModel? _userFromFirebaseUser(User? user) {
-    return user != null ? UserModel(user.uid, '', '', '') : null;
+    print('Entry in _userFromFirebaseUser');
+    return user != null
+        ? UserModel(user.uid, '', user.email.toString(), 'customer')
+        : null;
   }
 
-  //auth change user stream
-  Stream<UserModel?> get user {
-    try {
-      return _auth.authStateChanges().map(_userFromFirebaseUser);
-    } catch (e) {
-      print("Caught an error in AuthService: $e");
-      return Stream.empty();
-    }
+  UserModel? _producerFromFirebaseUser(User? user) {
+    print('Entry in _producerFromFirebaseUser');
+    return user != null
+        ? UserModel(user.uid, '', user.email.toString(), 'producer')
+        : null;
   }
+  */
 
   //siginwith email and password method code to firebase
   Future signInWithEmailAndPassword(String email, String password) async {
@@ -31,51 +38,55 @@ class AuthService {
       UserCredential userCredential = await _auth.signInWithEmailAndPassword(
           email: email, password: password);
       User? user = userCredential.user;
-      return _userFromFirebaseUser(user);
+      globalUserUid = user!.uid;
+      globalUser = UserModel(user.uid, 'Nema ime', email, 'user');
+      /*if (doc.data()?['role'] == 'producer') {
+        return _producerFromFirebaseUser(user);
+      } else {
+        return _userFromFirebaseUser(user);
+      }*/
     } catch (e) {
-      print("Error caught in registerWithEmailAndPassword");
+      print("Error caught in signInWithEmailAndPassword");
       return null;
     }
   }
 
-  Future registerProducerWithEmailAndPasswordinUsers(
-      String email, String password) async {
+  Future registerProducerWithEmailAndPassword(
+      String email, String password, String adressName) async {
     try {
       UserCredential userCredential = await _auth
           .createUserWithEmailAndPassword(email: email, password: password);
       User? user = userCredential.user;
+      globalUserUid = user!.uid;
+      globalIsProducer = true;
+      globalUser = UserModel(user.uid, 'Nema ime', email, 'user');
       await DatabaseService(uid: user!.uid)
-          .updateUserData('new user', email, 'producer');
-      return _userFromFirebaseUser(user);
-    } catch (e) {
-      print("user exists");
-      print("Error caught in registerWithEmailAndPasswordinUsers");
-      return null;
-    }
-  }
-
-  Future registerProducerWithEmailAndPasswordinProducers(
-      String email, String password) async {
-    try {
-      var currentProducer = {
-        "email": email,
-        "name": "new user",
-        "role": "producer",
-      };
+          .updateUserData('Ime', email, 'producer');
+      //return _producerFromFirebaseUser(user);
       CollectionReference producers =
           FirebaseFirestore.instance.collection("producers");
       QuerySnapshot querySnapshot =
           await producers.where('email', isEqualTo: email).get();
       if (querySnapshot.docs.isNotEmpty) {
-        print(email);
-        print("email exists");
         return null;
       } else {
-        print("radi instancu");
-
-        FirebaseFirestore.instance.collection("producers").add(currentProducer);
+        await DatabaseService(uid: globalUserUid)
+            .updateProducerData('Ime OPG-a', email, adressName);
       }
+      navigatorKey.currentState!.pushAndRemoveUntil(
+        MaterialPageRoute(builder: (context) => UserManagment().handleAuth()),
+        (Route<dynamic> route) => false,
+      );
     } catch (e) {
+      print("user exists");
+      print("Error caught in registerWithEmailAndPassword");
+      return null;
+    }
+  }
+
+  Future registerProducerWithEmailAndPasswordinProducers(
+      String email, String password, String adressName) async {
+    try {} catch (e) {
       print("Error caught in registerWithEmailAndPasswordinProducers");
       return null;
     }
@@ -101,23 +112,17 @@ class AuthService {
           .createUserWithEmailAndPassword(email: email, password: password);
       User? user = userCredential.user;
       if (userCredential.additionalUserInfo!.isNewUser) {
-        if (userCredential.user != null) {
-          await DatabaseService(uid: userCredential.user!.uid)
+        if (user != null) {
+          globalUserUid = user.uid;
+          globalUser = UserModel(userCredential.user!.uid, 'Nema ime', userCredential.user!.email.toString(), 'user');
+          await DatabaseService(uid: user.uid)
               .updateUserData('new user', email, 'customer');
         }
       }
-      return _userFromFirebaseUser(user);
+      //_userFromFirebaseUser(user);
     } catch (e) {
       print("Error caught in registerWithEmailAndPassword");
       return null;
-    }
-  }
-
-  Future signout() async {
-    try {
-      return await _auth.signOut();
-    } catch (e) {
-      return Wrapper();
     }
   }
 
@@ -128,7 +133,9 @@ class AuthService {
         accessToken: gAuth.accessToken, idToken: gAuth.idToken);
     UserCredential userCredential =
         await FirebaseAuth.instance.signInWithCredential(credential);
-    return _userFromFirebaseUser(userCredential.user);
+    globalUserUid = userCredential.user?.uid;
+    globalUser = UserModel(userCredential.user!.uid, 'Nema ime', userCredential.user!.email.toString(), 'user');
+    //return _userFromFirebaseUser(userCredential.user);
   }
 
   signUpWithGoogle() async {
@@ -138,12 +145,15 @@ class AuthService {
         accessToken: gAuth.accessToken, idToken: gAuth.idToken);
     UserCredential userCredential =
         await FirebaseAuth.instance.signInWithCredential(credential);
+    globalUserUid = userCredential.user?.uid;
+    globalUser = UserModel(userCredential.user!.uid, 'Nema ime', userCredential.user!.email.toString(), 'user');
     if (userCredential.additionalUserInfo!.isNewUser) {
       if (userCredential.user != null) {
         await DatabaseService(uid: userCredential.user!.uid).updateUserData(
             'new user', userCredential.user!.email.toString(), 'customer');
       }
     }
-    return _userFromFirebaseUser(userCredential.user);
+
+    //return _userFromFirebaseUser(userCredential.user);
   }
 }

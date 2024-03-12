@@ -1,9 +1,7 @@
-enum Categories { food, drink, other }
+import 'package:naruciekoapp/globalData.dart';
 
-enum Unit { kilogram, piece }
-
-class ProductModel {
-  final String id;
+class ItemModel {
+  final String uid;
   String? name;
   String photo = "";
   String description = "";
@@ -15,10 +13,10 @@ class ProductModel {
   int _numberOfRatings = 0;
   Categories? category;
 
-  ProductModel({required this.id});
+  ItemModel(int i, {required this.uid});
 
-  ProductModel.full(
-      {required this.id,
+  ItemModel.full(
+      {required this.uid,
       this.name,
       this.price,
       this.unit,

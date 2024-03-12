@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:naruciekoapp/pages/LandingPages/avaliable%20products.dart';
-import 'package:naruciekoapp/pages/LandingPages/create_new_product.dart';
-import 'package:naruciekoapp/pages/LandingPages/orders_dashboard.dart';
+import 'package:naruciekoapp/pages/producer_pages/avaliable_items.dart';
+import 'package:naruciekoapp/pages/producer_pages/create_new_item.dart';
+import 'package:naruciekoapp/pages/producer_pages/orders_dashboard.dart';
 import 'package:naruciekoapp/globalData.dart';
 
 class ProducerPages extends StatefulWidget {
@@ -16,6 +16,12 @@ class _ProducerPagesState extends State<ProducerPages> {
     setState(() {
       selectedProducerPageIndex = index;
     });
+  }
+
+  @override
+  void initState() {
+    // TODO: implement initState
+    super.initState();
   }
 
   final List<Widget> _producerPages = [

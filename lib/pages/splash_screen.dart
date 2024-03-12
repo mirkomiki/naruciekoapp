@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:naruciekoapp/datatype/custom_loader.dart';
 import 'package:naruciekoapp/pages/wrapper.dart';
+import 'package:naruciekoapp/services/user_managment.dart';
 
 class SplashScreen extends StatefulWidget {
   const SplashScreen({super.key});
@@ -18,8 +19,8 @@ class _SplashScreenState extends State<SplashScreen>
     super.initState();
     SystemChrome.setEnabledSystemUIMode(SystemUiMode.immersive);
     Future.delayed(Duration(seconds: 2), () {
-      Navigator.of(context)
-          .pushReplacement(MaterialPageRoute(builder: (_) => Wrapper()));
+      Navigator.of(context).pushReplacement(
+          MaterialPageRoute(builder: (_) => UserManagment().handleAuth()));
     });
   }
 

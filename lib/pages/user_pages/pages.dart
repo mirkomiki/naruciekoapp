@@ -1,9 +1,11 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
-import 'package:naruciekoapp/pages/LandingPages/itemsPage.dart';
-import 'package:naruciekoapp/pages/LandingPages/mapsPage.dart';
-import 'package:naruciekoapp/pages/LandingPages/producers_page.dart';
+import 'package:naruciekoapp/pages/Landing/home.dart';
+import 'package:naruciekoapp/pages/producer_pages/itemsPage.dart';
+import 'package:naruciekoapp/pages/user_pages/mapsPage.dart';
+import 'package:naruciekoapp/pages/user_pages/producers_page.dart';
 import 'package:naruciekoapp/globalData.dart';
-import 'package:naruciekoapp/pages/LandingPages/home.dart';
 
 class Pages extends StatefulWidget {
   const Pages({super.key});
@@ -19,15 +21,25 @@ class _PagesState extends State<Pages> {
     });
   }
 
+  @override
+  void initState() {
+    super.initState();
+  }
+
   final List<Widget> _pages = [
-    const ItemsView(),
     const Home(),
+    const ItemsView(),
     const ProducersPage(),
-    const MapsView(),
+    //const MapsView(),
   ];
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      floatingActionButton: FloatingActionButton(onPressed: () {
+        FirebaseAuth.instance.signOut();
+        FirebaseFirestore.instance.clearPersistence();
+        FirebaseFirestore.instance.terminate();
+      }),
       body: _pages.elementAt(selectedPageIndex),
       backgroundColor: Colors.grey[900],
       bottomNavigationBar: Container(
@@ -40,20 +52,16 @@ class _PagesState extends State<Pages> {
         child: BottomNavigationBar(
           items: const <BottomNavigationBarItem>[
             BottomNavigationBarItem(
+              icon: Icon(Icons.home),
+              label: 'Home',
+            ),
+            BottomNavigationBarItem(
               icon: Icon(Icons.shopping_basket_outlined),
               label: 'Košarica',
             ),
             BottomNavigationBarItem(
               icon: Icon(Icons.groups_outlined),
-              label: 'Home',
-            ),
-            BottomNavigationBarItem(
-              icon: Icon(Icons.groups_outlined),
               label: 'Proizvođači',
-            ),
-            BottomNavigationBarItem(
-              icon: Icon(Icons.map),
-              label: 'Map',
             ),
           ],
           currentIndex: selectedPageIndex,
