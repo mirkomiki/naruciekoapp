@@ -1,7 +1,4 @@
-import 'dart:html';
-
 import 'package:cloud_firestore/cloud_firestore.dart';
-import 'package:naruciekoapp/globalData.dart';
 import 'package:naruciekoapp/models/producer_models/producer_model.dart';
 import 'package:naruciekoapp/models/user_models/user_model.dart';
 
@@ -43,8 +40,14 @@ class DatabaseService {
 
   List<UserModel> _userListFromSnapshot(QuerySnapshot snapshot) {
     return snapshot.docs.map((doc) {
-      return UserModel(doc.id, doc['name'] ?? 'no-name',
-          doc['email'] ?? 'testnimail@mail.com', doc['role'] ?? 'customer');
+      return UserModel(
+          doc.id,
+          doc['name'] ?? 'no-name',
+          doc['surname'] ?? 'no-surname',
+          doc['email'] ?? 'testnimail@mail.com',
+          doc['contactNumber'] ?? '0981940660',
+          doc['adressName'] ?? 'nema adresu',
+          doc['role'] ?? 'customer');
     }).toList();
   }
 
