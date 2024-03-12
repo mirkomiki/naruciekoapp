@@ -5,6 +5,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
 import 'package:naruciekoapp/datatype/customItemCard.dart';
 import 'package:naruciekoapp/datatype/customTextField.dart';
+import 'package:naruciekoapp/datatype/custom_appbar.dart';
 import 'package:naruciekoapp/pages/user_pages/category_page.dart';
 import 'package:naruciekoapp/pages/user_pages/pages.dart';
 import 'package:naruciekoapp/globalData.dart';
@@ -20,23 +21,26 @@ class Home extends StatefulWidget {
 }
 
 class _HomeState extends State<Home> {
+  
   @override
   Widget build(BuildContext context) {
+    double width = MediaQuery.of(context).size.width;
     return Scaffold(
-      appBar: AppBar(
-        title: const Text('Naruči naše'),
-        backgroundColor: const Color.fromARGB(255, 26, 102, 65),
-        leading: Image.asset(
-          'assets/zecov_logo.png',
-          width: 60,
-          height: 60,
-        ),
-      ),
+      appBar: CustomAppBar(title: 'Home',),
       endDrawer: Drawer(
         child: Container(
-          padding: EdgeInsets.only(top: 30),
-          color: Color(0XFFFEEAE6),
+          width: width * 0.3,
+          padding: const EdgeInsets.only(top: 30),
+          color: const Color(0XFFFEEAE6),
           child: Column(children: [
+            Container(
+              width: width * 0.3,
+              alignment: Alignment.centerRight,
+              child: CircleAvatar(
+                radius: 36,
+                backgroundImage: globalUser.profileImage.image,
+              ),),
+            
             ListTile(
                 leading: const Icon(Icons.history),
                 title: const Text(

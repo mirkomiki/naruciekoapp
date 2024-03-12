@@ -39,6 +39,7 @@ class AuthService {
           email: email, password: password);
       User? user = userCredential.user;
       globalUserUid = user!.uid;
+      globalUser = UserModel(user.uid, 'Nema ime', email, 'user');
       /*if (doc.data()?['role'] == 'producer') {
         return _producerFromFirebaseUser(user);
       } else {
@@ -58,6 +59,7 @@ class AuthService {
       User? user = userCredential.user;
       globalUserUid = user!.uid;
       globalIsProducer = true;
+      globalUser = UserModel(user.uid, 'Nema ime', email, 'user');
       await DatabaseService(uid: user!.uid)
           .updateUserData('Ime', email, 'producer');
       //return _producerFromFirebaseUser(user);
@@ -112,6 +114,7 @@ class AuthService {
       if (userCredential.additionalUserInfo!.isNewUser) {
         if (user != null) {
           globalUserUid = user.uid;
+          globalUser = UserModel(userCredential.user!.uid, 'Nema ime', userCredential.user!.email.toString(), 'user');
           await DatabaseService(uid: user.uid)
               .updateUserData('new user', email, 'customer');
         }
@@ -131,6 +134,7 @@ class AuthService {
     UserCredential userCredential =
         await FirebaseAuth.instance.signInWithCredential(credential);
     globalUserUid = userCredential.user?.uid;
+    globalUser = UserModel(userCredential.user!.uid, 'Nema ime', userCredential.user!.email.toString(), 'user');
     //return _userFromFirebaseUser(userCredential.user);
   }
 
@@ -142,6 +146,7 @@ class AuthService {
     UserCredential userCredential =
         await FirebaseAuth.instance.signInWithCredential(credential);
     globalUserUid = userCredential.user?.uid;
+    globalUser = UserModel(userCredential.user!.uid, 'Nema ime', userCredential.user!.email.toString(), 'user');
     if (userCredential.additionalUserInfo!.isNewUser) {
       if (userCredential.user != null) {
         await DatabaseService(uid: userCredential.user!.uid).updateUserData(
