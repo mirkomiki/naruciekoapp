@@ -1,5 +1,3 @@
-import 'dart:ffi';
-
 import 'package:flutter/material.dart';
 
 class UserModel {
@@ -7,7 +5,7 @@ class UserModel {
   late String role;
   late String name;
   late String email;
-  late String adress;
+  late String adressName;
   late String contactNumber;
   late List<String> favourites;
   late List<Map<String, int>> ratings;

@@ -18,19 +18,19 @@ class _UserEditState extends State<UserEdit> {
   TextEditingController usernameController = TextEditingController();
   TextEditingController passwordController = TextEditingController();
 
-  TextEditingController adressController = TextEditingController();
+  TextEditingController adressNameController = TextEditingController();
   @override
   void initState() {
     super.initState();
     nameController.text = globalUser.name;
     contactNumberController.text = globalUser.contactNumber;
-    adressController.text = globalUser.adress;
+    adressNameController.text = globalUser.adressName;
   }
 
   void finishUserAccountEdit() {
     globalUser.name = nameController.text.toString();
     globalUser.contactNumber = usernameController.text.toString();
-    globalUser.adress = adressController.text.toString();
+    globalUser.adressName = adressNameController.text.toString();
 
     /* selectedPageIndex = 2;
     Navigator.pushReplacement(
@@ -112,7 +112,7 @@ class _UserEditState extends State<UserEdit> {
                             filled: true,
                             fillColor: const Color.fromARGB(255, 26, 26, 26),
                           ),
-                          controller: adressController,
+                          controller: adressNameController,
                         ),
                       ),
                       const Padding(padding: EdgeInsets.all(15)),
