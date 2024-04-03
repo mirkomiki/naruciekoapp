@@ -1,5 +1,3 @@
-import 'package:cloud_firestore/cloud_firestore.dart';
-import 'package:flutter/material.dart';
 import 'package:naruciekoapp/models/producer_models/producer_model.dart';
 import 'package:naruciekoapp/models/user_models/user_model.dart';
 
@@ -10,7 +8,8 @@ const int intGapBetweenContainers = 10;
 late ProducerModel globalProducer;
 late String? globalUserUid;
 late bool globalIsProducer;
-UserModel globalUser = UserModel('', '', '', 'user');
+UserModel globalUser =
+    UserModel('', '', 'surname null', '', 'Number', '', 'user');
 
 // ignore: constant_identifier_names
 enum Categories {
