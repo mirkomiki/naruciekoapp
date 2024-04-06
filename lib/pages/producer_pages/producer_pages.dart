@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:naruciekoapp/datatype/custom_appbar.dart';
 import 'package:naruciekoapp/pages/producer_pages/avaliable_items.dart';
 import 'package:naruciekoapp/pages/producer_pages/create_new_item.dart';
 import 'package:naruciekoapp/pages/producer_pages/orders_dashboard.dart';
@@ -34,6 +35,7 @@ class _ProducerPagesState extends State<ProducerPages> {
     return Scaffold(
       body: _producerPages.elementAt(selectedProducerPageIndex),
       backgroundColor: Colors.grey[900],
+      appBar: CustomAppBar(title: 'Producer'),
       bottomNavigationBar: Container(
         height: 60,
         decoration: const BoxDecoration(

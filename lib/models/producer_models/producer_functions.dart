@@ -59,8 +59,10 @@ class ProducerFunctions {
         'name': producer.name,
         'adress': producer.address,
         'iban': producer.iban,
+        'oib': producer.oib,
         'owner': producer.owner,
         'contact': producer.contactNumber,
+        'profileImage': producer.profileImage
       });
     } catch (e) {
       print('Error in updateProducer could be non existing producer, more: $e');
