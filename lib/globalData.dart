@@ -1,3 +1,4 @@
+import 'package:naruciekoapp/models/cart_models/cart_model.dart';
 import 'package:naruciekoapp/models/producer_models/producer_model.dart';
 import 'package:naruciekoapp/models/user_models/user_model.dart';
 
@@ -10,6 +11,7 @@ late String? globalUserUid;
 late bool globalIsProducer;
 UserModel globalUser =
     UserModel('', '', 'surname null', '', 'Number', '', 'user');
+CartModel cart = CartModel(globalUser.uid, List.empty());
 
 // ignore: constant_identifier_names
 enum Categories {
@@ -28,3 +30,7 @@ enum Categories {
 
 // ignore: constant_identifier_names
 enum Unit { Kilogram, Gram, Komad, Litra, Mililitar }
+
+enum PaymentOptions { cash, creditCard }
+
+enum DeliveryOptions { deliveryOnStation, deliveryOnAddress, pickUp }

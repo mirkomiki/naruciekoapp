@@ -1,40 +1,47 @@
-import "package:animated_snack_bar/animated_snack_bar.dart";
-import "package:flutter/material.dart";
-import "package:intl_phone_field/intl_phone_field.dart";
-import "package:naruciekoapp/datatype/customButton.dart";
-import "package:naruciekoapp/datatype/customTextField.dart";
-import "package:naruciekoapp/datatype/uploadPhotoDialog.dart";
+import 'dart:js_interop';
 
-import "package:naruciekoapp/globalData.dart";
+import 'package:animated_snack_bar/animated_snack_bar.dart';
+import 'package:flutter/foundation.dart';
+import 'package:flutter/material.dart';
+import 'package:intl_phone_field/intl_phone_field.dart';
+import 'package:naruciekoapp/datatype/customButton.dart';
+import 'package:naruciekoapp/datatype/customTextField.dart';
+import 'package:naruciekoapp/datatype/uploadPhotoDialog.dart';
+import 'package:naruciekoapp/globalData.dart';
 
-class UserEdit extends StatefulWidget {
-  const UserEdit({super.key});
+class ProducerEdit extends StatefulWidget {
+  const ProducerEdit({super.key});
 
   @override
-  State<UserEdit> createState() => _UserEditState();
+  State<ProducerEdit> createState() => _ProducerEditState();
 }
 
-class _UserEditState extends State<UserEdit> {
+class _ProducerEditState extends State<ProducerEdit> {
   TextEditingController nameController = TextEditingController();
   TextEditingController contactNumberController = TextEditingController();
   TextEditingController passwordController = TextEditingController();
-  TextEditingController surnameController = TextEditingController();
-  TextEditingController adressNameController = TextEditingController();
+  TextEditingController ibanController = TextEditingController();
+  TextEditingController addressNameController = TextEditingController();
+  TextEditingController ownerController = TextEditingController();
+  TextEditingController oibController = TextEditingController();
   @override
   void initState() {
     super.initState();
-    nameController.text = globalUser.name;
-    contactNumberController.text = globalUser.contactNumber;
-    adressNameController.text = globalUser.adressName;
-    surnameController.text = globalUser.surname;
+    nameController.text = globalProducer.name;
+    ownerController.text = globalProducer.owner;
+    contactNumberController.text = globalProducer.contactNumber;
+    addressNameController.text = globalProducer.address;
+    ibanController.text = globalProducer.iban;
+    oibController.text = globalProducer.oib;
   }
 
   void finishUserAccountEdit() {
-    globalUser.name = nameController.text.toString();
-    globalUser.contactNumber = contactNumberController.text.toString();
-    globalUser.surname = surnameController.text.toString();
-    globalUser.adressName = adressNameController.text.toString();
-
+    globalProducer.name = nameController.text.toString();
+    globalProducer.contactNumber = contactNumberController.text.toString();
+    globalProducer.owner = ownerController.text.toString();
+    globalProducer.address = addressNameController.text.toString();
+    globalProducer.iban = ibanController.text.toString();
+    globalProducer.oib = oibController.text.toString();
     AnimatedSnackBar.material(
       'Changes saved',
       type: AnimatedSnackBarType.success,
@@ -51,7 +58,7 @@ class _UserEditState extends State<UserEdit> {
       child: Scaffold(
         backgroundColor: Colors.grey[900],
         appBar: AppBar(
-          title: const Text('User Account'),
+          title: const Text('Producer Account'),
           backgroundColor: const Color.fromARGB(255, 0, 164, 164),
         ),
         body: Form(
@@ -73,13 +80,6 @@ class _UserEditState extends State<UserEdit> {
                             obsureText: false),
                       ),
                       const Padding(padding: EdgeInsets.all(10)),
-                      Flexible(
-                        fit: FlexFit.loose,
-                        child: CustomTextField(
-                            controller: surnameController,
-                            hintText: 'Surname',
-                            obsureText: false),
-                      ),
                       const Padding(padding: EdgeInsets.all(15)),
                     ],
                   ),
@@ -113,7 +113,7 @@ class _UserEditState extends State<UserEdit> {
                           child: const Text('Upload photo'),
                         ),
                       ),
-                      Padding(padding: EdgeInsets.all(20)),
+                      const Padding(padding: EdgeInsets.all(20)),
                     ],
                   ),
                   const Padding(padding: EdgeInsets.all(25)),

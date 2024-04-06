@@ -1,6 +1,7 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
+import 'package:naruciekoapp/datatype/customButton.dart';
 import 'package:naruciekoapp/datatype/customTextField.dart';
 
 class ForgotPasswordPage extends StatefulWidget {
@@ -46,7 +47,7 @@ class _ForgotPasswordPageState extends State<ForgotPasswordPage> {
   Widget build(BuildContext context) {
     return Scaffold(
         appBar: AppBar(
-          title: const Text('Naruči naše'),
+          title: const Text('Password reset page'),
           backgroundColor: const Color.fromARGB(255, 21, 86, 55),
         ),
         body: Column(children: [
@@ -59,9 +60,10 @@ class _ForgotPasswordPageState extends State<ForgotPasswordPage> {
               controller: _emailController,
               hintText: 'Email',
               obsureText: false),
-          MaterialButton(
-            onPressed: passwordReset,
-            child: Text("Ponovo postavi"),
+          const Padding(padding: EdgeInsets.all(20)),
+          CustomButton(
+            onTap: passwordReset,
+            text: "Ponovo postavi",
           )
         ]));
   }

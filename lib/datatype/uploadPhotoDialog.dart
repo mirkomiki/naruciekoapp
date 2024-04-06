@@ -61,7 +61,8 @@ class _UploadProfilePhotoState extends State<UploadProfilePhoto> {
                     TextButton(
                       onPressed: () {
                         globalUser.profileImage = Image.file(image!);
-                        UserFunctions().updateUserProfileImage(globalUser);
+                        UserFunctions(uid: globalUser.uid)
+                            .updateUserProfileImage(globalUser);
                         Navigator.pop(context);
                       },
                       child: const Text('Close and save'),

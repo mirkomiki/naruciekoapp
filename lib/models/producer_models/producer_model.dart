@@ -7,6 +7,7 @@ class ProducerModel {
   late String owner;
   late String email;
   late String iban;
+  late String oib;
   late String address;
   late String contactNumber;
   late List<ItemModel> products = [];

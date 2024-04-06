@@ -1,10 +1,11 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
+import 'package:naruciekoapp/globalData.dart';
 import 'package:naruciekoapp/models/user_models/user_model.dart';
 
 class UserFunctions {
-  late final String? uid;
-  UserFunctions({this.uid});
+  final String? uid;
+  UserFunctions({required this.uid});
 
   Future updateUserProfileImage(UserModel user) async {
     try {
@@ -18,6 +19,24 @@ class UserFunctions {
     }
   }
 
+  Future updateUser(UserModel user) async {
+    CollectionReference usersCollection =
+        FirebaseFirestore.instance.collection('users');
+    try {
+      return await usersCollection.doc(uid).update({
+        'id': uid,
+        'email': user.email,
+        'name': user.name,
+        'surname': user.surname,
+        'adress': user.adressName,
+        'contact': user.contactNumber,
+        'role': user.role,
+        'profileImage': user.profileImage,
+      });
+    } catch (e) {
+      print('Error in updateUser could be non existing producer, more: $e');
+    }
+  }
   /*
   //update == create in firestore
   Future updateItemToProducer(ItemModel item) async {

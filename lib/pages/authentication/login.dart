@@ -5,6 +5,7 @@ import 'package:flutter/material.dart';
 import 'package:naruciekoapp/datatype/customButton.dart';
 import 'package:naruciekoapp/datatype/customTextField.dart';
 import 'package:naruciekoapp/datatype/squareTile.dart';
+import 'package:naruciekoapp/pages/authentication/forgot_password.dart';
 import 'package:naruciekoapp/pages/authentication/register_producer.dart';
 import 'package:naruciekoapp/services/auth.dart';
 
@@ -103,10 +104,17 @@ class _LoginPageState extends State<LoginPage> {
             child: Row(
               mainAxisAlignment: MainAxisAlignment.end,
               children: [
-                Text(
-                  'Forgot password?',
-                  style: TextStyle(color: Colors.grey[600]),
-                ),
+                InkWell(
+                  child: Text(
+                    'Forgot password?',
+                    style: TextStyle(color: Colors.grey[600]),
+                  ),
+                  onTap: () => Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                        builder: (context) => const ForgotPasswordPage()),
+                  ),
+                )
               ],
             ),
           ),
