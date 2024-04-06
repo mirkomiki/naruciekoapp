@@ -1,8 +1,5 @@
-import 'package:naruciekoapp/models/cart_model.dart';
-
-enum PaymentOptions { cash, creditCard }
-
-enum DeliveryOptions { deliveryOnStation, deliveryOnAddress, pickUp }
+import 'package:naruciekoapp/globalData.dart';
+import 'package:naruciekoapp/models/cart_models/cart_model.dart';
 
 class OrderModel {
   final String id;
