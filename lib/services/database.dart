@@ -11,13 +11,15 @@ class DatabaseService {
   final CollectionReference producersCollection =
       FirebaseFirestore.instance.collection('producers');
   //update data
-  Future updateUserData(String name, String email, String role) async {
+  Future updateUserData(
+      String name, String email, String role, String ime_slike_profila) async {
     try {
       return await usersCollection.doc(uid).set({
         'id': uid,
         'email': email,
         'name': name,
         'role': role,
+        'ime profilne': ime_slike_profila,
       });
     } catch (e) {
       print(e);

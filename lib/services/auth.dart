@@ -63,7 +63,7 @@ class AuthService {
       globalUser = UserModel(user.uid, 'Nema ime', 'Nema prezime', email,
           '0981nis', 'adressa null', 'user');
       await DatabaseService(uid: user!.uid)
-          .updateUserData('Ime', email, 'producer');
+          .updateUserData('Ime', email, 'producer', 'guest.png');
       //return _producerFromFirebaseUser(user);
       CollectionReference producers =
           FirebaseFirestore.instance.collection("producers");
@@ -125,7 +125,7 @@ class AuthService {
               'adresa',
               'user');
           await DatabaseService(uid: user.uid)
-              .updateUserData('new user', email, 'customer');
+              .updateUserData('new user', email, 'customer', 'guest.png');
         }
       }
       //_userFromFirebaseUser(user);
@@ -161,7 +161,10 @@ class AuthService {
     if (userCredential.additionalUserInfo!.isNewUser) {
       if (userCredential.user != null) {
         await DatabaseService(uid: userCredential.user!.uid).updateUserData(
-            'new user', userCredential.user!.email.toString(), 'customer');
+            'new user',
+            userCredential.user!.email.toString(),
+            'customer',
+            'guest.png');
       }
     }
 
