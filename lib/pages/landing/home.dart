@@ -46,7 +46,7 @@ class _HomeState extends State<Home> {
                   Navigator.push(
                     context,
                     MaterialPageRoute(builder: (context) => UserEdit()),
-                  );
+                  ).then((_) => setState(() {}));
                 }),
             ListTile(
                 leading: const Icon(Icons.history),

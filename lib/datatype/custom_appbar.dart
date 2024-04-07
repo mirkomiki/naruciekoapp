@@ -14,20 +14,19 @@ class CustomAppBar extends StatelessWidget implements PreferredSizeWidget {
     return AppBar(
       automaticallyImplyLeading: false,
       leading: Image.asset(
-          'assets/zecov_logo.png',
-          width: 60,
-          height: 60,
-        ),
+        'assets/zecov_logo.png',
+        width: 60,
+        height: 60,
+      ),
       title: Text(title),
       actions: [
-        
         GestureDetector(
-          onTap: () {
-            Scaffold.of(context).openEndDrawer();
-          },
-          child: CircleAvatar(
-              child: globalUser.profileImage,
-              )),
+            onTap: () {
+              Scaffold.of(context).openEndDrawer();
+            },
+            child: CircleAvatar(
+              backgroundImage: globalUser.profileImage.image,
+            )),
       ],
     );
   }
