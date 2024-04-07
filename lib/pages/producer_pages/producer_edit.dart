@@ -1,5 +1,3 @@
-import 'dart:js_interop';
-
 import 'package:animated_snack_bar/animated_snack_bar.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';

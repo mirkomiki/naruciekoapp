@@ -136,35 +136,54 @@ class AuthService {
   }
 
   signInWithGoogle() async {
-    final GoogleSignInAccount? gUser = await GoogleSignIn().signIn();
-    final GoogleSignInAuthentication gAuth = await gUser!.authentication;
-    final credential = GoogleAuthProvider.credential(
-        accessToken: gAuth.accessToken, idToken: gAuth.idToken);
-    UserCredential userCredential =
-        await FirebaseAuth.instance.signInWithCredential(credential);
-    globalUserUid = userCredential.user?.uid;
-    globalUser = UserModel(userCredential.user!.uid, 'Nema ime', 'Nema prezime',
-        userCredential.user!.email.toString(), 'broj', 'adresa', 'user');
-    //return _userFromFirebaseUser(userCredential.user);
+    try {
+      final GoogleSignInAccount? gUser = await GoogleSignIn().signIn();
+      final GoogleSignInAuthentication gAuth = await gUser!.authentication;
+      final credential = GoogleAuthProvider.credential(
+          accessToken: gAuth.accessToken, idToken: gAuth.idToken);
+      UserCredential userCredential =
+          await FirebaseAuth.instance.signInWithCredential(credential);
+      globalUserUid = userCredential.user?.uid;
+      globalUser = UserModel(
+          userCredential.user!.uid,
+          'Nema ime',
+          'Nema prezime',
+          userCredential.user!.email.toString(),
+          'broj',
+          'adresa',
+          'user');
+      //return _userFromFirebaseUser(userCredential.user);
+    } catch (e) {
+      return null;
+    }
   }
 
   signUpWithGoogle() async {
-    final GoogleSignInAccount? gUser = await GoogleSignIn().signIn();
-    final GoogleSignInAuthentication gAuth = await gUser!.authentication;
-    final credential = GoogleAuthProvider.credential(
-        accessToken: gAuth.accessToken, idToken: gAuth.idToken);
-    UserCredential userCredential =
-        await FirebaseAuth.instance.signInWithCredential(credential);
-    globalUserUid = userCredential.user?.uid;
-    globalUser = UserModel(userCredential.user!.uid, 'Nema ime', 'Nema prezime',
-        userCredential.user!.email.toString(), 'broj', 'adresa', 'user');
-    if (userCredential.additionalUserInfo!.isNewUser) {
-      if (userCredential.user != null) {
-        await DatabaseService(uid: userCredential.user!.uid).updateUserData(
-            'new user', userCredential.user!.email.toString(), 'customer');
+    try {
+      final GoogleSignInAccount? gUser = await GoogleSignIn().signIn();
+      final GoogleSignInAuthentication gAuth = await gUser!.authentication;
+      final credential = GoogleAuthProvider.credential(
+          accessToken: gAuth.accessToken, idToken: gAuth.idToken);
+      UserCredential userCredential =
+          await FirebaseAuth.instance.signInWithCredential(credential);
+      globalUserUid = userCredential.user?.uid;
+      globalUser = UserModel(
+          userCredential.user!.uid,
+          'Nema ime',
+          'Nema prezime',
+          userCredential.user!.email.toString(),
+          'broj',
+          'adresa',
+          'user');
+      if (userCredential.additionalUserInfo!.isNewUser) {
+        if (userCredential.user != null) {
+          await DatabaseService(uid: userCredential.user!.uid).updateUserData(
+              'new user', userCredential.user!.email.toString(), 'customer');
+        }
       }
+    } catch (e) {
+      return null;
     }
-
     //return _userFromFirebaseUser(userCredential.user);
   }
 }
