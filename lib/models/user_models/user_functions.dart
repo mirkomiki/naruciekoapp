@@ -13,7 +13,7 @@ class UserFunctions {
           FirebaseFirestore.instance.collection('users');
       return await usersCollection
           .doc(uid)
-          .update({'profile_image': user.profileImage});
+          .update({'profileImage': user.profileImage});
     } catch (e) {
       print('Error in updateUserProfileImage, more: $e');
     }

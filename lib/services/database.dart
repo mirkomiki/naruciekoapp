@@ -12,15 +12,25 @@ class DatabaseService {
       FirebaseFirestore.instance.collection('producers');
   //update data
   Future updateUserData(
-      String name, String email, String role, String ime_slike_profila) async {
+      String name, String email, String role, String profileImage) async {
     try {
       return await usersCollection.doc(uid).set({
         'id': uid,
         'email': email,
         'name': name,
         'role': role,
-        'ime profilne': ime_slike_profila,
+        'profileImage': profileImage,
       });
+    } catch (e) {
+      print(e);
+    }
+  }
+
+  Future updateProfileImageName(String profileImageName) async {
+    try {
+      return await usersCollection
+          .doc(uid)
+          .update({'profileImage': profileImageName});
     } catch (e) {
       print(e);
     }

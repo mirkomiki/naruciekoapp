@@ -1,9 +1,13 @@
 import 'dart:io';
+import 'package:firebase_auth/firebase_auth.dart';
+import 'package:firebase_storage/firebase_storage.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:naruciekoapp/globalData.dart';
 import 'package:naruciekoapp/models/user_models/user_functions.dart';
+import 'package:naruciekoapp/services/database.dart';
+import 'package:path/path.dart';
 
 class UploadProfilePhoto extends StatefulWidget {
   const UploadProfilePhoto({super.key});
@@ -20,6 +24,16 @@ class _UploadProfilePhotoState extends State<UploadProfilePhoto> {
       if (image == null) return;
 
       final imageTemporary = File(image.path);
+      try {
+        String imageName = basename(image.path);
+        final uid = FirebaseAuth.instance.currentUser?.uid;
+        await DatabaseService(uid: uid).updateProfileImageName(imageName);
+        final profilePictures =
+            FirebaseStorage.instance.ref('profileImages/$imageName');
+        await profilePictures.putFile(imageTemporary);
+      } on FirebaseException catch (e) {
+        print('Failed to put profile image in storage');
+      }
       setState(() => this.image = imageTemporary);
     } on PlatformException catch (e) {
       // ignore: avoid_print
