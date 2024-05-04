@@ -7,7 +7,7 @@ final GlobalKey<NavigatorState> navigatorKey = new GlobalKey<NavigatorState>();
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
   await Firebase.initializeApp(
-    name: 'narucinase',
+    name: "narucinase",
     options: const FirebaseOptions(
         apiKey: "AIzaSyDhkP8vef6HpVYg6TRKybQksP0NI-UYD8g",
         appId: "1:92670486512:android:6f4dff989f4a299828df35",
@@ -34,6 +34,7 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
+      debugShowCheckedModeBanner: false,
       navigatorKey: navigatorKey,
       home: SplashScreen(),
     );

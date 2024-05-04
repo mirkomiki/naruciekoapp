@@ -41,6 +41,8 @@ class AuthService {
       globalUserUid = user!.uid;
       globalUser = UserModel(user.uid, 'Nema ime', 'Nema prezime', email,
           '0981nis', 'adressa null', 'user');
+      globalProducer = ProducerModel(
+          uid: user.uid, name: 'Nema ime', email: email, address: '');
       /*if (doc.data()?['role'] == 'producer') {
         return _producerFromFirebaseUser(user);
       } else {
@@ -62,6 +64,8 @@ class AuthService {
       globalIsProducer = true;
       globalUser = UserModel(user.uid, 'Nema ime', 'Nema prezime', email,
           '0981nis', 'adressa null', 'user');
+      globalProducer = ProducerModel(
+          uid: user.uid, name: 'Nema ime', email: email, address: adressName);
       await DatabaseService(uid: user!.uid)
           .updateUserData('Ime', email, 'producer');
       //return _producerFromFirebaseUser(user);
