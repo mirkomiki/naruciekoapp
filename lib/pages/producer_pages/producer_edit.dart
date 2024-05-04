@@ -45,6 +45,7 @@ class _ProducerEditState extends State<ProducerEdit> {
       type: AnimatedSnackBarType.success,
       mobileSnackBarPosition: MobileSnackBarPosition.bottom,
     ).show(context);
+    setState(() {});
   }
 
   @override
@@ -116,8 +117,11 @@ class _ProducerEditState extends State<ProducerEdit> {
                   ),
                   const Padding(padding: EdgeInsets.all(25)),
                   CustomButton(
-                    onTap: () =>
-                        {finishUserAccountEdit(), Navigator.of(context).pop()},
+                    onTap: () => {
+                      finishUserAccountEdit(),
+                      Navigator.of(context).pop(),
+                      setState(() {})
+                    },
                     text: 'Save changes',
                   ),
                 ],

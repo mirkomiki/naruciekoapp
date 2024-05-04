@@ -19,15 +19,13 @@ class _SearchPlacesScreenState extends State<SearchPlacesScreen> {
         title: const Text("Search places"),
       ),
       body: OpenStreetMapSearchAndPick(
-        buttonTextStyle:
-            const TextStyle(fontSize: 18, fontStyle: FontStyle.normal),
+        center: LatLong(0, 0),
         buttonColor: Colors.blue,
-        buttonText: 'Set Current Location',
+        buttonText: 'Set Location',
         onPicked: (pickedData) {
           Navigator.pop(context, pickedData);
         },
       ),
-      floatingActionButton: FloatingActionButton(onPressed: () {}),
     );
   }
 }

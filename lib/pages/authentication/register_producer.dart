@@ -148,7 +148,7 @@ class _RegisterProducerPageState extends State<RegisterProducerPage> {
                 pickedData = await navigateAndImportSelectedLocation(context);
 
                 setState(() {
-                  selectedLocationValue = pickedData.addressName;
+                  selectedLocationValue = pickedData.address;
                 });
               },
               text: "Select Location"),

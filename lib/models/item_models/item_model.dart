@@ -14,7 +14,11 @@ class ItemModel {
   int _numberOfRatings = 0;
   Categories? category;
 
-  ItemModel({required this.uid, required this.producerUid});
+  ItemModel(
+      {required this.uid,
+      required this.producerUid,
+      required this.name,
+      required this.price});
 
   void setName(String name) => this.name = name;
 

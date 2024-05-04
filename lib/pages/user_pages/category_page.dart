@@ -5,6 +5,7 @@ import 'package:flutter/rendering.dart';
 import 'package:naruciekoapp/datatype/customItemCard.dart';
 import 'package:naruciekoapp/datatype/customTextField.dart';
 import 'package:naruciekoapp/globalData.dart';
+import 'package:naruciekoapp/pages/user_pages/cartPage.dart';
 import 'package:naruciekoapp/services/auth.dart';
 import 'package:naruciekoapp/services/database.dart';
 
@@ -22,6 +23,15 @@ class CategoryPage extends StatelessWidget {
       appBar: AppBar(
         title: Text(
             'Trenutna ponuda - $category'), // Show category name in the app bar
+      ),
+      floatingActionButton: FloatingActionButton(
+        child: Icon(Icons.shopping_basket_outlined),
+        backgroundColor: Colors.blue,
+        hoverColor: Colors.green,
+        onPressed: () => Navigator.push(
+          context,
+          MaterialPageRoute(builder: (context) => const CartPage()),
+        ),
       ),
       body: ListView.builder(
         itemCount: items.length,

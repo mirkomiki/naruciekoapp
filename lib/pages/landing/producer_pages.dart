@@ -1,5 +1,6 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
+import 'package:naruciekoapp/datatype/custom_appbar.dart';
 import 'package:naruciekoapp/pages/producer_pages/avaliable_items.dart';
 import 'package:naruciekoapp/pages/producer_pages/create_new_item.dart';
 import 'package:naruciekoapp/pages/producer_pages/orders_dashboard.dart';
@@ -36,6 +37,9 @@ class _ProducerPagesState extends State<ProducerPages> {
   Widget build(BuildContext context) {
     double width = MediaQuery.of(context).size.width;
     return Scaffold(
+      appBar: CustomAppBar(
+        title: 'Home',
+      ),
       endDrawer: Drawer(
         child: Container(
           width: width * 0.3,

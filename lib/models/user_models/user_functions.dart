@@ -37,6 +37,7 @@ class UserFunctions {
       print('Error in updateUser could be non existing producer, more: $e');
     }
   }
+
   /*
   //update == create in firestore
   Future updateItemToProducer(ItemModel item) async {
