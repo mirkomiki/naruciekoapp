@@ -15,7 +15,6 @@ void main() async {
         storageBucket: "gs://narucinase.appspot.com",
         projectId: "narucinase"),
   );
-  //proba, maknuti
   runApp(const MyApp());
 }
 
