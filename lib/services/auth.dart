@@ -1,3 +1,5 @@
+import "dart:html";
+
 import "package:cloud_firestore/cloud_firestore.dart";
 import "package:firebase_auth/firebase_auth.dart";
 import "package:flutter/material.dart";
@@ -182,9 +184,14 @@ class AuthService {
       if (userCredential.additionalUserInfo!.isNewUser) {
         if (userCredential.user != null) {
           await DatabaseService(uid: userCredential.user!.uid).updateUserData(
-              'new user', userCredential.user!.email.toString(), 'customer');
+              'new user',
+              userCredential.user!.email.toString(),
+              'customer',
+              'profileImage'); //'profileImage' zamjeniti s necim
         }
       }
+    } catch (ex) {
+      print(ex);
     }
 
     //return _userFromFirebaseUser(userCredential.user);
