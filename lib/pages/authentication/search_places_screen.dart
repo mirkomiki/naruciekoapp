@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:google_places_flutter/google_places_flutter.dart';
 import 'package:google_places_flutter/model/prediction.dart';
+import 'package:naruciekoapp/datatype/custom_appbar.dart';
 import 'package:open_street_map_search_and_pick/open_street_map_search_and_pick.dart';
 
 class SearchPlacesScreen extends StatefulWidget {
@@ -15,8 +16,8 @@ class _SearchPlacesScreenState extends State<SearchPlacesScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        title: const Text("Search places"),
+      appBar: CustomAppBar(
+        title: 'Search places',
       ),
       body: OpenStreetMapSearchAndPick(
         center: LatLong(0, 0),

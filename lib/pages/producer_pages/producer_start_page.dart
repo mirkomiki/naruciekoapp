@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:naruciekoapp/datatype/customButton.dart';
+import 'package:naruciekoapp/datatype/custom_appbar.dart';
 import 'package:naruciekoapp/globalData.dart';
 import 'package:naruciekoapp/models/producer_models/producer_functions.dart';
 import 'package:naruciekoapp/pages/landing/producer_pages.dart';
@@ -53,9 +54,8 @@ class StartProducerPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        title: Text("Where are you today"),
-        backgroundColor: Colors.green,
+      appBar: CustomAppBar(
+        title: "Where are you today",
       ),
       backgroundColor: Colors.grey[300],
       body: Column(

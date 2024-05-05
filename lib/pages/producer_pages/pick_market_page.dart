@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:naruciekoapp/datatype/custom_appbar.dart';
 import 'package:open_street_map_search_and_pick/open_street_map_search_and_pick.dart';
 
 class PickMarketPage extends StatefulWidget {
@@ -14,8 +15,8 @@ class _PickMarketPageState extends State<PickMarketPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        title: const Text("Pronađi moj stol"),
+      appBar: CustomAppBar(
+        title: 'Pronađi moj stol',
       ),
       body: OpenStreetMapSearchAndPick(
         locationPinIconColor: Colors.green,

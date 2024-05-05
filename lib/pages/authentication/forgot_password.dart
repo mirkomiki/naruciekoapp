@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
 import 'package:naruciekoapp/datatype/customButton.dart';
 import 'package:naruciekoapp/datatype/customTextField.dart';
+import 'package:naruciekoapp/datatype/custom_appbar.dart';
 
 class ForgotPasswordPage extends StatefulWidget {
   const ForgotPasswordPage({Key? key}) : super(key: key);
@@ -46,9 +47,8 @@ class _ForgotPasswordPageState extends State<ForgotPasswordPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-        appBar: AppBar(
-          title: const Text('Password reset page'),
-          backgroundColor: const Color.fromARGB(255, 21, 86, 55),
+        appBar: CustomAppBar(
+          title: 'Password reset page',
         ),
         body: Column(children: [
           const Text(

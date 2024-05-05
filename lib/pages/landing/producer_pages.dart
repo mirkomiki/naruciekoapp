@@ -38,9 +38,6 @@ class _ProducerPagesState extends State<ProducerPages> {
   Widget build(BuildContext context) {
     double width = MediaQuery.of(context).size.width;
     return Scaffold(
-      appBar: CustomAppBar(
-        title: 'Home',
-      ),
       endDrawer: Drawer(
         child: Container(
           width: width * 0.3,

@@ -41,7 +41,6 @@ class _ProducerPagesState extends State<ProducerPages> {
     return Scaffold(
       body: _producerPages.elementAt(selectedProducerPageIndex),
       backgroundColor: Colors.grey[900],
-      appBar: const CustomAppBar(title: 'Producer'),
       endDrawer: Drawer(
         child: Container(
           width: width * 0.3,

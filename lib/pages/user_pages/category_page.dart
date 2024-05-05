@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
 import 'package:naruciekoapp/datatype/customItemCard.dart';
 import 'package:naruciekoapp/datatype/customTextField.dart';
+import 'package:naruciekoapp/datatype/custom_appbar.dart';
 import 'package:naruciekoapp/globalData.dart';
 import 'package:naruciekoapp/models/item_models/item_model.dart';
 import 'package:naruciekoapp/models/producer_models/producer_model.dart';
@@ -41,9 +42,9 @@ class CategoryPage extends StatelessWidget {
     item.setPhoto('assets/apple1.jpg');
 
     return Scaffold(
-      appBar: AppBar(
-        title: Text(
-            'Trenutna ponuda - $category'), // Show category name in the app bar
+      appBar: CustomAppBar(
+        title:
+            'Trenutna ponuda - $category', // Show category name in the app bar
       ),
       floatingActionButton: FloatingActionButton(
         child: Icon(Icons.shopping_basket_outlined),

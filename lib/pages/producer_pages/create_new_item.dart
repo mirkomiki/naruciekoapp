@@ -2,6 +2,7 @@ import 'package:animated_snack_bar/animated_snack_bar.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:naruciekoapp/datatype/customTextField.dart';
+import 'package:naruciekoapp/datatype/custom_appbar.dart';
 import 'package:naruciekoapp/models/item_models/item_model.dart';
 
 import '../../datatype/customButton.dart';
@@ -103,9 +104,8 @@ class _CreateNewItemState extends State<CreateNewItem> {
       },
       child: Scaffold(
         backgroundColor: Colors.grey[300],
-        appBar: AppBar(
-          title: const Text('Add Item'),
-          backgroundColor: Colors.green,
+        appBar: CustomAppBar(
+          title: 'Add Item',
         ),
         body: Form(
           child: Padding(
