@@ -1,21 +1,22 @@
 import 'package:flutter/material.dart';
 import 'package:naruciekoapp/models/item_models/item_model.dart';
+import 'package:open_street_map_search_and_pick/open_street_map_search_and_pick.dart';
 
 class ProducerModel {
   final String uid;
   late String name;
-  late String owner;
+  late String owner = 'Nema vlasnika zasad';
   late String email;
-  late String iban;
-  late String oib;
+  late String iban = 'Nije unesen iban objekta';
+  late String oib = 'Nije unesen oib objekta';
   late String address;
-  late String contactNumber;
+  late String contactNumber = 'Nije unesen broj';
   late List<ItemModel> products = [];
   late double rating = 0;
   late int _ratingSum = 0;
   late int _numberOfRatings = 0;
+  late PickedData todayAdress;
   Image profileImage = Image.asset("assets/blank-profile-image.jpg");
-
   ProducerModel({
     required this.uid,
     required this.name,

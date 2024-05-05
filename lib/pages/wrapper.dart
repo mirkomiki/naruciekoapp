@@ -2,6 +2,8 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:naruciekoapp/models/user_models/user_model.dart';
+import 'package:naruciekoapp/pages/producer_pages/producer_start_page.dart';
+import 'package:naruciekoapp/pages/producer_pages/start_page.dart';
 import 'package:naruciekoapp/pages/user_pages/pages.dart';
 import 'package:naruciekoapp/pages/producer_pages/producer_pages.dart';
 import 'package:naruciekoapp/pages/user_pages/producers_page.dart';
@@ -37,7 +39,7 @@ class _WrapperState extends State<Wrapper> {
           if (userData?['role'] == 'customer') {
             return Pages();
           } else {
-            return ProducerPages();
+            return StartProducerPage();
           }
         });
   }

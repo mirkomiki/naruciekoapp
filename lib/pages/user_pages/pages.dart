@@ -28,7 +28,7 @@ class _PagesState extends State<Pages> {
 
   final List<Widget> _pages = [
     const Home(),
-    const ItemsView(),
+    const ItemPage(),
     const ProducersPage(),
     //const MapsView(),
   ];

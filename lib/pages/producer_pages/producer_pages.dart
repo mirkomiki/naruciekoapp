@@ -1,9 +1,13 @@
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:naruciekoapp/datatype/custom_appbar.dart';
 import 'package:naruciekoapp/pages/producer_pages/avaliable_items.dart';
 import 'package:naruciekoapp/pages/producer_pages/create_new_item.dart';
+import 'package:naruciekoapp/pages/producer_pages/itemsPage.dart';
 import 'package:naruciekoapp/pages/producer_pages/orders_dashboard.dart';
 import 'package:naruciekoapp/globalData.dart';
+import 'package:naruciekoapp/pages/producer_pages/past_recipets_producer.dart';
+import 'package:naruciekoapp/pages/producer_pages/producer_edit.dart';
 
 class ProducerPages extends StatefulWidget {
   const ProducerPages({super.key});
@@ -27,15 +31,69 @@ class _ProducerPagesState extends State<ProducerPages> {
 
   final List<Widget> _producerPages = [
     const OrdersDashboard(),
-    const AvaliableProductsPage(),
-    const CreateProductPage(),
+    const ItemPage(),
+    const CreateNewItem(),
   ];
+
   @override
   Widget build(BuildContext context) {
+    double width = MediaQuery.of(context).size.width;
     return Scaffold(
       body: _producerPages.elementAt(selectedProducerPageIndex),
       backgroundColor: Colors.grey[900],
-      appBar: CustomAppBar(title: 'Producer'),
+      appBar: const CustomAppBar(title: 'Producer'),
+      endDrawer: Drawer(
+        child: Container(
+          width: width * 0.3,
+          padding: const EdgeInsets.only(top: 30),
+          color: const Color(0XFFFEEAE6),
+          child: Column(children: [
+            Container(
+              width: width * 0.3,
+              alignment: Alignment.centerRight,
+              child: CircleAvatar(
+                radius: 36,
+                backgroundImage: globalUser.profileImage.image,
+              ),
+            ),
+            ListTile(
+                leading: const Icon(Icons.settings),
+                title: const Text(
+                  'Settings',
+                  style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
+                ),
+                onTap: () {
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(builder: (context) => ProducerEdit()),
+                  );
+                }),
+            ListTile(
+                leading: const Icon(Icons.history),
+                title: const Text(
+                  'Reciepts',
+                  style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
+                ),
+                onTap: () {
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                        builder: (context) => PastRecipetsProducer()),
+                  );
+                }),
+            ListTile(
+                leading: const Icon(Icons.logout),
+                title: const Text(
+                  'Sign Out',
+                  style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
+                ),
+                onTap: () async {
+                  await FirebaseAuth.instance.signOut();
+                  setState(() {});
+                }),
+          ]),
+        ),
+      ),
       bottomNavigationBar: Container(
         height: 60,
         decoration: const BoxDecoration(
@@ -50,12 +108,12 @@ class _ProducerPagesState extends State<ProducerPages> {
               label: 'Narudžbe',
             ),
             BottomNavigationBarItem(
-              icon: Icon(Icons.satellite),
-              label: 'Postavi proizvod',
+              icon: Icon(Icons.list),
+              label: 'Proizvodi',
             ),
             BottomNavigationBarItem(
-              icon: Icon(Icons.map),
-              label: 'Dodaj proizvod',
+              icon: Icon(Icons.list),
+              label: 'Lista proizvoda',
             ),
           ],
           currentIndex: selectedProducerPageIndex,

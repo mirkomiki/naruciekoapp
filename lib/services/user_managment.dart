@@ -5,7 +5,6 @@ import 'package:naruciekoapp/pages/producer_pages/producer_pages.dart';
 import 'package:naruciekoapp/pages/user_pages/producers_page.dart';
 import 'package:naruciekoapp/pages/authentication/login_or_register.dart';
 import 'package:naruciekoapp/pages/wrapper.dart';
-
 import '../pages/user_pages/pages.dart';
 
 class UserManagment {

@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/widgets.dart';
-import 'package:naruciekoapp/globalData.dart';
+
+import '../globalData.dart';
 
 class CustomAppBar extends StatelessWidget implements PreferredSizeWidget {
   const CustomAppBar({
@@ -13,25 +13,43 @@ class CustomAppBar extends StatelessWidget implements PreferredSizeWidget {
   Widget build(BuildContext context) {
     return AppBar(
       automaticallyImplyLeading: false,
-      leading: Image.asset(
-          'assets/zecov_logo.png',
-          width: 60,
-          height: 60,
-        ),
-      title: Text(title),
+      backgroundColor: Colors.green,
+      elevation: 0, // Remove shadow
+      title: Row(
+        mainAxisAlignment: MainAxisAlignment.center,
+        children: [
+          Image.asset(
+            'assets/zecov_logo.png',
+            width: 60,
+            height: 60,
+            fit: BoxFit.contain,
+          ),
+          SizedBox(width: 10),
+          Text(
+            title,
+            style: TextStyle(
+              fontSize: 20,
+              fontWeight: FontWeight.bold,
+              color: Colors.white,
+            ),
+          ),
+        ],
+      ),
       actions: [
-        
         GestureDetector(
           onTap: () {
             Scaffold.of(context).openEndDrawer();
           },
           child: CircleAvatar(
-              child: globalUser.profileImage,
-              )),
+            radius: 20,
+            backgroundImage: globalUser.profileImage.image,
+          ),
+        ),
+        SizedBox(width: 10),
       ],
     );
   }
 
   @override
-  Size get preferredSize => const Size(double.maxFinite, 80);
+  Size get preferredSize => Size.fromHeight(60); // Reduce height here
 }
