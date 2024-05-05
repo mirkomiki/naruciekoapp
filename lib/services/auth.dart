@@ -147,7 +147,7 @@ class AuthService {
           accessToken: gAuth.accessToken, idToken: gAuth.idToken);
       UserCredential userCredential =
           await FirebaseAuth.instance.signInWithCredential(credential);
-      globalUserUid = userCredential.user?.uid;
+      globalUserUid = userCredential.user!.uid;
       globalUser = UserModel(
           userCredential.user!.uid,
           'Nema ime',
@@ -170,7 +170,7 @@ class AuthService {
           accessToken: gAuth.accessToken, idToken: gAuth.idToken);
       UserCredential userCredential =
           await FirebaseAuth.instance.signInWithCredential(credential);
-      globalUserUid = userCredential.user?.uid;
+      globalUserUid = userCredential.user!.uid;
       globalUser = UserModel(
           userCredential.user!.uid,
           'Nema ime',

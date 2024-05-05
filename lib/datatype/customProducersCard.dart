@@ -8,7 +8,6 @@ class CustomProducerCard extends StatelessWidget {
   CustomProducerCard({
     required this.producer,
   });
-
   @override
   Widget build(BuildContext context) {
     return Container(
