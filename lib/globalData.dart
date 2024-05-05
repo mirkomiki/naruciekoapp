@@ -1,3 +1,4 @@
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
 import 'package:naruciekoapp/models/cart_models/cart_model.dart';
 import 'package:naruciekoapp/models/item_models/item_model.dart';
@@ -15,14 +16,14 @@ const double doubleGapBetweenContainers = 10.0;
 const int intGapBetweenContainers = 10;
 ProducerModel globalProducer =
     ProducerModel(uid: '', name: 'Nema ime', email: '', address: '');
-late String? globalUserUid;
+String globalUserUid = FirebaseAuth.instance.currentUser!.uid;
 late bool globalIsProducer;
 UserModel globalUser =
     UserModel('', '', 'surname null', '', 'Number', '', 'user');
 CartModel cart = CartModel(globalUser.uid, List.empty());
 
 // ignore: constant_identifier_names
-enum Categories {
+enum Category {
   Voce,
   Povrce,
   Meso,
@@ -61,14 +62,26 @@ List<OrderedItem> orders = [
   OrderedItem(
       uid: "1",
       product: ItemModel(
-          uid: "1", producerUid: globalUser.uid, name: "Jabuke", price: 7),
+          uid: '1',
+          producerUid: globalUser.uid,
+          name: "Jabuke",
+          price: 7,
+          description: "Voce neko",
+          category: Category.Voce,
+          unit: Unit.Kilogram,
+          quantity: 5),
       quantity: 7),
   OrderedItem(
       uid: "2",
       product: ItemModel(
-          uid: "2",
+          uid: '2',
           producerUid: globalUser.uid,
-          name: "Maslinovo ulje",
-          price: 10),
+          name: "Jabuke2",
+          price: 7,
+          description: "Voce neko2",
+          category: Category.Voce,
+          unit: Unit.Kilogram,
+          quantity: 3),
       quantity: 4),
 ];
+List<ItemModel> items = [];

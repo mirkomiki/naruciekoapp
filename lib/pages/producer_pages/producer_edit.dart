@@ -1,14 +1,14 @@
 import 'package:animated_snack_bar/animated_snack_bar.dart';
-import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:intl_phone_field/intl_phone_field.dart';
-import 'package:naruciekoapp/datatype/customButton.dart';
-import 'package:naruciekoapp/datatype/customTextField.dart';
 import 'package:naruciekoapp/datatype/uploadPhotoDialog.dart';
-import 'package:naruciekoapp/globalData.dart';
+
+import '../../datatype/customButton.dart';
+import '../../datatype/customTextField.dart';
+import '../../globalData.dart';
 
 class ProducerEdit extends StatefulWidget {
-  const ProducerEdit({super.key});
+  const ProducerEdit({Key? key}) : super(key: key);
 
   @override
   State<ProducerEdit> createState() => _ProducerEditState();
@@ -22,6 +22,7 @@ class _ProducerEditState extends State<ProducerEdit> {
   TextEditingController addressNameController = TextEditingController();
   TextEditingController ownerController = TextEditingController();
   TextEditingController oibController = TextEditingController();
+
   @override
   void initState() {
     super.initState();
@@ -45,7 +46,6 @@ class _ProducerEditState extends State<ProducerEdit> {
       type: AnimatedSnackBarType.success,
       mobileSnackBarPosition: MobileSnackBarPosition.bottom,
     ).show(context);
-    setState(() {});
   }
 
   @override
@@ -55,10 +55,10 @@ class _ProducerEditState extends State<ProducerEdit> {
         FocusScope.of(context).requestFocus(FocusNode());
       },
       child: Scaffold(
-        backgroundColor: Colors.grey[900],
+        backgroundColor: Colors.grey[300],
         appBar: AppBar(
           title: const Text('Producer Account'),
-          backgroundColor: const Color.fromARGB(255, 0, 164, 164),
+          backgroundColor: Colors.green,
         ),
         body: Form(
           child: Padding(
@@ -68,19 +68,34 @@ class _ProducerEditState extends State<ProducerEdit> {
                 mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                 children: <Widget>[
                   const Padding(padding: EdgeInsets.all(15)),
-                  Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                    children: <Widget>[
-                      Flexible(
-                        fit: FlexFit.loose,
-                        child: CustomTextField(
-                            controller: nameController,
-                            hintText: 'Name',
-                            obsureText: false),
-                      ),
-                      const Padding(padding: EdgeInsets.all(10)),
-                      const Padding(padding: EdgeInsets.all(15)),
-                    ],
+                  CustomTextField(
+                    controller: nameController,
+                    hintText: 'Name',
+                    obsureText: false,
+                  ),
+                  const Padding(padding: EdgeInsets.all(15)),
+                  CustomTextField(
+                    controller: ownerController,
+                    hintText: 'Owner',
+                    obsureText: false,
+                  ),
+                  const Padding(padding: EdgeInsets.all(15)),
+                  CustomTextField(
+                    controller: addressNameController,
+                    hintText: 'Address',
+                    obsureText: false,
+                  ),
+                  const Padding(padding: EdgeInsets.all(15)),
+                  CustomTextField(
+                    controller: ibanController,
+                    hintText: 'IBAN',
+                    obsureText: false,
+                  ),
+                  const Padding(padding: EdgeInsets.all(15)),
+                  CustomTextField(
+                    controller: oibController,
+                    hintText: 'OIB',
+                    obsureText: false,
                   ),
                   const Padding(padding: EdgeInsets.all(15)),
                   IntlPhoneField(

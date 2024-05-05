@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:naruciekoapp/datatype/custom_appbar.dart';
 import 'package:naruciekoapp/pages/producer_pages/avaliable_items.dart';
 import 'package:naruciekoapp/pages/producer_pages/create_new_item.dart';
+import 'package:naruciekoapp/pages/producer_pages/itemsPage.dart';
 import 'package:naruciekoapp/pages/producer_pages/orders_dashboard.dart';
 import 'package:naruciekoapp/globalData.dart';
 import 'package:naruciekoapp/pages/producer_pages/past_recipets_producer.dart';
@@ -30,9 +31,10 @@ class _ProducerPagesState extends State<ProducerPages> {
 
   final List<Widget> _producerPages = [
     const OrdersDashboard(),
-    const AvaliableProductsPage(),
-    const CreateProductPage(),
+    const ItemPage(),
+    const CreateNewItem(),
   ];
+
   @override
   Widget build(BuildContext context) {
     double width = MediaQuery.of(context).size.width;
@@ -106,12 +108,12 @@ class _ProducerPagesState extends State<ProducerPages> {
               label: 'Narudžbe',
             ),
             BottomNavigationBarItem(
-              icon: Icon(Icons.satellite),
-              label: 'Postavi proizvod',
+              icon: Icon(Icons.list),
+              label: 'Proizvodi',
             ),
             BottomNavigationBarItem(
               icon: Icon(Icons.list),
-              label: 'Proizvodi',
+              label: 'Lista proizvoda',
             ),
           ],
           currentIndex: selectedProducerPageIndex,
