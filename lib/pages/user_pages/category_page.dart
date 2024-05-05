@@ -5,6 +5,8 @@ import 'package:flutter/rendering.dart';
 import 'package:naruciekoapp/datatype/customItemCard.dart';
 import 'package:naruciekoapp/datatype/customTextField.dart';
 import 'package:naruciekoapp/globalData.dart';
+import 'package:naruciekoapp/models/item_models/item_model.dart';
+import 'package:naruciekoapp/models/producer_models/producer_model.dart';
 import 'package:naruciekoapp/pages/user_pages/cartPage.dart';
 import 'package:naruciekoapp/services/auth.dart';
 import 'package:naruciekoapp/services/database.dart';
@@ -17,7 +19,26 @@ class CategoryPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     // Dummy list of items, replace this with your actual list of items
-    List<Item> items = getItemsForCategory(category);
+    ProducerModel producer = ProducerModel(
+      uid: 'producer123',
+      name: 'OPG Weiner',
+      email: 'weiner@example.com',
+      address: 'Lipovčani',
+    );
+
+    // Define dummy item data
+    ItemModel item = ItemModel(
+      uid: 'item123',
+      producerUid: producer.uid,
+      name: 'Jabuke',
+      price: 5,
+      description: 'Fresh apples from the orchard.',
+      quantity: 5,
+      category: Category.Voce,
+      unit: Unit.Kilogram,
+    );
+
+    item.setPhoto('assets/apple1.jpg');
 
     return Scaffold(
       appBar: AppBar(
@@ -34,22 +55,16 @@ class CategoryPage extends StatelessWidget {
         ),
       ),
       body: ListView.builder(
-        itemCount: items.length,
+        itemCount: 1, //promijeni
         itemBuilder: (context, index) {
           // Make sure to pass the required parameters to CustomItemCard constructor
-          return CustomItemCard(
-            items[index].opgName,
-            items[index].village,
-            items[index].itemName,
-            items[index].price,
-            items[index].imagePath,
-            items[index].rating,
-          );
+          return CustomItemCard(item, producer);
         },
       ),
     );
   }
-
+}
+/*
   // Dummy function to get items for a specific category
   List<Item> getItemsForCategory(String category) {
     if (category == 'voće') {
@@ -100,3 +115,4 @@ class Item {
   Item(this.opgName, this.village, this.itemName, this.price, this.imagePath,
       this.rating);
 }
+*/

@@ -1,4 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:naruciekoapp/models/cart_models/cart_functions.dart';
+import 'package:naruciekoapp/models/producer_models/producer_model.dart';
+import 'package:naruciekoapp/models/product_for_order.dart';
+import 'package:naruciekoapp/models/item_models/item_model.dart';
 /*
 Widget CustomItemCard(String opgName, String village, String item, String price, String imagePath, int rating) {
     return Card(
@@ -76,21 +80,10 @@ Widget CustomItemCard(String opgName, String village, String item, String price,
 } */
 
 class CustomItemCard extends StatefulWidget {
-  final String opgName;
-  final String village;
-  final String item;
-  final String price;
-  final String imagePath;
-  final int rating;
+  final ItemModel item;
+  final ProducerModel producer;
 
-  const CustomItemCard(
-    this.opgName,
-    this.village,
-    this.item,
-    this.price,
-    this.imagePath,
-    this.rating,
-  );
+  const CustomItemCard(this.item, this.producer);
 
   @override
   _CustomItemCardState createState() => _CustomItemCardState();
@@ -127,7 +120,7 @@ class _CustomItemCardState extends State<CustomItemCard> {
                 Expanded(
                   flex: 1,
                   child: Image.asset(
-                    widget.imagePath,
+                    widget.item.photo,
                     width: 100,
                     height: 100,
                     fit: BoxFit.cover,
@@ -139,10 +132,10 @@ class _CustomItemCardState extends State<CustomItemCard> {
                   child: Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
-                      Text(widget.opgName),
-                      Text(widget.village),
-                      Text(widget.item),
-                      Text(widget.price),
+                      Text(widget.producer.name),
+                      Text(widget.producer.address),
+                      Text(widget.item.name),
+                      Text(widget.item.price.toString() + '€'),
                       SizedBox(height: 5),
                       Row(
                         children: [
@@ -150,7 +143,7 @@ class _CustomItemCardState extends State<CustomItemCard> {
                               color: const Color.fromARGB(255, 255, 218, 7),
                               size: 20),
                           SizedBox(width: 5),
-                          Text('${widget.rating} / 5'),
+                          Text('${widget.item.rating} / 5'),
                           SizedBox(width: 16),
                           Expanded(
                             child: Row(
@@ -167,6 +160,14 @@ class _CustomItemCardState extends State<CustomItemCard> {
                                   icon: Icon(Icons.add),
                                   color: Colors.green,
                                 ),
+                                IconButton(
+                                    onPressed: () => CartFunctions(
+                                            uid: widget.item.uid)
+                                        .addItemToCart(OrderedItem(
+                                            uid: widget.item.uid,
+                                            product: widget.item,
+                                            quantity: widget.item.quantity)),
+                                    icon: Icon(Icons.shopping_basket))
                               ],
                             ),
                           ),

@@ -3,26 +3,27 @@ import 'package:naruciekoapp/globalData.dart';
 class ItemModel {
   late String uid;
   final String producerUid;
-  String? name;
+  String name;
   String photo = "";
   String description = "";
-  double? price;
+  double price;
   Unit? unit;
-  int? quantity;
+  int quantity;
   double rating = 0;
   int _ratingSum = 0;
   int _numberOfRatings = 0;
   Category? category;
 
-  ItemModel(
-      {required this.uid,
-      required this.producerUid,
-      required this.name,
-      required this.price,
-      required this.description,
-      required this.quantity,
-      required this.category,
-      required this.unit});
+  ItemModel({
+    required this.uid,
+    required this.producerUid,
+    required this.name,
+    required this.price,
+    required this.description,
+    required this.quantity,
+    required this.category,
+    required this.unit,
+  });
 
   void setName(String name) => this.name = name;
 
