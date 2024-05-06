@@ -1,8 +1,11 @@
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:naruciekoapp/datatype/customItemCardProdcerView.dart';
 import 'package:naruciekoapp/datatype/custom_appbar.dart';
 import 'package:naruciekoapp/models/item_models/item_model.dart';
+import 'package:naruciekoapp/pages/user_pages/editProfile.dart';
+import 'package:naruciekoapp/pages/user_pages/past_recipets.dart';
 
 import '../../globalData.dart';
 
@@ -100,8 +103,60 @@ class _ItemPageState extends State<ItemPage> {
   @override
   Widget build(BuildContext context) {
     print('items length ${itemsList.length}');
+    double width = MediaQuery.of(context).size.width;
     return Scaffold(
       appBar: CustomAppBar(title: 'Lista itema'),
+      endDrawer: Drawer(
+        child: Container(
+          width: width * 0.3,
+          padding: const EdgeInsets.only(top: 30),
+          color: const Color(0XFFFEEAE6),
+          child: Column(children: [
+            Container(
+              width: width * 0.3,
+              alignment: Alignment.centerRight,
+              child: CircleAvatar(
+                radius: 36,
+                backgroundImage: globalUser.profileImage.image,
+              ),
+            ),
+            ListTile(
+                leading: const Icon(Icons.settings),
+                title: const Text(
+                  'Settings',
+                  style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
+                ),
+                onTap: () {
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(builder: (context) => UserEdit()),
+                  ).then((_) => setState(() {}));
+                }),
+            ListTile(
+                leading: const Icon(Icons.history),
+                title: const Text(
+                  'Reciepts',
+                  style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
+                ),
+                onTap: () {
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(builder: (context) => PastRecipets()),
+                  );
+                }),
+            ListTile(
+                leading: const Icon(Icons.logout),
+                title: const Text(
+                  'Sign Out',
+                  style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
+                ),
+                onTap: () async {
+                  await FirebaseAuth.instance.signOut();
+                  setState(() {});
+                }),
+          ]),
+        ),
+      ),
       body: ListView.builder(
         itemCount: itemsList.length,
         itemBuilder: (context, index) {
