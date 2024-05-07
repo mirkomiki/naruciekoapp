@@ -8,7 +8,7 @@ class ItemModel {
   String description = "";
   double? price;
   Unit? unit;
-  int? quantity;
+  int? quantity = 0;
   double rating = 0;
   int _ratingSum = 0;
   int _numberOfRatings = 0;

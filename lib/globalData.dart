@@ -20,7 +20,8 @@ String globalUserUid = FirebaseAuth.instance.currentUser!.uid;
 late bool globalIsProducer;
 UserModel globalUser =
     UserModel('', '', 'surname null', '', 'Number', '', 'user');
-CartModel cart = CartModel(globalUser.uid, List.empty());
+//CartModel cart = CartModel(globalUser.uid, List.empty());
+List<ItemModel> cart = [];
 
 // ignore: constant_identifier_names
 enum Category {

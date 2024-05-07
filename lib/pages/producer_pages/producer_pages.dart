@@ -66,7 +66,7 @@ class _ProducerPagesState extends State<ProducerPages> {
                   Navigator.push(
                     context,
                     MaterialPageRoute(builder: (context) => ProducerEdit()),
-                  );
+                  ).then((_) => setState(() {}));
                 }),
             ListTile(
                 leading: const Icon(Icons.history),
@@ -80,6 +80,7 @@ class _ProducerPagesState extends State<ProducerPages> {
                     MaterialPageRoute(
                         builder: (context) => PastRecipetsProducer()),
                   );
+                  setState(() {});
                 }),
             ListTile(
                 leading: const Icon(Icons.logout),
@@ -88,7 +89,9 @@ class _ProducerPagesState extends State<ProducerPages> {
                   style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
                 ),
                 onTap: () async {
-                  await FirebaseAuth.instance.signOut();
+                  await FirebaseAuth.instance
+                      .signOut()
+                      .then((_) => setState(() {}));
                   setState(() {});
                 }),
           ]),

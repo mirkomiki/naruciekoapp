@@ -40,7 +40,6 @@ class _CustomItemCardProducerViewState
       setState(() {
         widget.item.quantity = widget.item.quantity! - 1;
       });
-
       // Update quantity in Firestore
       try {
         await FirebaseFirestore.instance

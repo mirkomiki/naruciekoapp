@@ -20,12 +20,12 @@ class CustomOrderCard extends StatefulWidget {
 class _CustomOrderCardState extends State<CustomOrderCard> {
   void deleteItemFromOrders(BuildContext context) {
     setState(() {
-      orders?.remove(widget.orderedItem);
+      orders.remove(widget.orderedItem);
     });
 
     // Show animated snack bar
     ScaffoldMessenger.of(context).showSnackBar(
-      SnackBar(
+      const SnackBar(
         backgroundColor: Colors.green,
         content: Row(
           children: [
