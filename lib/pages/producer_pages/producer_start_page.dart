@@ -41,7 +41,7 @@ class StartProducerPage extends StatelessWidget {
     );
   }
 
-  setHomeAdressAsTodayAdress(BuildContext context) async {
+  setHomeAdressAsTodayAdress(BuildContext context) {
     AnimatedSnackBar.material(
       'Odabrana precizna lokacija',
       type: AnimatedSnackBarType.success,

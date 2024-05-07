@@ -8,6 +8,8 @@ import 'package:naruciekoapp/pages/producer_pages/orders_dashboard.dart';
 import 'package:naruciekoapp/globalData.dart';
 import 'package:naruciekoapp/pages/producer_pages/past_recipets_producer.dart';
 import 'package:naruciekoapp/pages/producer_pages/producer_edit.dart';
+import 'package:naruciekoapp/pages/splash_screen.dart';
+import 'package:naruciekoapp/pages/wrapper.dart';
 
 class ProducerPages extends StatefulWidget {
   const ProducerPages({super.key});
@@ -21,12 +23,6 @@ class _ProducerPagesState extends State<ProducerPages> {
     setState(() {
       selectedProducerPageIndex = index;
     });
-  }
-
-  @override
-  void initState() {
-    // TODO: implement initState
-    super.initState();
   }
 
   final List<Widget> _producerPages = [
@@ -87,10 +83,17 @@ class _ProducerPagesState extends State<ProducerPages> {
                   style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
                 ),
                 onTap: () async {
-                  await FirebaseAuth.instance
-                      .signOut()
-                      .then((_) => setState(() {}));
-                  setState(() {});
+                  print('ulazi ovdje');
+                  await FirebaseAuth.instance.signOut().then((_) => {
+                        print('gotov'),
+                        setState(() {}),
+                        Navigator.pushAndRemoveUntil(
+                          context,
+                          MaterialPageRoute(
+                              builder: (context) => SplashScreen()),
+                          (Route<dynamic> route) => false,
+                        )
+                      });
                 }),
           ]),
         ),
