@@ -22,7 +22,7 @@ class _HomeState extends State<Home> {
     double width = MediaQuery.of(context).size.width;
     return Scaffold(
       appBar: CustomAppBar(
-        title: 'Home',
+        title: 'Naslovnica',
       ),
       endDrawer: Drawer(
         child: Container(
@@ -41,7 +41,7 @@ class _HomeState extends State<Home> {
             ListTile(
                 leading: const Icon(Icons.settings),
                 title: const Text(
-                  'Settings',
+                  'Postavke',
                   style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
                 ),
                 onTap: () {
@@ -53,7 +53,7 @@ class _HomeState extends State<Home> {
             ListTile(
                 leading: const Icon(Icons.history),
                 title: const Text(
-                  'Reciepts',
+                  'Računi',
                   style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
                 ),
                 onTap: () {
@@ -65,7 +65,7 @@ class _HomeState extends State<Home> {
             ListTile(
                 leading: const Icon(Icons.logout),
                 title: const Text(
-                  'Sign Out',
+                  'Izlogiraj se',
                   style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
                 ),
                 onTap: () async {

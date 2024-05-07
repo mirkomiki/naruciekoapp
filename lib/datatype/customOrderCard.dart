@@ -62,7 +62,7 @@ class _CustomOrderCardState extends State<CustomOrderCard> {
                   orderedItem.product.name!,
                   style: TextStyle(fontWeight: FontWeight.bold),
                 ),
-                subtitle: Text('Quantity: ${orderedItem.quantity.toInt()}'),
+                subtitle: Text('Količina: ${orderedItem.quantity.toInt()}'),
                 trailing: IconButton(
                   icon: Icon(Icons.check),
                   onPressed: () => deleteItemFromOrders(context),

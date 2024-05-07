@@ -112,7 +112,7 @@ class _RegisterPageState extends State<RegisterPage> {
             ),
             //sign in button
             CustomButton(
-              text: 'Register',
+              text: 'Registracija',
               onTap: signUserUp,
             ),
             //or continue with

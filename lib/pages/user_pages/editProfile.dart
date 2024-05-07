@@ -36,7 +36,7 @@ class _UserEditState extends State<UserEdit> {
     globalUser.adressName = adressNameController.text.toString();
 
     AnimatedSnackBar.material(
-      'Changes saved',
+      'Promjene spremljene',
       type: AnimatedSnackBarType.success,
       mobileSnackBarPosition: MobileSnackBarPosition.bottom,
     ).show(context);
@@ -51,7 +51,7 @@ class _UserEditState extends State<UserEdit> {
       child: Scaffold(
         backgroundColor: Colors.grey[300],
         appBar: AppBar(
-          title: Text('User Account'),
+          title: Text('Uredi profil'),
           backgroundColor: Colors.green,
         ),
         body: Form(
@@ -110,7 +110,7 @@ class _UserEditState extends State<UserEdit> {
                             builder: (BuildContext context) =>
                                 const UploadProfilePhoto(),
                           ).then((value) => setState(() => {})),
-                          child: const Text('Upload photo'),
+                          child: const Text('Umetni sliku'),
                         ),
                       ),
                       Padding(padding: EdgeInsets.all(20)),
@@ -120,7 +120,7 @@ class _UserEditState extends State<UserEdit> {
                   CustomButton(
                     onTap: () =>
                         {finishUserAccountEdit(), Navigator.of(context).pop()},
-                    text: 'Save changes',
+                    text: 'Spremi promjene',
                   ),
                 ],
               ),

@@ -47,7 +47,7 @@ class _ForgotPasswordPageState extends State<ForgotPasswordPage> {
   Widget build(BuildContext context) {
     return Scaffold(
         appBar: AppBar(
-          title: const Text('Password reset page'),
+          title: const Text('Restiranje stranice'),
           backgroundColor: Colors.green,
         ),
         body: Column(children: [

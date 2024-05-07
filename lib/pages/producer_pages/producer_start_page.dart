@@ -55,7 +55,7 @@ class StartProducerPage extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text("Where are you today"),
+        title: Text("Gdje ste danas?"),
         backgroundColor: Colors.green,
       ),
       backgroundColor: Colors.grey[300],

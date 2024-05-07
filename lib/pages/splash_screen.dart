@@ -53,7 +53,7 @@ class _SplashScreenState extends State<SplashScreen>
                 style: TextStyle(fontSize: 20),
               ),
               Text(
-                "NaručiNase",
+                "NaručiNaše",
                 style: TextStyle(fontWeight: FontWeight.bold, fontSize: 50),
               ),
               const CustomLoader(

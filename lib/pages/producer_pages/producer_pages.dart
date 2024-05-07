@@ -54,7 +54,7 @@ class _ProducerPagesState extends State<ProducerPages> {
             ListTile(
                 leading: const Icon(Icons.settings),
                 title: const Text(
-                  'Settings',
+                  'Postavke',
                   style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
                 ),
                 onTap: () {
@@ -66,7 +66,7 @@ class _ProducerPagesState extends State<ProducerPages> {
             ListTile(
                 leading: const Icon(Icons.history),
                 title: const Text(
-                  'Reciepts',
+                  'Računi',
                   style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
                 ),
                 onTap: () {
@@ -80,7 +80,7 @@ class _ProducerPagesState extends State<ProducerPages> {
             ListTile(
                 leading: const Icon(Icons.logout),
                 title: const Text(
-                  'Sign Out',
+                  'Izlogiraj se',
                   style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
                 ),
                 onTap: () async {

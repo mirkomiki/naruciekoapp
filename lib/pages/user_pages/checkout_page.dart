@@ -56,7 +56,7 @@ class _CheckoutState extends State<Checkout> {
                     crossAxisAlignment: CrossAxisAlignment.stretch,
                     children: [
                       Text(
-                        "Ukupno: ${calculatedPrice.toStringAsFixed(2)}",
+                        "Ukupno: ${calculatedPrice.toStringAsFixed(2)} € ( ${calculatedPrice * 7.54} kn)",
                         style: const TextStyle(
                           fontWeight: FontWeight.bold,
                           fontSize: 20,
