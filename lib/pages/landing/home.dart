@@ -69,6 +69,7 @@ class _HomeState extends State<Home> {
                   style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
                 ),
                 onTap: () async {
+                  cart = [];
                   await FirebaseAuth.instance
                       .signOut()
                       .then((_) => setState(() {}));

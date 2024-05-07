@@ -23,7 +23,6 @@ class _CartPageState extends State<CartPage> {
           style: TextStyle(fontWeight: FontWeight.bold, color: Colors.white),
         ),
         backgroundColor: Colors.green,
-        automaticallyImplyLeading: false,
         surfaceTintColor: Colors.white,
         elevation: 2,
         centerTitle: true,
