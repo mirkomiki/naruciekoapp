@@ -20,3 +20,4 @@ Prije otvaranja producer/ tj. user stranica morate se odjaviti sa onih prethodni
 Apliakcija je dosta velika(55.5 MB) jer nije publishana na cloud - tjst ne koristimo bundle nego bas apk.
 
 ISPRIČAVAMO SE NA OVOLIKIM UPUTAMA ali trebalo bi raditi
+AKO BUDE dalje problema, treba izbrisati aplikaciju i ponovno pokrenuti apk install.

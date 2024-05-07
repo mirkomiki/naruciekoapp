@@ -91,7 +91,8 @@ class _CustomItemCardProducerViewState
               children: [
                 Text(widget.item.name.toString(),
                     style: TextStyle(fontWeight: FontWeight.bold)),
-                Text(widget.item.category.toString()),
+                Text(
+                    'Kategorija: ${widget.item.category.toString().split('.').last}'),
                 Text(
                   widget.item.description.toString(),
                   softWrap: true,

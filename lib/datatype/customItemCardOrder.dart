@@ -43,7 +43,7 @@ class _CustomItemCardOrderState extends State<CustomItemCardOrder> {
                     style: TextStyle(fontWeight: FontWeight.bold, fontSize: 20),
                   ),
                   Text(
-                    '${(widget.item.price! * widget.item.quantity!).toString()} €',
+                    '${(widget.item.price! * widget.item.quantity!).toStringAsFixed(2)} €',
                     style: TextStyle(fontWeight: FontWeight.bold, fontSize: 20),
                   ),
                 ],

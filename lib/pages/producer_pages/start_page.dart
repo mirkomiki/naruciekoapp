@@ -5,6 +5,7 @@ import 'package:naruciekoapp/datatype/custom_appbar.dart';
 import 'package:naruciekoapp/globalData.dart';
 import 'package:naruciekoapp/pages/producer_pages/past_recipets_producer.dart';
 import 'package:naruciekoapp/pages/producer_pages/producer_edit.dart';
+import 'package:naruciekoapp/pages/wrapper.dart';
 
 class StartPage extends StatefulWidget {
   const StartPage({super.key});
@@ -71,7 +72,6 @@ class _StartPageState extends State<StartPage> {
                   await FirebaseAuth.instance
                       .signOut()
                       .then((_) => setState(() {}));
-                  setState(() {});
                 }),
           ]),
         ),

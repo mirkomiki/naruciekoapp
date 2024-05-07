@@ -6,6 +6,7 @@ import 'package:naruciekoapp/pages/user_pages/editProfile.dart';
 import 'package:naruciekoapp/pages/user_pages/pages.dart';
 import 'package:naruciekoapp/globalData.dart';
 import 'package:naruciekoapp/pages/user_pages/past_recipets.dart';
+import 'package:naruciekoapp/pages/wrapper.dart';
 
 class Home extends StatefulWidget {
   const Home({Key? key}) : super(key: key);
@@ -68,8 +69,9 @@ class _HomeState extends State<Home> {
                   style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
                 ),
                 onTap: () async {
-                  await FirebaseAuth.instance.signOut();
-                  setState(() {});
+                  await FirebaseAuth.instance
+                      .signOut()
+                      .then((_) => setState(() {}));
                 }),
           ]),
         ),

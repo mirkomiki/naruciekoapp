@@ -8,6 +8,7 @@ import 'package:naruciekoapp/pages/producer_pages/orders_dashboard.dart';
 import 'package:naruciekoapp/globalData.dart';
 import 'package:naruciekoapp/pages/producer_pages/past_recipets_producer.dart';
 import 'package:naruciekoapp/pages/producer_pages/producer_edit.dart';
+import 'package:naruciekoapp/pages/wrapper.dart';
 
 class ProducerPages extends StatefulWidget {
   const ProducerPages({super.key});
@@ -21,12 +22,6 @@ class _ProducerPagesState extends State<ProducerPages> {
     setState(() {
       selectedProducerPageIndex = index;
     });
-  }
-
-  @override
-  void initState() {
-    // TODO: implement initState
-    super.initState();
   }
 
   final List<Widget> _producerPages = [
@@ -92,7 +87,6 @@ class _ProducerPagesState extends State<ProducerPages> {
                   await FirebaseAuth.instance
                       .signOut()
                       .then((_) => setState(() {}));
-                  setState(() {});
                 }),
           ]),
         ),

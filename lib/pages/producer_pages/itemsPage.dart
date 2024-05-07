@@ -101,7 +101,7 @@ class _ItemPageState extends State<ItemPage> {
   Widget build(BuildContext context) {
     print('items length ${itemsList.length}');
     return Scaffold(
-      appBar: AppBar(title: const Text('Lista itema')),
+      appBar: AppBar(title: const Text('Lista proizvoda')),
       body: ListView.builder(
         itemCount: itemsList.length,
         itemBuilder: (context, index) {
