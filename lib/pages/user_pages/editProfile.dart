@@ -49,10 +49,10 @@ class _UserEditState extends State<UserEdit> {
         FocusScope.of(context).requestFocus(FocusNode());
       },
       child: Scaffold(
-        backgroundColor: Colors.grey[900],
+        backgroundColor: Colors.grey[300],
         appBar: AppBar(
-          title: const Text('User Account'),
-          backgroundColor: const Color.fromARGB(255, 0, 164, 164),
+          title: Text('User Account'),
+          backgroundColor: Colors.green,
         ),
         body: Form(
           child: Padding(

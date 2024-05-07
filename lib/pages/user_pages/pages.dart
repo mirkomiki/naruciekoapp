@@ -3,6 +3,8 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:naruciekoapp/pages/Landing/home.dart';
 import 'package:naruciekoapp/pages/producer_pages/itemsPage.dart';
+import 'package:naruciekoapp/pages/user_pages/cartPage.dart';
+import 'package:naruciekoapp/pages/user_pages/itemsPage.dart';
 import 'package:naruciekoapp/pages/user_pages/mapsPage.dart';
 import 'package:naruciekoapp/pages/user_pages/producers_page.dart';
 import 'package:naruciekoapp/globalData.dart';
@@ -28,7 +30,7 @@ class _PagesState extends State<Pages> {
 
   final List<Widget> _pages = [
     const Home(),
-    const ItemPage(),
+    const ItemsPage(),
     const ProducersPage(),
     //const MapsView(),
   ];
@@ -37,6 +39,20 @@ class _PagesState extends State<Pages> {
     return Scaffold(
       body: _pages.elementAt(selectedPageIndex),
       backgroundColor: Colors.grey[900],
+      floatingActionButton: FloatingActionButton(
+        backgroundColor: Colors.blue,
+        hoverColor: Colors.green,
+        onPressed: () => Navigator.push(
+          context,
+          MaterialPageRoute(builder: (context) => const CartPage()),
+        ),
+        child: Stack(
+          alignment: Alignment.center,
+          children: [
+            const Icon(Icons.shopping_basket_outlined, size: 55),
+          ],
+        ),
+      ),
       bottomNavigationBar: Container(
         height: 60,
         decoration: const BoxDecoration(
@@ -51,8 +67,8 @@ class _PagesState extends State<Pages> {
               label: 'Home',
             ),
             BottomNavigationBarItem(
-              icon: Icon(Icons.shopping_basket_outlined),
-              label: 'Košarica',
+              icon: Icon(Icons.list),
+              label: 'Proizvodi',
             ),
             BottomNavigationBarItem(
               icon: Icon(Icons.groups_outlined),

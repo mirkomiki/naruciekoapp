@@ -1,3 +1,4 @@
+import 'package:animated_snack_bar/animated_snack_bar.dart';
 import 'package:flutter/material.dart';
 import 'package:naruciekoapp/datatype/customButton.dart';
 import 'package:naruciekoapp/globalData.dart';
@@ -12,22 +13,22 @@ class StartProducerPage extends StatelessWidget {
   Future<void> navigateAndImportSelectedLocation(
       BuildContext context, int i) async {
     print("DAJ MI NESTO 1");
-    const sB = SnackBar(
-      content: Text("Odabran market"),
-      behavior: SnackBarBehavior.floating,
-    );
-    const sB1 = SnackBar(
-      content: Text("Odabrana precizna lokacija"),
-      behavior: SnackBarBehavior.floating,
-    );
-    ScaffoldMessenger.of(context).showSnackBar(sB);
+    AnimatedSnackBar.material(
+      'Odabrana tržnica',
+      type: AnimatedSnackBarType.success,
+      mobileSnackBarPosition: MobileSnackBarPosition.bottom,
+    ).show(context);
     PickedData? result = await Navigator.push(
       context,
       MaterialPageRoute(
         builder: (context) => PickMarketPage(initData: markets[i].latLong),
       ),
     );
-    ScaffoldMessenger.of(context).showSnackBar(sB1);
+    AnimatedSnackBar.material(
+      'Odabrana precizna lokacija, nastavite...',
+      type: AnimatedSnackBarType.success,
+      mobileSnackBarPosition: MobileSnackBarPosition.bottom,
+    ).show(context);
     // Handle the picked location data
     ProducerFunctions(uid: globalUser.uid)
         .updateProducerTodayAdress(globalProducer, markets[i].latLong);
@@ -41,11 +42,11 @@ class StartProducerPage extends StatelessWidget {
   }
 
   setHomeAdressAsTodayAdress(BuildContext context) async {
-    const sB2 = SnackBar(
-      content: Text("Odabrana precizna lokacija"),
-      behavior: SnackBarBehavior.floating,
-    );
-    ScaffoldMessenger.of(context).showSnackBar(sB2);
+    AnimatedSnackBar.material(
+      'Odabrana precizna lokacija',
+      type: AnimatedSnackBarType.success,
+      mobileSnackBarPosition: MobileSnackBarPosition.bottom,
+    ).show(context);
     ProducerFunctions(uid: globalUserUid)
         .updateProducerTodayAdressHome(globalProducer);
   }

@@ -15,6 +15,7 @@ class Home extends StatefulWidget {
 }
 
 class _HomeState extends State<Home> {
+  bool longPressed = false;
   @override
   Widget build(BuildContext context) {
     double width = MediaQuery.of(context).size.width;
@@ -80,13 +81,20 @@ class _HomeState extends State<Home> {
           mainAxisSpacing: 8.0,
           crossAxisSpacing: 8.0,
           children: [
-            _buildCategoryButton(context, "Voće", Icons.local_florist),
-            _buildCategoryButton(context, "Povrće", Icons.local_florist),
+            _buildCategoryButton(context, "Voće", Icons.apple),
+            _buildCategoryButton(context, "Povrće", Icons.nature),
             _buildCategoryButton(context, "Pića", Icons.local_florist),
+            _buildCategoryButton(context, "Meso", Icons.fastfood_outlined),
             _buildCategoryButton(
-                context, "Mliječni proizvodi", Icons.local_florist),
-            _buildCategoryButton(context, "Med i džem", Icons.local_florist),
+                context, "Mliječni proizvodi", Icons.local_drink),
+            _buildCategoryButton(context, "Med", Icons.local_drink_outlined),
+            _buildCategoryButton(context, "Med", Icons.local_drink_outlined),
+            _buildCategoryButton(context, "Jaja", Icons.egg),
+            _buildCategoryButton(context, "Sadnice", Icons.local_florist),
+            _buildCategoryButton(
+                context, "Ulje i ocat", Icons.oil_barrel_rounded),
             _buildCategoryButton(context, "Ostalo", Icons.local_florist),
+
             // Add more category buttons here
           ],
         ),
@@ -97,6 +105,11 @@ class _HomeState extends State<Home> {
   Widget _buildCategoryButton(
       BuildContext context, String title, IconData icon) {
     return ElevatedButton.icon(
+      onLongPress: () {
+        setState(() {
+          longPressed = !longPressed;
+        });
+      },
       onPressed: () {
         Navigator.push(
           context,
