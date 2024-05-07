@@ -89,11 +89,17 @@ class _CustomItemCardProducerViewState
             Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                Text(widget.item.name.toString()),
+                Text(widget.item.name.toString(),
+                    style: TextStyle(fontWeight: FontWeight.bold)),
                 Text(widget.item.category.toString()),
-                Text(widget.item.description.toString()),
-                Text(widget.item.price.toString()),
-                Text(widget.item.unit.toString()),
+                Text(
+                  widget.item.description.toString(),
+                  softWrap: true,
+                  maxLines: 2,
+                ),
+                Text(
+                    '${widget.item.price.toString()}  €  / ${widget.item.unit.toString()}',
+                    style: TextStyle(fontWeight: FontWeight.bold)),
                 SizedBox(height: 5),
                 SizedBox(width: 16),
                 Row(

@@ -7,8 +7,9 @@ import 'package:naruciekoapp/globalData.dart';
 
 class CategoryPage extends StatefulWidget {
   final String category;
-
-  const CategoryPage({Key? key, required this.category}) : super(key: key);
+  final String enums;
+  const CategoryPage({Key? key, required this.category, required this.enums})
+      : super(key: key);
 
   @override
   _CategoryPageState createState() => _CategoryPageState();
@@ -21,7 +22,7 @@ class _CategoryPageState extends State<CategoryPage> {
   @override
   void initState() {
     super.initState();
-    _itemsFuture = getItemsForCategory(widget.category);
+    _itemsFuture = getItemsForCategory(widget.enums);
     _updateCartCount(); // Initialize cart count
   }
 
@@ -62,8 +63,8 @@ class _CategoryPageState extends State<CategoryPage> {
           List<ItemModel>? items = snapshot.data;
           return Scaffold(
             floatingActionButton: FloatingActionButton(
-              backgroundColor: Colors.blue,
-              hoverColor: Colors.green,
+              backgroundColor: Colors.green,
+              hoverColor: Colors.blue,
               onPressed: () => Navigator.push(
                 context,
                 MaterialPageRoute(builder: (context) => const CartPage()),

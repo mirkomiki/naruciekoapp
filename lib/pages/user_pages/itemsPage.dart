@@ -46,8 +46,8 @@ class _ItemsPageState extends State<ItemsPage> {
           List<ItemModel>? items = snapshot.data;
           return Scaffold(
             floatingActionButton: FloatingActionButton(
-              backgroundColor: Colors.blue,
-              hoverColor: Colors.green,
+              backgroundColor: Colors.green,
+              hoverColor: Colors.blue,
               onPressed: () => Navigator.push(
                 context,
                 MaterialPageRoute(builder: (context) => const CartPage()),

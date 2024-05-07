@@ -40,8 +40,8 @@ class _PagesState extends State<Pages> {
       body: _pages.elementAt(selectedPageIndex),
       backgroundColor: Colors.grey[900],
       floatingActionButton: FloatingActionButton(
-        backgroundColor: Colors.blue,
-        hoverColor: Colors.green,
+        backgroundColor: Colors.green,
+        hoverColor: Colors.blue,
         onPressed: () => Navigator.push(
           context,
           MaterialPageRoute(builder: (context) => const CartPage()),

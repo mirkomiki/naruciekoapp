@@ -164,11 +164,23 @@ class _CustomItemCardState extends State<CustomItemCard> {
                   child: Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
-                      Text('Proizvođač: ${widget.producer}'),
-                      Text('Adresa: ${widget.adress}'),
-                      Text('Proizvod: ${widget.item.name}'),
-                      Text('Cijena ${widget.item.price}'),
+                      Text(
+                        'Proizvođač: ${widget.producer}',
+                        style: TextStyle(fontWeight: FontWeight.bold),
+                      ),
+                      Text('Adresa: ${widget.adress}',
+                          style: TextStyle(fontWeight: FontWeight.bold)),
+                      Text('Proizvod: ${widget.item.name}',
+                          style: TextStyle(fontWeight: FontWeight.bold)),
+                      Text(
+                          'Cijena ${widget.item.price} € (${(widget.item.price! * 7.54).toStringAsFixed(2)} kn)',
+                          style: TextStyle(fontWeight: FontWeight.bold)),
                       SizedBox(height: 5),
+                      Text(
+                        widget.item.description,
+                        softWrap: true,
+                        maxLines: 2,
+                      ),
                       Row(
                         children: [
                           const Icon(Icons.star,
@@ -176,10 +188,9 @@ class _CustomItemCardState extends State<CustomItemCard> {
                               size: 20),
                           const SizedBox(width: 5),
                           Text('${widget.rating.roundToDouble()}'),
-                          const SizedBox(width: 5),
                           Expanded(
                             child: Row(
-                              mainAxisAlignment: MainAxisAlignment.end,
+                              mainAxisAlignment: MainAxisAlignment.center,
                               children: [
                                 IconButton(
                                   onPressed: decrementQuantity,

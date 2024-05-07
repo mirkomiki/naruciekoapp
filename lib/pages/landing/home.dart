@@ -81,19 +81,25 @@ class _HomeState extends State<Home> {
           mainAxisSpacing: 8.0,
           crossAxisSpacing: 8.0,
           children: [
-            _buildCategoryButton(context, "Voće", Icons.apple),
-            _buildCategoryButton(context, "Povrće", Icons.nature),
-            _buildCategoryButton(context, "Pića", Icons.local_florist),
-            _buildCategoryButton(context, "Meso", Icons.fastfood_outlined),
+            _buildCategoryButton(context, "Voće", "Voce", Icons.apple),
+            _buildCategoryButton(context, "Povrće", "Povrce", Icons.nature),
             _buildCategoryButton(
-                context, "Mliječni proizvodi", Icons.local_drink),
-            _buildCategoryButton(context, "Med", Icons.local_drink_outlined),
-            _buildCategoryButton(context, "Med", Icons.local_drink_outlined),
-            _buildCategoryButton(context, "Jaja", Icons.egg),
-            _buildCategoryButton(context, "Sadnice", Icons.local_florist),
+                context, "Pića", "PicaIAlkohol", Icons.local_florist),
             _buildCategoryButton(
-                context, "Ulje i ocat", Icons.oil_barrel_rounded),
-            _buildCategoryButton(context, "Ostalo", Icons.local_florist),
+                context, "Meso", "Meso", Icons.fastfood_outlined),
+            _buildCategoryButton(context, "Mliječni proizvodi",
+                "MlijecniProizvodi", Icons.local_drink),
+            _buildCategoryButton(
+                context, "Med", "Med", Icons.local_drink_outlined),
+            _buildCategoryButton(
+                context, "Džemovi", "Dzemovi", Icons.local_drink_outlined),
+            _buildCategoryButton(context, "Jaja", "Jaja", Icons.egg),
+            _buildCategoryButton(
+                context, "Sadnice", "Sadnice", Icons.local_florist),
+            _buildCategoryButton(
+                context, "Ulje i ocat", "UljaIOcati", Icons.oil_barrel_rounded),
+            _buildCategoryButton(
+                context, "Ostalo", "Ostalo", Icons.local_florist),
 
             // Add more category buttons here
           ],
@@ -103,7 +109,7 @@ class _HomeState extends State<Home> {
   }
 
   Widget _buildCategoryButton(
-      BuildContext context, String title, IconData icon) {
+      BuildContext context, String title, String category, IconData icon) {
     return ElevatedButton.icon(
       onLongPress: () {
         setState(() {
@@ -114,7 +120,10 @@ class _HomeState extends State<Home> {
         Navigator.push(
           context,
           MaterialPageRoute(
-            builder: (context) => CategoryPage(category: title.toLowerCase()),
+            builder: (context) => CategoryPage(
+              category: title.toLowerCase(),
+              enums: category,
+            ),
           ),
         );
       },
