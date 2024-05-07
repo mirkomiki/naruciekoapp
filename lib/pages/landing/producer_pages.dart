@@ -35,7 +35,7 @@ class _ProducerPagesState extends State<ProducerPages> {
     double width = MediaQuery.of(context).size.width;
     return Scaffold(
       appBar: CustomAppBar(
-        title: 'Home',
+        title: 'Naslovnica',
       ),
       endDrawer: Drawer(
         child: Container(
@@ -54,7 +54,7 @@ class _ProducerPagesState extends State<ProducerPages> {
             ListTile(
                 leading: const Icon(Icons.settings),
                 title: const Text(
-                  'Settings',
+                  'Postavke',
                   style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
                 ),
                 onTap: () {
@@ -66,7 +66,7 @@ class _ProducerPagesState extends State<ProducerPages> {
             ListTile(
                 leading: const Icon(Icons.history),
                 title: const Text(
-                  'Reciepts',
+                  'Računi',
                   style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
                 ),
                 onTap: () {
@@ -79,7 +79,7 @@ class _ProducerPagesState extends State<ProducerPages> {
             ListTile(
                 leading: const Icon(Icons.logout),
                 title: const Text(
-                  'Sign Out',
+                  'Izlogiraj se',
                   style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
                 ),
                 onTap: () async {

@@ -64,7 +64,7 @@ class _PagesState extends State<Pages> {
           items: const <BottomNavigationBarItem>[
             BottomNavigationBarItem(
               icon: Icon(Icons.home),
-              label: 'Home',
+              label: 'Naslovnica',
             ),
             BottomNavigationBarItem(
               icon: Icon(Icons.list),

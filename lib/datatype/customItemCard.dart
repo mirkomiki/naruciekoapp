@@ -110,6 +110,8 @@ class _CustomItemCardState extends State<CustomItemCard> {
       // If the item is not found in the cart, add it with quantity 1
       setState(() {
         cart.add(widget.item);
+        int index = cart.indexWhere((item) => item.uid == widget.item.uid);
+        cart[index].quantity = 1;
       });
     }
     print(cart);
@@ -127,12 +129,13 @@ class _CustomItemCardState extends State<CustomItemCard> {
           if (cart[index].quantity != null) {
             cart[index].quantity = cart[index].quantity! -
                 1; // Increment the quantity of the item in the cart
+            if (cart[index].quantity == 0) {
+              cart.remove(widget.item);
+            }
           }
         });
       } else {
-        setState(() {
-          cart.remove(widget.item);
-        });
+        setState(() {});
       }
     }
     print(cart);

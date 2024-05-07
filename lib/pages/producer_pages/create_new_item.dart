@@ -84,7 +84,7 @@ class _CreateNewItemState extends State<CreateNewItem> {
     } else {
       // Display error message
       AnimatedSnackBar.material(
-        'Error: Please fill all fields and select a category and unit',
+        'Greška: Molimo Vas popunite sva polja',
         type: AnimatedSnackBarType.warning,
         mobileSnackBarPosition: MobileSnackBarPosition.bottom,
       ).show(context);
@@ -104,7 +104,7 @@ class _CreateNewItemState extends State<CreateNewItem> {
       child: Scaffold(
         backgroundColor: Colors.grey[300],
         appBar: AppBar(
-          title: const Text('Add Item'),
+          title: const Text('Dodaj proizvod'),
           backgroundColor: Colors.green,
         ),
         body: Form(
@@ -117,7 +117,7 @@ class _CreateNewItemState extends State<CreateNewItem> {
                   const Padding(padding: EdgeInsets.all(15)),
                   CustomTextField(
                     controller: nameController,
-                    hintText: 'Name',
+                    hintText: 'Ime',
                     obsureText: false,
                   ),
                   const SizedBox(height: 15),
@@ -127,7 +127,7 @@ class _CreateNewItemState extends State<CreateNewItem> {
                         flex: 3,
                         child: CustomTextField(
                           controller: quantityController,
-                          hintText: 'Quantity',
+                          hintText: 'Količina',
                           obsureText: false,
                         ),
                       ),
@@ -196,8 +196,8 @@ class _CreateNewItemState extends State<CreateNewItem> {
                   TextField(
                     controller: descriptionController,
                     decoration: const InputDecoration(
-                      labelText: 'Description',
-                      hintText: 'Description',
+                      labelText: 'Opis proizvoda',
+                      hintText: 'Opis proizvoda',
                       border: OutlineInputBorder(),
                     ),
                     maxLines:
@@ -206,7 +206,7 @@ class _CreateNewItemState extends State<CreateNewItem> {
                   const Padding(padding: EdgeInsets.all(25)),
                   CustomButton(
                     onTap: finishCreateItem,
-                    text: 'Save changes',
+                    text: 'Spremi promjene',
                   ),
                 ],
               ),

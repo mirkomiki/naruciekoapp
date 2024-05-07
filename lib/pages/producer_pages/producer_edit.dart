@@ -42,7 +42,7 @@ class _ProducerEditState extends State<ProducerEdit> {
     globalProducer.iban = ibanController.text.toString();
     globalProducer.oib = oibController.text.toString();
     AnimatedSnackBar.material(
-      'Changes saved',
+      'Promjene spremljene',
       type: AnimatedSnackBarType.success,
       mobileSnackBarPosition: MobileSnackBarPosition.bottom,
     ).show(context);
@@ -57,7 +57,7 @@ class _ProducerEditState extends State<ProducerEdit> {
       child: Scaffold(
         backgroundColor: Colors.grey[300],
         appBar: AppBar(
-          title: const Text('Producer Account'),
+          title: const Text('Uredi OPG'),
           backgroundColor: Colors.green,
         ),
         body: Form(
@@ -124,7 +124,7 @@ class _ProducerEditState extends State<ProducerEdit> {
                             builder: (BuildContext context) =>
                                 const UploadProfilePhoto(),
                           ).then((value) => setState(() => {})),
-                          child: const Text('Upload photo'),
+                          child: const Text('Umetni sliku'),
                         ),
                       ),
                       const Padding(padding: EdgeInsets.all(20)),
@@ -137,7 +137,7 @@ class _ProducerEditState extends State<ProducerEdit> {
                       Navigator.of(context).pop(),
                       setState(() {})
                     },
-                    text: 'Save changes',
+                    text: 'Spremi promjene',
                   ),
                 ],
               ),

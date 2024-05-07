@@ -165,7 +165,7 @@ class _RegisterProducerPageState extends State<RegisterProducerPage> {
             ),
             //sign in button
             CustomButton(
-              text: 'Register as Producer',
+              text: 'Registriraj kao OPG',
               onTap: becomeProducer,
             ),
             //or continue with
