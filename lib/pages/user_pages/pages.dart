@@ -37,11 +37,6 @@ class _PagesState extends State<Pages> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      floatingActionButton: FloatingActionButton(onPressed: () {
-        FirebaseAuth.instance.signOut();
-        FirebaseFirestore.instance.clearPersistence();
-        FirebaseFirestore.instance.terminate();
-      }),
       body: _pages.elementAt(selectedPageIndex),
       backgroundColor: Colors.grey[900],
       floatingActionButton: FloatingActionButton(
