@@ -18,7 +18,7 @@ class _SplashScreenState extends State<SplashScreen>
     // TODO: implement initState
     super.initState();
     SystemChrome.setEnabledSystemUIMode(SystemUiMode.immersive);
-    Future.delayed(Duration(seconds: 2), () {
+    Future.delayed(Duration(seconds: 3), () {
       Navigator.of(context).pushReplacement(
           MaterialPageRoute(builder: (_) => UserManagment().handleAuth()));
     });
@@ -48,6 +48,14 @@ class _SplashScreenState extends State<SplashScreen>
           child: Column(
             children: [
               Image.asset('assets/zecov_logo.png', scale: 3.0),
+              Text(
+                "Dobrodošao u",
+                style: TextStyle(fontSize: 20),
+              ),
+              Text(
+                "NaručiNaše",
+                style: TextStyle(fontWeight: FontWeight.bold, fontSize: 50),
+              ),
               const CustomLoader(
                 customScale: 3,
               ),

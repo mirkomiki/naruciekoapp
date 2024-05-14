@@ -1,40 +1,23 @@
-import 'package:flutter/material.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:flutter/material.dart';
 import 'package:naruciekoapp/datatype/customItemCard.dart';
+import 'package:naruciekoapp/globalData.dart';
 import 'package:naruciekoapp/models/item_models/item_model.dart';
 import 'package:naruciekoapp/pages/user_pages/cartPage.dart';
-import 'package:naruciekoapp/globalData.dart';
 
-class CategoryPage extends StatefulWidget {
-  final String category;
-  final String enums;
-  const CategoryPage({Key? key, required this.category, required this.enums})
-      : super(key: key);
+class ItemsPage extends StatefulWidget {
+  const ItemsPage({super.key});
 
   @override
-  _CategoryPageState createState() => _CategoryPageState();
+  State<ItemsPage> createState() => _ItemsPageState();
 }
 
-class _CategoryPageState extends State<CategoryPage> {
+class _ItemsPageState extends State<ItemsPage> {
   late Future<List<ItemModel>> _itemsFuture;
-  int _cartCount = 0;
-
   @override
   void initState() {
     super.initState();
-    _itemsFuture = getItemsForCategory(widget.enums);
-    _updateCartCount(); // Initialize cart count
-  }
-
-  // Callback function to update cart count
-  void _updateCartCount() {
-    int count = 0;
-    cart.forEach((item) {
-      count += item.quantity ?? 0;
-    });
-    setState(() {
-      _cartCount = count;
-    });
+    _itemsFuture = getItems(); // Initialize cart count
   }
 
   @override
@@ -78,7 +61,7 @@ class _CategoryPageState extends State<CategoryPage> {
             ),
             appBar: AppBar(
               elevation: 5,
-              title: Text('Trenutna ponuda - ${widget.category}'),
+              title: Text('Trenutna ponuda'),
             ),
             body: ListView.builder(
               itemCount: items!.length,
@@ -120,7 +103,7 @@ class _CategoryPageState extends State<CategoryPage> {
   }
 }
 
-Future<List<ItemModel>> getItemsForCategory(String category) async {
+Future<List<ItemModel>> getItems() async {
   List<ItemModel> itemsList = [];
   CollectionReference producers =
       FirebaseFirestore.instance.collection('producers');
@@ -130,12 +113,12 @@ Future<List<ItemModel>> getItemsForCategory(String category) async {
     String producerId = producerDoc.id;
     CollectionReference itemsRef =
         producers.doc(producerId).collection('items');
-
+    print('nesto');
     QuerySnapshot itemsSnapshot = await itemsRef.get();
     for (QueryDocumentSnapshot itemDoc in itemsSnapshot.docs) {
       Map<String, dynamic> data = itemDoc.data() as Map<String, dynamic>;
-      if (data['category'].toString().split('.').last.toUpperCase() ==
-          category.toUpperCase()) {
+
+      if (data.isNotEmpty) {
         itemsList.add(ItemModel(
           uid: data['uid'],
           producerUid: data['producerUid'],

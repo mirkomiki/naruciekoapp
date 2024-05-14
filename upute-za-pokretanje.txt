@@ -1,0 +1,23 @@
+Upute za pokretanje aplikacije naruciekoapp
+
+Trebate skinuti apk sa linka koji je poslan u mailu.
+
+Morati ce te i prihvatiti pokretanje aplikacije iz nepoznatog izvora za ovaj slučaj.
+
+Za login i registraciju moći će te se logirati samo putem email/lozinka
+GOOGLE nam radi samo na web aplikaciji nismo stigli popraviti taj bug.
+Ako probate google računom i ne uspije također probajte izgasiti upaliti aplikaciju.
+Neke google profile prihvaća neke ne, mislim da je do sigurnosti postavljenoj na samom google računu prilikom preuzimanja podataka.
+ - lozinka mora biti dulja od 6 znakova. 
+
+Podatke za lozinku mi Vam ne možemo vidjeti.
+
+Ako Vam login kojim slučajem ne radi.
+Probajte upaliti te izgasiti lozinku, nekad nam je nastajao problem sa firebaseom...
+
+Prije otvaranja producer/ tj. user stranica morate se odjaviti sa onih prethodnih koje ste otvarali.
+
+Apliakcija je dosta velika(55.5 MB) jer nije publishana na cloud - tjst ne koristimo bundle nego bas apk.
+
+ISPRIČAVAMO SE NA OVOLIKIM UPUTAMA ali trebalo bi raditi
+AKO BUDE dalje problema, treba izbrisati aplikaciju i ponovno pokrenuti apk install.

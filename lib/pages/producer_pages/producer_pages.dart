@@ -8,6 +8,7 @@ import 'package:naruciekoapp/pages/producer_pages/orders_dashboard.dart';
 import 'package:naruciekoapp/globalData.dart';
 import 'package:naruciekoapp/pages/producer_pages/past_recipets_producer.dart';
 import 'package:naruciekoapp/pages/producer_pages/producer_edit.dart';
+import 'package:naruciekoapp/pages/wrapper.dart';
 
 class ProducerPages extends StatefulWidget {
   const ProducerPages({super.key});
@@ -21,12 +22,6 @@ class _ProducerPagesState extends State<ProducerPages> {
     setState(() {
       selectedProducerPageIndex = index;
     });
-  }
-
-  @override
-  void initState() {
-    // TODO: implement initState
-    super.initState();
   }
 
   final List<Widget> _producerPages = [
@@ -59,19 +54,19 @@ class _ProducerPagesState extends State<ProducerPages> {
             ListTile(
                 leading: const Icon(Icons.settings),
                 title: const Text(
-                  'Settings',
+                  'Postavke',
                   style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
                 ),
                 onTap: () {
                   Navigator.push(
                     context,
                     MaterialPageRoute(builder: (context) => ProducerEdit()),
-                  );
+                  ).then((_) => setState(() {}));
                 }),
             ListTile(
                 leading: const Icon(Icons.history),
                 title: const Text(
-                  'Reciepts',
+                  'Računi',
                   style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
                 ),
                 onTap: () {
@@ -80,16 +75,18 @@ class _ProducerPagesState extends State<ProducerPages> {
                     MaterialPageRoute(
                         builder: (context) => PastRecipetsProducer()),
                   );
+                  setState(() {});
                 }),
             ListTile(
                 leading: const Icon(Icons.logout),
                 title: const Text(
-                  'Sign Out',
+                  'Izlogiraj se',
                   style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
                 ),
                 onTap: () async {
-                  await FirebaseAuth.instance.signOut();
-                  setState(() {});
+                  await FirebaseAuth.instance
+                      .signOut()
+                      .then((_) => setState(() {}));
                 }),
           ]),
         ),

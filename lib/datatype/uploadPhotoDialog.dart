@@ -64,11 +64,11 @@ class _UploadProfilePhotoState extends State<UploadProfilePhoto> {
                 ElevatedButton.icon(
                     onPressed: () => {pickImage(ImageSource.gallery)},
                     icon: const Icon(Icons.photo_library_outlined),
-                    label: const Text('From Gallery')),
+                    label: const Text('Iz Galerije')),
                 ElevatedButton.icon(
                     onPressed: () => {pickImage(ImageSource.camera)},
                     icon: const Icon(Icons.add_a_photo_outlined),
-                    label: const Text('From Camera')),
+                    label: const Text('Slikaj Sada')),
                 const SizedBox(height: 15),
                 Row(
                   children: [
@@ -79,7 +79,7 @@ class _UploadProfilePhotoState extends State<UploadProfilePhoto> {
                             .updateUserProfileImage(globalUser);
                         Navigator.pop(context);
                       },
-                      child: const Text('Close and save'),
+                      child: const Text('Zatvori i spremi'),
                     ),
                     TextButton(
                       onPressed: () {

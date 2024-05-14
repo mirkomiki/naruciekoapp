@@ -6,6 +6,7 @@ import 'package:naruciekoapp/pages/user_pages/editProfile.dart';
 import 'package:naruciekoapp/pages/user_pages/pages.dart';
 import 'package:naruciekoapp/globalData.dart';
 import 'package:naruciekoapp/pages/user_pages/past_recipets.dart';
+import 'package:naruciekoapp/pages/wrapper.dart';
 
 class Home extends StatefulWidget {
   const Home({Key? key}) : super(key: key);
@@ -15,12 +16,13 @@ class Home extends StatefulWidget {
 }
 
 class _HomeState extends State<Home> {
+  bool longPressed = false;
   @override
   Widget build(BuildContext context) {
     double width = MediaQuery.of(context).size.width;
     return Scaffold(
       appBar: CustomAppBar(
-        title: 'Home',
+        title: 'Naslovnica',
       ),
       endDrawer: Drawer(
         child: Container(
@@ -39,7 +41,7 @@ class _HomeState extends State<Home> {
             ListTile(
                 leading: const Icon(Icons.settings),
                 title: const Text(
-                  'Settings',
+                  'Postavke',
                   style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
                 ),
                 onTap: () {
@@ -51,7 +53,7 @@ class _HomeState extends State<Home> {
             ListTile(
                 leading: const Icon(Icons.history),
                 title: const Text(
-                  'Reciepts',
+                  'Računi',
                   style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
                 ),
                 onTap: () {
@@ -63,12 +65,14 @@ class _HomeState extends State<Home> {
             ListTile(
                 leading: const Icon(Icons.logout),
                 title: const Text(
-                  'Sign Out',
+                  'Izlogiraj se',
                   style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
                 ),
                 onTap: () async {
-                  await FirebaseAuth.instance.signOut();
-                  setState(() {});
+                  cart = [];
+                  await FirebaseAuth.instance
+                      .signOut()
+                      .then((_) => setState(() {}));
                 }),
           ]),
         ),
@@ -80,13 +84,26 @@ class _HomeState extends State<Home> {
           mainAxisSpacing: 8.0,
           crossAxisSpacing: 8.0,
           children: [
-            _buildCategoryButton(context, "Voće", Icons.local_florist),
-            _buildCategoryButton(context, "Povrće", Icons.local_florist),
-            _buildCategoryButton(context, "Pića", Icons.local_florist),
+            _buildCategoryButton(context, "Voće", "Voce", Icons.apple),
+            _buildCategoryButton(context, "Povrće", "Povrce", Icons.nature),
             _buildCategoryButton(
-                context, "Mliječni proizvodi", Icons.local_florist),
-            _buildCategoryButton(context, "Med i džem", Icons.local_florist),
-            _buildCategoryButton(context, "Ostalo", Icons.local_florist),
+                context, "Pića", "PicaIAlkohol", Icons.local_florist),
+            _buildCategoryButton(
+                context, "Meso", "Meso", Icons.fastfood_outlined),
+            _buildCategoryButton(context, "Mliječni proizvodi",
+                "MlijecniProizvodi", Icons.local_drink),
+            _buildCategoryButton(
+                context, "Med", "Med", Icons.local_drink_outlined),
+            _buildCategoryButton(
+                context, "Džemovi", "Dzemovi", Icons.local_drink_outlined),
+            _buildCategoryButton(context, "Jaja", "Jaja", Icons.egg),
+            _buildCategoryButton(
+                context, "Sadnice", "Sadnice", Icons.local_florist),
+            _buildCategoryButton(
+                context, "Ulje i ocat", "UljaIOcati", Icons.oil_barrel_rounded),
+            _buildCategoryButton(
+                context, "Ostalo", "Ostalo", Icons.local_florist),
+
             // Add more category buttons here
           ],
         ),
@@ -95,13 +112,21 @@ class _HomeState extends State<Home> {
   }
 
   Widget _buildCategoryButton(
-      BuildContext context, String title, IconData icon) {
+      BuildContext context, String title, String category, IconData icon) {
     return ElevatedButton.icon(
+      onLongPress: () {
+        setState(() {
+          longPressed = !longPressed;
+        });
+      },
       onPressed: () {
         Navigator.push(
           context,
           MaterialPageRoute(
-            builder: (context) => CategoryPage(category: title.toLowerCase()),
+            builder: (context) => CategoryPage(
+              category: title.toLowerCase(),
+              enums: category,
+            ),
           ),
         );
       },

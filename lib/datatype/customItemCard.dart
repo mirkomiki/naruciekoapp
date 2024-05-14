@@ -1,4 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:naruciekoapp/globalData.dart';
+
+import '../models/item_models/item_model.dart';
 /*
 Widget CustomItemCard(String opgName, String village, String item, String price, String imagePath, int rating) {
     return Card(
@@ -76,21 +79,13 @@ Widget CustomItemCard(String opgName, String village, String item, String price,
 } */
 
 class CustomItemCard extends StatefulWidget {
-  final String opgName;
-  final String village;
-  final String item;
-  final String price;
-  final String imagePath;
-  final int rating;
+  final String producer;
+  final String adress;
+  final ItemModel item;
+  late String imagePath = "assets/zecov_logo.png";
+  late int rating = 5;
 
-  const CustomItemCard(
-    this.opgName,
-    this.village,
-    this.item,
-    this.price,
-    this.imagePath,
-    this.rating,
-  );
+  CustomItemCard(this.producer, this.adress, this.item);
 
   @override
   _CustomItemCardState createState() => _CustomItemCardState();
@@ -103,6 +98,23 @@ class _CustomItemCardState extends State<CustomItemCard> {
     setState(() {
       quantity++;
     });
+    int index = cart.indexWhere((item) => item.uid == widget.item.uid);
+    if (index != -1) {
+      // If the item is found in the cart, update its quantity
+      setState(() {
+        if (cart[index].quantity != null) {
+          cart[index].quantity = cart[index].quantity! + 1;
+        }
+      });
+    } else {
+      // If the item is not found in the cart, add it with quantity 1
+      setState(() {
+        cart.add(widget.item);
+        int index = cart.indexWhere((item) => item.uid == widget.item.uid);
+        cart[index].quantity = 1;
+      });
+    }
+    print(cart);
   }
 
   void decrementQuantity() {
@@ -110,7 +122,23 @@ class _CustomItemCardState extends State<CustomItemCard> {
       setState(() {
         quantity--;
       });
+      int index = cart.indexWhere((item) => item.uid == widget.item.uid);
+      if (index != -1) {
+        // If the item is found in the cart, update its quantity
+        setState(() {
+          if (cart[index].quantity != null) {
+            cart[index].quantity = cart[index].quantity! -
+                1; // Increment the quantity of the item in the cart
+            if (cart[index].quantity == 0) {
+              cart.remove(widget.item);
+            }
+          }
+        });
+      } else {
+        setState(() {});
+      }
     }
+    print(cart);
   }
 
   @override
@@ -133,35 +161,47 @@ class _CustomItemCardState extends State<CustomItemCard> {
                     fit: BoxFit.cover,
                   ),
                 ),
-                SizedBox(width: 16),
+                SizedBox(width: 10),
                 Expanded(
                   flex: 2,
                   child: Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
-                      Text(widget.opgName),
-                      Text(widget.village),
-                      Text(widget.item),
-                      Text(widget.price),
+                      Text(
+                        'Proizvođač: ${widget.producer}',
+                        style: TextStyle(fontWeight: FontWeight.bold),
+                      ),
+                      Text('Adresa: ${widget.adress}',
+                          style: TextStyle(fontWeight: FontWeight.bold)),
+                      Text('Proizvod: ${widget.item.name}',
+                          style: TextStyle(fontWeight: FontWeight.bold)),
+                      Text(
+                          'Cijena ${widget.item.price} € (${(widget.item.price! * 7.54).toStringAsFixed(2)} kn)',
+                          style: TextStyle(fontWeight: FontWeight.bold)),
                       SizedBox(height: 5),
+                      Text(
+                        widget.item.description,
+                        softWrap: true,
+                        maxLines: 2,
+                      ),
                       Row(
                         children: [
-                          Icon(Icons.star,
+                          const Icon(Icons.star,
                               color: const Color.fromARGB(255, 255, 218, 7),
                               size: 20),
-                          SizedBox(width: 5),
-                          Text('${widget.rating} / 5'),
-                          SizedBox(width: 16),
+                          const SizedBox(width: 5),
+                          Text('${widget.rating.roundToDouble()}'),
                           Expanded(
                             child: Row(
-                              mainAxisAlignment: MainAxisAlignment.end,
+                              mainAxisAlignment: MainAxisAlignment.center,
                               children: [
                                 IconButton(
                                   onPressed: decrementQuantity,
                                   icon: Icon(Icons.remove),
                                   color: Colors.red,
                                 ),
-                                Text('$quantity kg'),
+                                Text(
+                                    '$quantity ${widget.item.unit.toString().split('.').last}'),
                                 IconButton(
                                   onPressed: incrementQuantity,
                                   icon: Icon(Icons.add),

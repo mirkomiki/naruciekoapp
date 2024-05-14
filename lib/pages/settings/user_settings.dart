@@ -21,7 +21,7 @@ class _UserSettingsState extends State<UserSettings> {
       initialData: List.empty(),
       child: Scaffold(
         appBar: AppBar(
-          title: const Text("Settings"),
+          title: const Text("Postavke"),
         ),
       ),
     );

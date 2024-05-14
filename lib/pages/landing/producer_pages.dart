@@ -8,6 +8,8 @@ import 'package:naruciekoapp/pages/producer_pages/orders_dashboard.dart';
 import 'package:naruciekoapp/globalData.dart';
 import 'package:naruciekoapp/pages/producer_pages/past_recipets_producer.dart';
 import 'package:naruciekoapp/pages/producer_pages/producer_edit.dart';
+import 'package:naruciekoapp/pages/splash_screen.dart';
+import 'package:naruciekoapp/pages/wrapper.dart';
 
 class ProducerPages extends StatefulWidget {
   const ProducerPages({super.key});
@@ -23,12 +25,6 @@ class _ProducerPagesState extends State<ProducerPages> {
     });
   }
 
-  @override
-  void initState() {
-    // TODO: implement initState
-    super.initState();
-  }
-
   final List<Widget> _producerPages = [
     const OrdersDashboard(),
     const CreateNewItem(),
@@ -39,7 +35,7 @@ class _ProducerPagesState extends State<ProducerPages> {
     double width = MediaQuery.of(context).size.width;
     return Scaffold(
       appBar: CustomAppBar(
-        title: 'Home',
+        title: 'Naslovnica',
       ),
       endDrawer: Drawer(
         child: Container(
@@ -58,19 +54,19 @@ class _ProducerPagesState extends State<ProducerPages> {
             ListTile(
                 leading: const Icon(Icons.settings),
                 title: const Text(
-                  'Settings',
+                  'Postavke',
                   style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
                 ),
                 onTap: () {
                   Navigator.push(
                     context,
                     MaterialPageRoute(builder: (context) => ProducerEdit()),
-                  );
+                  ).then((_) => setState(() {}));
                 }),
             ListTile(
                 leading: const Icon(Icons.history),
                 title: const Text(
-                  'Reciepts',
+                  'Računi',
                   style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
                 ),
                 onTap: () {
@@ -83,12 +79,21 @@ class _ProducerPagesState extends State<ProducerPages> {
             ListTile(
                 leading: const Icon(Icons.logout),
                 title: const Text(
-                  'Sign Out',
+                  'Izlogiraj se',
                   style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
                 ),
                 onTap: () async {
-                  await FirebaseAuth.instance.signOut();
-                  setState(() {});
+                  print('ulazi ovdje');
+                  await FirebaseAuth.instance.signOut().then((_) => {
+                        print('gotov'),
+                        setState(() {}),
+                        Navigator.pushAndRemoveUntil(
+                          context,
+                          MaterialPageRoute(
+                              builder: (context) => SplashScreen()),
+                          (Route<dynamic> route) => false,
+                        )
+                      });
                 }),
           ]),
         ),

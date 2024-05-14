@@ -20,12 +20,12 @@ class CustomOrderCard extends StatefulWidget {
 class _CustomOrderCardState extends State<CustomOrderCard> {
   void deleteItemFromOrders(BuildContext context) {
     setState(() {
-      orders?.remove(widget.orderedItem);
+      orders.remove(widget.orderedItem);
     });
 
     // Show animated snack bar
     ScaffoldMessenger.of(context).showSnackBar(
-      SnackBar(
+      const SnackBar(
         backgroundColor: Colors.green,
         content: Row(
           children: [
@@ -62,7 +62,7 @@ class _CustomOrderCardState extends State<CustomOrderCard> {
                   orderedItem.product.name!,
                   style: TextStyle(fontWeight: FontWeight.bold),
                 ),
-                subtitle: Text('Quantity: ${orderedItem.quantity.toInt()}'),
+                subtitle: Text('Količina: ${orderedItem.quantity.toInt()}'),
                 trailing: IconButton(
                   icon: Icon(Icons.check),
                   onPressed: () => deleteItemFromOrders(context),

@@ -6,7 +6,7 @@ class CartFunctions {
   late final String uid;
   final List<OrderedItem> orderedItems = List.empty();
   CartFunctions({required this.uid});
-
+  /*
   void addItemToCart(OrderedItem item) => cart.orderedItems?.add(item);
 
   void removeItemFromCart(OrderedItem item) => cart.orderedItems?.remove(item);
@@ -24,11 +24,11 @@ class CartFunctions {
       makeOrderInProducerOrders(orderByProducer, selectedOrderType);
     }
   }
-
+  
   void removeAllFromCart() {
     cart.orderedItems = List.empty();
   }
-
+  */
   void makeOrderInProducerOrders(Map<String, List<OrderedItem>> orderByProducer,
       DeliveryOptions selectedOrderType) {
     CollectionReference producersCollection =

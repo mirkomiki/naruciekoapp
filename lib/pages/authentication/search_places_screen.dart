@@ -16,10 +16,10 @@ class _SearchPlacesScreenState extends State<SearchPlacesScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text("Search places"),
+        title: const Text("Pronađi stol i izađi"),
       ),
       body: OpenStreetMapSearchAndPick(
-        center: LatLong(0, 0),
+        center: LatLong(45.815399, 15.966568),
         buttonColor: Colors.blue,
         buttonText: 'Set Location',
         onPicked: (pickedData) {
